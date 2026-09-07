@@ -7,6 +7,7 @@
 <title>NOIRVA MINES</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -22,26 +23,33 @@
   --text:#f4f7f5;
   --muted:#75817c;
   --green:#19e39a;
-  --green2:#0aa86e;
   --red:#f04b5d;
   --gold:#e9c46a;
-  --blue:#8ee7ff;
 }
 
-html,body{
+html{
   min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
+  min-height:100%;
   overflow-x:hidden;
-  overscroll-behavior-x:none;
+  overscroll-behavior:none;
+  background:#050707;
+  color:var(--text);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   padding-bottom:env(safe-area-inset-bottom);
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
@@ -54,7 +62,10 @@ button{
   display:none!important;
 }
 
-/* BACKGROUND */
+
+/* =========================================
+   BACKGROUND
+========================================= */
 
 body::before{
   content:"";
@@ -63,8 +74,16 @@ body::before{
   pointer-events:none;
   z-index:-2;
   background:
-    radial-gradient(circle at 50% -10%,#164f3b55,transparent 38%),
-    radial-gradient(circle at 0% 100%,#063a2a30,transparent 30%),
+    radial-gradient(
+      circle at 50% -10%,
+      #174a3850,
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      #073b2b25,
+      transparent 30%
+    ),
     #050707;
 }
 
@@ -74,14 +93,17 @@ body::after{
   inset:0;
   pointer-events:none;
   z-index:-1;
-  opacity:.025;
+  opacity:.022;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
   background-size:70px 70px;
 }
 
-/* LOGIN */
+
+/* =========================================
+   LOGIN
+========================================= */
 
 .loginScreen{
   min-height:100svh;
@@ -91,52 +113,65 @@ body::after{
 }
 
 .login{
-  width:min(390px,100%);
+  width:min(380px,100%);
   text-align:center;
 }
 
 .mark{
-  width:68px;
-  height:68px;
-  margin:0 auto 18px;
+  width:64px;
+  height:64px;
+  margin:0 auto 17px;
   display:grid;
   place-items:center;
-  border-radius:19px;
+  border-radius:18px;
+
   background:
-    radial-gradient(circle at 35% 20%,#29483d,#0d1412 65%);
+    radial-gradient(
+      circle at 35% 20%,
+      #29483d,
+      #0c1311 67%
+    );
+
   border:1px solid #ffffff18;
+
   box-shadow:
-    0 25px 80px #000,
-    inset 0 1px #ffffff18;
-  font-size:29px;
+    0 22px 70px #000,
+    inset 0 1px #ffffff16;
+
+  font-size:28px;
   font-weight:950;
 }
 
 .brand{
-  font-size:29px;
+  font-size:28px;
   font-weight:950;
   letter-spacing:8px;
 }
 
 .tag{
-  margin-top:8px;
+  margin-top:7px;
   color:#64706b;
-  font-size:8px;
+  font-size:7px;
   letter-spacing:3px;
 }
 
 .loginBox{
-  margin-top:32px;
-  padding:23px;
-  border-radius:18px;
-  background:#0c1110ee;
+  margin-top:30px;
+  padding:21px;
+
+  border-radius:17px;
+
+  background:#0c1110ed;
+
   border:1px solid var(--line);
-  box-shadow:0 30px 100px #000b;
+
+  box-shadow:
+    0 30px 100px #000b;
 }
 
 .label{
   display:block;
-  margin-bottom:8px;
+  margin-bottom:7px;
   text-align:left;
   color:#75817c;
   font-size:8px;
@@ -145,69 +180,105 @@ body::after{
 
 .input{
   width:100%;
-  height:51px;
-  margin-bottom:16px;
-  padding:0 14px;
+  height:49px;
+  margin-bottom:15px;
+  padding:0 13px;
+
   border-radius:9px;
+
   border:1px solid #252d2a;
   outline:none;
+
   background:#070a0a;
   color:#fff;
+
+  transition:
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
 .input:focus{
   border-color:#19e39a66;
-  box-shadow:0 0 0 3px #19e39a0d;
+  box-shadow:
+    0 0 0 3px #19e39a0c;
 }
 
 .mainBtn{
   width:100%;
-  height:52px;
+  height:50px;
+
   border:0;
-  border-radius:10px;
-  background:linear-gradient(180deg,#28eda6,#0fc983);
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #28eda6,
+      #0fc983
+    );
+
   color:#03140d;
+
   font-weight:950;
   letter-spacing:1px;
-  box-shadow:0 12px 35px #19e39a20;
+
+  box-shadow:
+    0 10px 30px #19e39a18;
+
+  transition:
+    transform .18s ease,
+    filter .25s ease;
+}
+
+.mainBtn:active{
+  transform:scale(.985);
 }
 
 .error{
   min-height:18px;
-  margin-top:9px;
+  margin-top:8px;
   color:var(--red);
   font-size:10px;
 }
 
 .note{
-  margin-top:14px;
+  margin-top:13px;
   color:#59645f;
   font-size:8px;
   line-height:1.7;
 }
 
-/* HEADER */
+
+/* =========================================
+   HEADER
+========================================= */
 
 .header{
-  height:64px;
+  height:58px;
+
   position:sticky;
   top:0;
   z-index:50;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:
-    0 12px
-    max(12px,env(safe-area-inset-right))
     0
-    max(12px,env(safe-area-inset-left));
+    max(9px,env(safe-area-inset-right))
+    0
+    max(9px,env(safe-area-inset-left));
+
   background:#070909e8;
+
   backdrop-filter:blur(22px);
+
   border-bottom:1px solid #202725;
 }
 
 .logo{
-  font-size:14px;
+  font-size:13px;
   font-weight:950;
   letter-spacing:4px;
 }
@@ -215,117 +286,180 @@ body::after{
 .headerRight{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:5px;
 }
 
 .balance{
-  min-width:92px;
-  height:37px;
+  min-width:82px;
+  height:34px;
+
   display:grid;
   place-items:center;
-  padding:0 9px;
+
+  padding:0 8px;
+
   border-radius:8px;
+
   border:1px solid #234336;
+
   background:#0b1712;
+
   color:var(--green);
-  font-size:10px;
+
+  font-size:9px;
   font-weight:900;
 }
 
 .headBtn{
-  min-width:40px;
-  height:37px;
-  padding:0 9px;
+  height:34px;
+  padding:0 8px;
+
   border-radius:8px;
+
   border:1px solid #252d2a;
+
   background:#111515;
+
   color:#89938f;
-  font-size:8px;
-  font-weight:700;
+
+  font-size:7px;
+  font-weight:750;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .15s ease;
 }
 
-/* PAGE */
+.headBtn:active{
+  transform:scale(.96);
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
 
 .page{
-  width:min(900px,100%);
+  width:min(760px,100%);
   margin:auto;
-  padding:16px 10px 50px;
+
+  padding:
+    10px
+    8px
+    35px;
 }
 
 .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:13px;
+
+  margin-bottom:9px;
 }
 
 .back{
+  padding:7px 0;
+
   border:0;
   background:none;
+
   color:#7e8985;
-  font-size:10px;
-  padding:8px 0;
+
+  font-size:9px;
 }
 
 .title{
-  font-size:17px;
+  font-size:16px;
   font-weight:950;
 }
 
 .miniBalance{
   color:var(--green);
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
 }
 
-/* PANELS */
+
+/* =========================================
+   PANEL
+========================================= */
 
 .panel{
-  margin-bottom:9px;
-  padding:13px;
-  border-radius:16px;
+  margin-bottom:7px;
+
+  padding:10px;
+
+  border-radius:14px;
+
   background:
-    linear-gradient(145deg,#111716,#0a0e0e);
+    linear-gradient(
+      145deg,
+      #111716,
+      #0a0e0e
+    );
+
   border:1px solid var(--line);
+
   box-shadow:
-    0 18px 55px #0006,
-    inset 0 1px #ffffff05;
+    0 15px 45px #0005,
+    inset 0 1px #ffffff04;
 }
 
-/* STATUS */
+
+/* =========================================
+   STATUS
+========================================= */
 
 .status{
   text-align:center;
-  padding:6px 10px 10px;
+  padding:5px 8px 8px;
 }
 
 .statusLabel{
   color:#68736f;
-  font-size:8px;
+  font-size:7px;
   letter-spacing:2px;
 }
 
 .multiplier{
   margin-top:3px;
-  font-size:40px;
+
+  font-size:34px;
   line-height:1;
+
   font-weight:950;
   letter-spacing:-2px;
+
   color:var(--green);
-  text-shadow:0 0 30px #19e39a25;
-  transition:.2s;
+
+  text-shadow:
+    0 0 28px #19e39a20;
+
+  transition:
+    color .35s ease,
+    text-shadow .4s ease,
+    transform .3s cubic-bezier(.22,.61,.36,1);
 }
 
 .multiplier.hot{
   color:var(--gold);
-  text-shadow:0 0 35px #e9c46a44;
+
+  text-shadow:
+    0 0 30px #e9c46a35;
 }
 
 .statusText{
-  min-height:20px;
-  margin-top:6px;
+  min-height:18px;
+
+  margin-top:5px;
+
   color:#75817c;
-  font-size:9px;
+
+  font-size:8px;
+
+  transition:
+    color .25s ease;
 }
 
 .statusText.win{
@@ -336,259 +470,453 @@ body::after{
   color:#ff7884;
 }
 
-/* BOARD */
+
+/* =========================================
+   BOARD FRAME
+========================================= */
 
 .boardFrame{
-  padding:8px;
-  border-radius:18px;
+  padding:6px;
+
+  border-radius:15px;
+
   background:
-    linear-gradient(145deg,#303835,#080b0b 27%,#1b211f 75%,#070909);
-  border:1px solid #3a433f;
+    linear-gradient(
+      145deg,
+      #303835,
+      #080b0b 27%,
+      #1b211f 75%,
+      #070909
+    );
+
+  border:1px solid #39413e;
+
   box-shadow:
-    0 30px 70px #000,
-    inset 0 1px #ffffff15,
+    0 24px 60px #000,
+    inset 0 1px #ffffff13,
     inset 0 -2px #000;
 }
 
 .board{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-  padding:6px;
-  border-radius:13px;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:4px;
+
+  padding:5px;
+
+  border-radius:11px;
+
   background:
-    radial-gradient(circle at 50% 20%,#17201d,#070909 75%);
+    radial-gradient(
+      circle at 50% 20%,
+      #17201d,
+      #070909 75%
+    );
+
   border:1px solid #161d1b;
 }
 
-/* TILE */
+
+/* =========================================
+   TILE
+========================================= */
 
 .tile{
   position:relative;
+
   aspect-ratio:1;
+
   min-width:0;
-  border-radius:9px;
-  border:1px solid #303936;
-  background:
-    linear-gradient(145deg,#202725,#121817 52%,#0b0f0f);
-  box-shadow:
-    inset 0 1px #ffffff0b,
-    inset 0 -6px 12px #0009,
-    0 3px 6px #0009;
+
   display:grid;
   place-items:center;
+
+  border-radius:8px;
+
+  border:1px solid #303936;
+
+  background:
+    linear-gradient(
+      145deg,
+      #202725,
+      #121817 52%,
+      #0b0f0f
+    );
+
+  box-shadow:
+    inset 0 1px #ffffff09,
+    inset 0 -5px 10px #0008,
+    0 2px 4px #0008;
+
   overflow:hidden;
+
   transition:
-    transform .13s,
-    background .2s,
-    border-color .2s,
-    box-shadow .2s;
+    transform .22s cubic-bezier(.22,.61,.36,1),
+    background .28s ease,
+    border-color .28s ease,
+    box-shadow .3s ease,
+    filter .3s ease;
 }
 
 .tile::before{
   content:"";
+
   position:absolute;
+
   left:8%;
   right:8%;
   top:6%;
+
   height:38%;
+
   border-radius:50%;
-  background:#ffffff07;
+
+  background:#ffffff06;
+
   filter:blur(4px);
+
   pointer-events:none;
 }
 
 .tile:active{
-  transform:scale(.91);
+  transform:scale(.93);
 }
 
 .tile:not(.open):hover{
-  border-color:#496057;
+  border-color:#465b53;
 }
 
 .tile.open{
-  animation:tileOpen .24s cubic-bezier(.2,.8,.2,1);
+  animation:
+    tileOpenSmooth
+    .38s
+    cubic-bezier(.16,1,.3,1);
 }
 
-@keyframes tileOpen{
+@keyframes tileOpenSmooth{
+
   0%{
-    transform:scale(.75) rotateX(55deg);
-    opacity:.35;
+    transform:
+      scale(.88)
+      rotateX(12deg);
+
+    opacity:.4;
+
+    filter:brightness(.72);
   }
-  100%{
-    transform:scale(1) rotateX(0);
+
+  55%{
+    transform:
+      scale(1.025)
+      rotateX(0);
+
     opacity:1;
+
+    filter:brightness(1.08);
   }
+
+  100%{
+    transform:
+      scale(1)
+      rotateX(0);
+
+    opacity:1;
+
+    filter:brightness(1);
+  }
+
 }
 
-/* SAFE TILE */
+
+/* =========================================
+   SAFE TILE
+========================================= */
 
 .tile.safe{
+
   background:
-    radial-gradient(circle at 50% 42%,#1d6049,#0c2c21 57%,#06130f);
+    radial-gradient(
+      circle at 50% 42%,
+      #1d6049,
+      #0c2c21 57%,
+      #06130f
+    );
+
   border-color:#268262;
+
   box-shadow:
-    inset 0 1px #ffffff12,
-    inset 0 -9px 15px #0008,
-    0 0 24px #19e39a18;
+    inset 0 1px #ffffff10,
+    inset 0 -7px 13px #0008,
+    0 0 18px #19e39a12;
 }
 
-/* DIAMOND */
+
+/* =========================================
+   DIAMOND SVG
+========================================= */
 
 .diamondSVG{
-  width:60%;
-  height:60%;
+  width:57%;
+  height:57%;
+
   overflow:visible;
+
   filter:
-    drop-shadow(0 3px 4px #000)
-    drop-shadow(0 0 8px #5affc033);
-  animation:diamondIn .35s cubic-bezier(.2,.8,.2,1);
+    drop-shadow(0 2px 3px #000)
+    drop-shadow(0 0 5px #5affc022);
+
+  animation:
+    diamondReveal
+    .48s
+    cubic-bezier(.16,1,.3,1);
 }
 
-@keyframes diamondIn{
+@keyframes diamondReveal{
+
   0%{
     opacity:0;
-    transform:scale(.2) rotate(-15deg);
+
+    transform:
+      scale(.55)
+      rotate(-8deg);
   }
-  60%{
+
+  55%{
     opacity:1;
-    transform:scale(1.15) rotate(3deg);
+
+    transform:
+      scale(1.06)
+      rotate(2deg);
   }
+
   100%{
-    transform:scale(1) rotate(0);
+    opacity:1;
+
+    transform:
+      scale(1)
+      rotate(0);
   }
+
 }
 
 .diamondShine{
-  animation:shine 1.3s ease-in-out infinite;
+  animation:
+    diamondShine
+    2.2s
+    ease-in-out
+    infinite;
 }
 
-@keyframes shine{
-  0%,100%{opacity:.35}
-  50%{opacity:1}
+@keyframes diamondShine{
+
+  0%,100%{
+    opacity:.22;
+  }
+
+  50%{
+    opacity:.85;
+  }
+
 }
 
-/* BOMB TILE */
+
+/* =========================================
+   BOMB TILE
+========================================= */
 
 .tile.bomb{
+
   background:
-    radial-gradient(circle at 50% 40%,#762d39,#32151b 57%,#15090c);
+    radial-gradient(
+      circle at 50% 40%,
+      #762d39,
+      #32151b 57%,
+      #15090c
+    );
+
   border-color:#a43f4d;
+
   box-shadow:
     inset 0 1px #ffffff0b,
     inset 0 -9px 15px #0009,
-    0 0 35px #f04b5d2c;
+    0 0 30px #f04b5d25;
 }
 
 .bombSVG{
-  width:61%;
-  height:61%;
+  width:58%;
+  height:58%;
+
   overflow:visible;
+
   filter:
-    drop-shadow(0 4px 5px #000)
-    drop-shadow(0 0 8px #f04b5d30);
-  animation:bombPop .28s cubic-bezier(.2,.8,.2,1);
+    drop-shadow(0 3px 4px #000)
+    drop-shadow(0 0 6px #f04b5d20);
+
+  animation:
+    bombReveal
+    .42s
+    cubic-bezier(.16,1,.3,1);
 }
 
-@keyframes bombPop{
+@keyframes bombReveal{
+
   0%{
-    transform:scale(.2);
     opacity:0;
+    transform:scale(.7);
   }
-  75%{
-    transform:scale(1.13);
-  }
-  100%{
-    transform:scale(1);
+
+  65%{
     opacity:1;
+    transform:scale(1.035);
   }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+
 }
 
-/* CONTROLS */
+
+/* =========================================
+   CONTROLS
+========================================= */
 
 .controls{
   display:grid;
   grid-template-columns:1fr;
-  gap:8px;
+  gap:6px;
 }
 
 .field{
   min-width:0;
-  padding:10px;
-  border-radius:10px;
+
+  padding:8px;
+
+  border-radius:9px;
+
   border:1px solid #252d2a;
+
   background:#080b0b;
 }
 
 .field label{
   display:block;
-  margin-bottom:7px;
+
+  margin-bottom:6px;
+
   color:#75817c;
-  font-size:8px;
+
+  font-size:7px;
   letter-spacing:2px;
 }
 
 .field input{
   width:100%;
-  height:30px;
+  height:28px;
+
   border:0;
   outline:0;
+
   background:none;
+
   color:white;
-  font-size:15px;
+
+  font-size:14px;
   font-weight:900;
 }
 
 .quick{
   display:flex;
-  gap:5px;
-  margin-top:7px;
+  gap:4px;
+  margin-top:5px;
 }
 
 .quick button,
 .bombOption{
   flex:1;
+
   min-width:0;
-  height:34px;
-  border-radius:7px;
+
+  height:31px;
+
+  border-radius:6px;
+
   border:1px solid #2a3330;
+
   background:#171c1b;
+
   color:#929c98;
+
   font-size:8px;
   font-weight:800;
+
+  transition:
+    transform .15s ease,
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease;
 }
 
 .quick button:active,
 .bombOption:active{
-  transform:scale(.96);
+  transform:scale(.95);
 }
 
 .bombOptions{
   display:flex;
-  gap:5px;
+  gap:4px;
 }
 
 .bombOption.active{
   background:#35171d;
+
   border-color:#87333f;
+
   color:#ff8490;
 }
 
-/* ACTIONS */
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
 
 .action{
   width:100%;
-  min-height:50px;
-  margin-top:9px;
+
+  min-height:46px;
+
+  margin-top:7px;
+
   border:0;
-  border-radius:10px;
-  background:linear-gradient(180deg,#26eda6,#0fc983);
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #26eda6,
+      #0fc983
+    );
+
   color:#03140d;
-  font-size:10px;
+
+  font-size:9px;
+
   font-weight:950;
+
   letter-spacing:1.1px;
-  box-shadow:0 10px 30px #19e39a17;
-  transition:.12s;
+
+  box-shadow:
+    0 8px 25px #19e39a13;
+
+  transition:
+    transform .16s cubic-bezier(.22,.61,.36,1),
+    filter .25s ease,
+    box-shadow .3s ease;
 }
 
 .action:active{
@@ -601,59 +929,97 @@ body::after{
 }
 
 .cash{
-  background:linear-gradient(180deg,#efd184,#c69c40);
+  background:
+    linear-gradient(
+      180deg,
+      #efd184,
+      #c69c40
+    );
+
   color:#171006;
 }
 
 .cash.ready{
-  animation:cashPulse 1.15s ease-in-out infinite;
-  box-shadow:
-    0 0 25px #e9c46a30,
-    0 8px 30px #0005;
+  animation:
+    cashBreath
+    2s
+    ease-in-out
+    infinite;
 }
 
-@keyframes cashPulse{
-  50%{
-    filter:brightness(1.09);
+@keyframes cashBreath{
+
+  0%,100%{
+    box-shadow:
+      0 0 10px #e9c46a12,
+      0 6px 20px #0004;
   }
+
+  50%{
+    box-shadow:
+      0 0 22px #e9c46a25,
+      0 8px 24px #0005;
+  }
+
 }
 
-/* STATS */
+
+/* =========================================
+   STATS
+========================================= */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:5px;
 }
 
 .stat{
   min-width:0;
-  padding:10px 7px;
+
+  padding:9px 6px;
+
   border-radius:8px;
+
   background:#090c0c;
+
   border:1px solid #202725;
+
   text-align:center;
 }
 
 .stat strong{
   display:block;
-  font-size:12px;
+  font-size:11px;
 }
 
 .stat span{
   display:block;
-  margin-top:3px;
+
+  margin-top:2px;
+
   color:#66716d;
+
   font-size:6px;
+
   letter-spacing:1px;
 }
 
-/* HISTORY */
+
+/* =========================================
+   HISTORY
+========================================= */
 
 .history{
   display:flex;
+
   gap:5px;
+
   overflow-x:auto;
+
   scrollbar-width:none;
 }
 
@@ -663,136 +1029,246 @@ body::after{
 
 .historyItem{
   flex:0 0 auto;
-  min-width:58px;
-  height:32px;
+
+  min-width:56px;
+  height:31px;
+
   padding:0 8px;
+
   display:grid;
   place-items:center;
+
   border-radius:7px;
+
   background:#171c1b;
+
   border:1px solid #272e2c;
+
   color:#818b87;
-  font-size:8px;
+
+  font-size:7px;
+
   font-weight:850;
 }
 
 .historyItem.win{
   color:var(--green);
+
   background:#0c2b20;
+
   border-color:#185c44;
 }
 
 .historyItem.loss{
   color:#ff7884;
+
   background:#2b1217;
+
   border-color:#63252f;
 }
 
-/* FLASH */
+
+/* =========================================
+   RESULT
+========================================= */
 
 .resultFlash{
   position:fixed;
   inset:0;
+
   z-index:200;
+
   display:grid;
   place-items:center;
+
   pointer-events:none;
+
   opacity:0;
 }
 
 .resultCard{
-  padding:25px 30px;
-  border-radius:18px;
+  padding:22px 27px;
+
+  border-radius:16px;
+
   background:#0c1110ee;
+
   border:1px solid #ffffff18;
+
   text-align:center;
-  box-shadow:0 30px 100px #000;
+
+  box-shadow:
+    0 25px 80px #000,
+    0 0 40px #19e39a08;
+
   transform:scale(.8);
 }
 
 .resultTitle{
-  font-size:27px;
+  font-size:25px;
   font-weight:950;
 }
 
 .resultValue{
   margin-top:5px;
+
   color:var(--green);
-  font-size:16px;
+
+  font-size:15px;
   font-weight:900;
 }
 
 .resultFlash.show{
-  animation:flash .9s ease-out;
+  animation:
+    flashSmooth
+    1s
+    ease-out;
 }
 
 .resultFlash.show .resultCard{
-  animation:resultCard .7s cubic-bezier(.2,.8,.2,1);
+  animation:
+    resultSmooth
+    .75s
+    cubic-bezier(.16,1,.3,1);
 }
 
-@keyframes flash{
-  0%{opacity:0}
-  20%{opacity:1}
-  70%{opacity:1}
-  100%{opacity:0}
-}
+@keyframes flashSmooth{
 
-@keyframes resultCard{
   0%{
-    transform:scale(.65);
     opacity:0;
   }
-  45%{
-    transform:scale(1.04);
+
+  15%{
     opacity:1;
   }
-  100%{
-    transform:scale(1);
+
+  65%{
+    opacity:1;
   }
+
+  100%{
+    opacity:0;
+  }
+
 }
 
-/* PARTICLES */
+@keyframes resultSmooth{
+
+  0%{
+    transform:
+      scale(.86)
+      translateY(8px);
+
+    opacity:0;
+  }
+
+  55%{
+    transform:
+      scale(1.015)
+      translateY(0);
+
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      scale(1)
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   SHAKE
+========================================= */
+
+.shake{
+  animation:
+    softShake
+    .42s
+    cubic-bezier(.36,.07,.19,.97);
+}
+
+@keyframes softShake{
+
+  0%,100%{
+    transform:translateX(0);
+  }
+
+  20%{
+    transform:translateX(-3px);
+  }
+
+  40%{
+    transform:translateX(3px);
+  }
+
+  60%{
+    transform:translateX(-2px);
+  }
+
+  80%{
+    transform:translateX(1px);
+  }
+
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
 
 .particle{
   position:fixed;
-  width:6px;
-  height:6px;
+
+  width:4px;
+  height:4px;
+
   border-radius:50%;
+
   background:var(--green);
+
   pointer-events:none;
+
   z-index:300;
-  animation:particle .9s ease-out forwards;
+
+  animation:
+    particleSmooth
+    1.05s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
-@keyframes particle{
+@keyframes particleSmooth{
+
   0%{
-    transform:translate(0,0) scale(1);
-    opacity:1;
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity:.85;
   }
+
   100%{
-    transform:translate(var(--x),var(--y)) scale(0);
+    transform:
+      translate3d(var(--x),var(--y),0)
+      scale(0);
+
     opacity:0;
   }
+
 }
 
-.shake{
-  animation:shake .38s ease-out;
-}
 
-@keyframes shake{
-  0%,100%{transform:translateX(0)}
-  20%{transform:translateX(-5px)}
-  40%{transform:translateX(5px)}
-  60%{transform:translateX(-4px)}
-  80%{transform:translateX(3px)}
-}
-
-/* TABLET / DESKTOP */
+/* =========================================
+   TABLET / DESKTOP
+========================================= */
 
 @media(min-width:650px){
 
   .page{
-    padding-top:28px;
+    padding-top:24px;
   }
 
   .controls{
@@ -800,24 +1276,22 @@ body::after{
   }
 
   .board{
-    gap:8px;
-    padding:8px;
+    gap:7px;
+    padding:7px;
   }
 
   .tile{
-    border-radius:10px;
+    border-radius:9px;
   }
 
-  .diamondSVG,
-  .bombSVG{
-    width:58%;
-    height:58%;
-  }
 }
 
-/* SMALL PHONES */
 
-@media(max-width:360px){
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media(max-width:390px){
 
   .logo{
     letter-spacing:3px;
@@ -825,7 +1299,6 @@ body::after{
 
   .balance{
     min-width:76px;
-    font-size:9px;
   }
 
   .headBtn{
@@ -833,12 +1306,13 @@ body::after{
   }
 
   .page{
-    padding-left:7px;
-    padding-right:7px;
+    padding-left:6px;
+    padding-right:6px;
   }
 
   .panel{
-    padding:10px;
+    padding:8px;
+    border-radius:13px;
   }
 
   .boardFrame{
@@ -846,7 +1320,7 @@ body::after{
   }
 
   .board{
-    gap:4px;
+    gap:3px;
     padding:4px;
   }
 
@@ -856,28 +1330,84 @@ body::after{
 
   .diamondSVG,
   .bombSVG{
-    width:63%;
-    height:63%;
+    width:55%;
+    height:55%;
   }
+
+  .multiplier{
+    font-size:32px;
+  }
+
 }
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media(max-width:350px){
+
+  .header{
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+  .logo{
+    font-size:12px;
+    letter-spacing:3px;
+  }
+
+  .balance{
+    min-width:69px;
+    font-size:8px;
+  }
+
+  .headBtn{
+    padding:0 6px;
+    font-size:6px;
+  }
+
+  .page{
+    padding-left:5px;
+    padding-right:5px;
+  }
+
+  .panel{
+    padding:7px;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- LOGIN -->
 
-<section id="loginScreen" class="loginScreen">
+<!-- =========================================
+     LOGIN
+========================================= -->
+
+<section
+  id="loginScreen"
+  class="loginScreen"
+>
 
   <div class="login">
 
-    <div class="mark">N</div>
+    <div class="mark">
+      N
+    </div>
 
-    <div class="brand">NOIRVA</div>
+    <div class="brand">
+      NOIRVA
+    </div>
 
     <div class="tag">
       MINES · VIRTUAL PLAYGROUND
     </div>
+
 
     <div class="loginBox">
 
@@ -893,6 +1423,7 @@ body::after{
         placeholder="Enter username"
       >
 
+
       <label class="label">
         PASSWORD
       </label>
@@ -905,6 +1436,7 @@ body::after{
         placeholder="Enter password"
       >
 
+
       <button
         class="mainBtn"
         onclick="login()"
@@ -912,7 +1444,12 @@ body::after{
         ENTER NOIRVA
       </button>
 
-      <div id="loginError" class="error"></div>
+
+      <div
+        id="loginError"
+        class="error"
+      ></div>
+
 
       <div class="note">
         DEMO ACCESS · VIRTUAL COINS ONLY<br>
@@ -926,9 +1463,16 @@ body::after{
 </section>
 
 
-<!-- GAME -->
 
-<section id="gameScreen" class="hidden">
+<!-- =========================================
+     GAME
+========================================= -->
+
+<section
+  id="gameScreen"
+  class="hidden"
+>
+
 
 <header class="header">
 
@@ -936,11 +1480,16 @@ body::after{
     NOIRVA
   </div>
 
+
   <div class="headerRight">
 
-    <div id="balance" class="balance">
+    <div
+      id="balance"
+      class="balance"
+    >
       10,000 ◈
     </div>
+
 
     <button
       id="soundBtn"
@@ -949,6 +1498,7 @@ body::after{
     >
       SOUND ON
     </button>
+
 
     <button
       class="headBtn"
@@ -962,7 +1512,9 @@ body::after{
 </header>
 
 
+
 <main class="page">
+
 
   <div class="top">
 
@@ -973,9 +1525,11 @@ body::after{
       ← EXIT GAME
     </button>
 
+
     <div class="title">
       MINES
     </div>
+
 
     <div
       id="miniBalance"
@@ -987,6 +1541,7 @@ body::after{
   </div>
 
 
+
   <!-- STATUS -->
 
   <div class="panel status">
@@ -995,12 +1550,14 @@ body::after{
       CURRENT MULTIPLIER
     </div>
 
+
     <div
       id="multiplier"
       class="multiplier"
     >
       1.00×
     </div>
+
 
     <div
       id="statusText"
@@ -1010,6 +1567,7 @@ body::after{
     </div>
 
   </div>
+
 
 
   <!-- BOARD -->
@@ -1031,17 +1589,20 @@ body::after{
   </div>
 
 
+
   <!-- CONTROLS -->
 
   <div class="panel">
 
     <div class="controls">
 
+
       <div class="field">
 
         <label>
           BET
         </label>
+
 
         <input
           id="bet"
@@ -1051,17 +1612,24 @@ body::after{
           inputmode="numeric"
         >
 
+
         <div class="quick">
 
-          <button onclick="setBet(50)">
+          <button
+            onclick="setBet(50)"
+          >
             50
           </button>
 
-          <button onclick="setBet(100)">
+          <button
+            onclick="setBet(100)"
+          >
             100
           </button>
 
-          <button onclick="setBet(500)">
+          <button
+            onclick="setBet(500)"
+          >
             500
           </button>
 
@@ -1070,11 +1638,13 @@ body::after{
       </div>
 
 
+
       <div class="field">
 
         <label>
           BOMBS
         </label>
+
 
         <div class="bombOptions">
 
@@ -1117,6 +1687,7 @@ body::after{
     </div>
 
 
+
     <button
       id="startBtn"
       class="action"
@@ -1138,6 +1709,7 @@ body::after{
   </div>
 
 
+
   <!-- STATS -->
 
   <div class="panel">
@@ -1145,23 +1717,47 @@ body::after{
     <div class="stats">
 
       <div class="stat">
-        <strong id="safeCount">0</strong>
-        <span>SAFE TILES</span>
+
+        <strong id="safeCount">
+          0
+        </strong>
+
+        <span>
+          SAFE TILES
+        </span>
+
       </div>
 
-      <div class="stat">
-        <strong id="roundBet">0 ◈</strong>
-        <span>ROUND BET</span>
-      </div>
 
       <div class="stat">
-        <strong id="potential">0 ◈</strong>
-        <span>POTENTIAL WIN</span>
+
+        <strong id="roundBet">
+          0 ◈
+        </strong>
+
+        <span>
+          ROUND BET
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <strong id="potential">
+          0 ◈
+        </strong>
+
+        <span>
+          POTENTIAL WIN
+        </span>
+
       </div>
 
     </div>
 
   </div>
+
 
 
   <!-- HISTORY -->
@@ -1172,24 +1768,26 @@ body::after{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      margin-bottom:9px
+      margin-bottom:8px
     ">
 
       <strong style="
-        font-size:10px;
+        font-size:9px;
         letter-spacing:1px
       ">
         RECENT ROUNDS
       </strong>
 
+
       <span style="
-        font-size:7px;
+        font-size:6px;
         color:#65706c
       ">
         VIRTUAL
       </span>
 
     </div>
+
 
     <div
       id="history"
@@ -1198,12 +1796,16 @@ body::after{
 
   </div>
 
+
 </main>
 
 </section>
 
 
-<!-- RESULT -->
+
+<!-- =========================================
+     RESULT FLASH
+========================================= -->
 
 <div
   id="resultFlash"
@@ -1219,6 +1821,7 @@ body::after{
       WIN
     </div>
 
+
     <div
       id="resultValue"
       class="resultValue"
@@ -1231,7 +1834,9 @@ body::after{
 </div>
 
 
+
 <script>
+
 
 /* =========================================
    STATE
@@ -1239,14 +1844,22 @@ body::after{
 
 const state={
 
-  user:localStorage.getItem("noirva_user")||"",
+  user:
+    localStorage.getItem(
+      "noirva_user"
+    )||"",
 
-  balance:Number(
-    localStorage.getItem("noirva_balance")||10000
-  ),
+  balance:
+    Number(
+      localStorage.getItem(
+        "noirva_balance"
+      )||10000
+    ),
 
   sound:
-    localStorage.getItem("noirva_sound")!=="off",
+    localStorage.getItem(
+      "noirva_sound"
+    )!=="off",
 
   bombs:5,
 
@@ -1274,8 +1887,11 @@ let audioContext=null;
 
 function money(value){
 
-  return Math.floor(value)
-    .toLocaleString()+" ◈";
+  return (
+    Math.floor(value)
+      .toLocaleString()
+    +" ◈"
+  );
 
 }
 
@@ -1288,8 +1904,12 @@ function save(){
 
   localStorage.setItem(
     "noirva_balance",
-    Math.max(0,state.balance)
+    Math.max(
+      0,
+      state.balance
+    )
   );
+
 
   if(state.user){
 
@@ -1309,11 +1929,17 @@ function save(){
 
 function updateBalance(){
 
-  document.getElementById("balance")
-    .textContent=money(state.balance);
+  document.getElementById(
+    "balance"
+  ).textContent=
+    money(state.balance);
 
-  document.getElementById("miniBalance")
-    .textContent=money(state.balance);
+
+  document.getElementById(
+    "miniBalance"
+  ).textContent=
+    money(state.balance);
+
 
   save();
 
@@ -1328,8 +1954,9 @@ function setBet(value){
 
   if(state.active)return;
 
-  document.getElementById("bet")
-    .value=value;
+  document.getElementById(
+    "bet"
+  ).value=value;
 
   uiClick();
 
@@ -1346,15 +1973,26 @@ function setBombs(value){
 
   state.bombs=value;
 
-  document
-    .querySelectorAll(".bombOption")
-    .forEach(button=>{
-      button.classList.remove("active");
-    });
 
   document
-    .getElementById("bomb"+value)
-    .classList.add("active");
+    .querySelectorAll(".bombOption")
+    .forEach(
+      button=>{
+        button.classList.remove(
+          "active"
+        );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "bomb"+value
+    )
+    .classList.add(
+      "active"
+    );
+
 
   uiClick();
 
@@ -1367,17 +2005,25 @@ function setBombs(value){
 
 function validBet(){
 
-  const value=Math.floor(
-    Number(
-      document.getElementById("bet").value
-    )
-  );
+  const value=
+    Math.floor(
+      Number(
+        document.getElementById(
+          "bet"
+        ).value
+      )
+    );
 
-  if(!Number.isFinite(value))return 0;
 
-  if(value<1)return 0;
+  if(!Number.isFinite(value))
+    return 0;
 
-  if(value>state.balance)return 0;
+  if(value<1)
+    return 0;
+
+  if(value>state.balance)
+    return 0;
+
 
   return value;
 
@@ -1391,25 +2037,31 @@ function validBet(){
 function login(){
 
   const username=
-    document.getElementById("username")
-      .value.trim();
+    document.getElementById(
+      "username"
+    ).value.trim();
+
 
   const password=
-    document.getElementById("password")
-      .value;
+    document.getElementById(
+      "password"
+    ).value;
+
 
   if(
     username.length<1 ||
     password.length<3
   ){
 
-    document.getElementById("loginError")
-      .textContent=
+    document.getElementById(
+      "loginError"
+    ).textContent=
       "Enter a username and 3+ character password.";
 
     return;
 
   }
+
 
   state.user=username;
 
@@ -1417,11 +2069,24 @@ function login(){
 
   initAudio();
 
-  document.getElementById("loginScreen")
-    .classList.add("hidden");
 
-  document.getElementById("gameScreen")
-    .classList.remove("hidden");
+  document
+    .getElementById(
+      "loginScreen"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+
+  document
+    .getElementById(
+      "gameScreen"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
 
   updateBalance();
 
@@ -1442,11 +2107,23 @@ function logout(){
 
   state.active=false;
 
-  document.getElementById("gameScreen")
-    .classList.add("hidden");
 
-  document.getElementById("loginScreen")
-    .classList.remove("hidden");
+  document
+    .getElementById(
+      "gameScreen"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+
+  document
+    .getElementById(
+      "loginScreen"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
 }
 
@@ -1469,230 +2146,308 @@ function initAudio(){
 
     }
 
+
     if(
       audioContext &&
-      audioContext.state==="suspended"
+      audioContext.state===
+      "suspended"
     ){
 
       audioContext.resume();
 
     }
 
-  }catch(error){}
+  }catch(e){}
 
 }
 
 
 /*
-  Richer audio than simple one-note beeps.
-  Uses multiple oscillators + envelopes.
+  Soft, warm synthesized sound.
+  No harsh square-wave clicks.
 */
 
 function tone(
   frequency,
-  duration=.12,
+  duration=.16,
   type="sine",
-  volume=.08,
-  delay=0
+  volume=.035,
+  delay=0,
+  detune=0
 ){
 
-  if(!state.sound)return;
+  if(!state.sound)
+    return;
+
 
   initAudio();
 
-  if(!audioContext)return;
+
+  if(!audioContext)
+    return;
+
 
   const now=
-    audioContext.currentTime+delay;
+    audioContext.currentTime+
+    delay;
 
-  const oscillator=
+
+  const osc=
     audioContext.createOscillator();
+
 
   const gain=
     audioContext.createGain();
 
-  oscillator.type=type;
 
-  oscillator.frequency.setValueAtTime(
+  const filter=
+    audioContext.createBiquadFilter();
+
+
+  osc.type=type;
+
+
+  osc.frequency.setValueAtTime(
     frequency,
     now
   );
+
+
+  osc.detune.setValueAtTime(
+    detune,
+    now
+  );
+
+
+  filter.type="lowpass";
+
+
+  filter.frequency.setValueAtTime(
+    Math.min(
+      frequency*3,
+      2600
+    ),
+    now
+  );
+
+
+  filter.Q.value=.35;
+
 
   gain.gain.setValueAtTime(
     .0001,
     now
   );
 
+
   gain.gain.exponentialRampToValueAtTime(
     volume,
-    now+.015
+    now+.035
   );
+
 
   gain.gain.exponentialRampToValueAtTime(
     .0001,
     now+duration
   );
 
-  oscillator.connect(gain);
+
+  osc.connect(filter);
+
+  filter.connect(gain);
 
   gain.connect(
     audioContext.destination
   );
 
-  oscillator.start(now);
 
-  oscillator.stop(
-    now+duration+.03
+  osc.start(now);
+
+
+  osc.stop(
+    now+
+    duration+
+    .04
   );
 
 }
 
 
-/* soft UI click */
+/* =========================================
+   UI CLICK
+========================================= */
 
 function uiClick(){
 
   tone(
-    520,
-    .045,
-    "triangle",
-    .035
+    440,
+    .075,
+    "sine",
+    .018
   );
 
 }
 
 
-/* diamond sound */
+/* =========================================
+   DIAMOND SOUND
+========================================= */
 
 function diamondSound(){
 
   tone(
-    620,
-    .16,
+    520,
+    .22,
     "sine",
-    .065
+    .028,
+    0
   );
 
+
   tone(
-    930,
-    .18,
+    780,
+    .26,
     "sine",
-    .055,
+    .024,
     .055
   );
 
+
   tone(
-    1320,
-    .24,
+    1040,
+    .32,
     "sine",
-    .045,
+    .020,
     .11
+  );
+
+
+  tone(
+    1560,
+    .22,
+    "sine",
+    .012,
+    .17
   );
 
 }
 
 
-/* bomb sound */
+/* =========================================
+   BOMB SOUND
+========================================= */
 
 function bombSound(){
 
   tone(
-    125,
-    .32,
-    "sawtooth",
-    .09
+    115,
+    .42,
+    "sine",
+    .055
   );
 
-  tone(
-    72,
-    .45,
-    "square",
-    .075,
-    .08
-  );
 
   tone(
-    42,
-    .5,
-    "sawtooth",
-    .05,
-    .15
+    82,
+    .48,
+    "triangle",
+    .038,
+    .045
+  );
+
+
+  tone(
+    58,
+    .55,
+    "sine",
+    .025,
+    .10
   );
 
 }
 
 
-/* cash-out sound */
+/* =========================================
+   CASH SOUND
+========================================= */
 
 function cashSound(){
 
   tone(
     440,
-    .13,
+    .20,
     "sine",
-    .07
+    .032
   );
 
+
   tone(
-    660,
-    .15,
+    554,
+    .22,
     "sine",
-    .07,
-    .08
+    .029,
+    .075
   );
+
+
+  tone(
+    659,
+    .24,
+    "sine",
+    .027,
+    .15
+  );
+
 
   tone(
     880,
-    .17,
+    .32,
     "sine",
-    .065,
-    .16
-  );
-
-  tone(
-    1320,
-    .28,
-    "sine",
-    .055,
-    .25
+    .026,
+    .23
   );
 
 }
 
 
-/* victory fanfare */
+/* =========================================
+   WIN SOUND
+========================================= */
 
 function winSound(){
 
   tone(
     523,
-    .15,
-    "sine",
-    .06
+    .20,
+    "triangle",
+    .026
   );
+
 
   tone(
     659,
-    .16,
-    "sine",
-    .06,
-    .08
+    .22,
+    "triangle",
+    .026,
+    .09
   );
+
 
   tone(
     784,
-    .18,
-    "sine",
-    .06,
-    .16
+    .24,
+    "triangle",
+    .025,
+    .18
   );
+
 
   tone(
     1047,
-    .3,
+    .38,
     "sine",
-    .07,
-    .25
+    .030,
+    .29
   );
 
 }
@@ -1704,8 +2459,9 @@ function winSound(){
 
 function updateSoundButton(){
 
-  document.getElementById("soundBtn")
-    .textContent=
+  document.getElementById(
+    "soundBtn"
+  ).textContent=
     state.sound
       ?"SOUND ON"
       :"SOUND OFF";
@@ -1717,12 +2473,17 @@ function toggleSound(){
 
   state.sound=!state.sound;
 
+
   localStorage.setItem(
     "noirva_sound",
-    state.sound?"on":"off"
+    state.sound
+      ?"on"
+      :"off"
   );
 
+
   updateSoundButton();
+
 
   if(state.sound){
 
@@ -1736,7 +2497,7 @@ function toggleSound(){
 
 
 /* =========================================
-   SVG DIAMOND
+   DIAMOND SVG
 ========================================= */
 
 function diamondSVG(){
@@ -1758,11 +2519,29 @@ function diamondSVG(){
         x2="85%"
         y2="100%"
       >
-        <stop offset="0%" stop-color="#ffffff"/>
-        <stop offset="25%" stop-color="#cffff0"/>
-        <stop offset="55%" stop-color="#72e8c0"/>
-        <stop offset="100%" stop-color="#1a9c72"/>
+
+        <stop
+          offset="0%"
+          stop-color="#ffffff"
+        />
+
+        <stop
+          offset="25%"
+          stop-color="#d9fff4"
+        />
+
+        <stop
+          offset="55%"
+          stop-color="#72e8c0"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#1a9c72"
+        />
+
       </linearGradient>
+
 
       <linearGradient
         id="diamondLeft"
@@ -1771,9 +2550,19 @@ function diamondSVG(){
         x2="100%"
         y2="100%"
       >
-        <stop offset="0%" stop-color="#effff9"/>
-        <stop offset="100%" stop-color="#42cfa0"/>
+
+        <stop
+          offset="0%"
+          stop-color="#effff9"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#42cfa0"
+        />
+
       </linearGradient>
+
 
       <linearGradient
         id="diamondRight"
@@ -1782,11 +2571,23 @@ function diamondSVG(){
         x2="0%"
         y2="100%"
       >
-        <stop offset="0%" stop-color="#ffffff"/>
-        <stop offset="100%" stop-color="#0b7654"/>
+
+        <stop
+          offset="0%"
+          stop-color="#ffffff"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#0b7654"
+        />
+
       </linearGradient>
 
-      <filter id="diamondGlow">
+
+      <filter
+        id="diamondGlow"
+      >
 
         <feGaussianBlur
           stdDeviation="3"
@@ -1794,8 +2595,15 @@ function diamondSVG(){
         />
 
         <feMerge>
-          <feMergeNode in="blur"/>
-          <feMergeNode in="SourceGraphic"/>
+
+          <feMergeNode
+            in="blur"
+          />
+
+          <feMergeNode
+            in="SourceGraphic"
+          />
+
         </feMerge>
 
       </filter>
@@ -1804,7 +2612,14 @@ function diamondSVG(){
 
 
     <path
-      d="M15 31 L30 15 L70 15 L85 31 L50 88 Z"
+      d="
+        M15 31
+        L30 15
+        L70 15
+        L85 31
+        L50 88
+        Z
+      "
       fill="#8fffe0"
       opacity=".18"
       filter="url(#diamondGlow)"
@@ -1812,7 +2627,14 @@ function diamondSVG(){
 
 
     <path
-      d="M15 31 L30 15 L70 15 L85 31 L50 88 Z"
+      d="
+        M15 31
+        L30 15
+        L70 15
+        L85 31
+        L50 88
+        Z
+      "
       fill="url(#diamondMain)"
       stroke="#d8fff4"
       stroke-width="1.5"
@@ -1820,38 +2642,70 @@ function diamondSVG(){
 
 
     <path
-      d="M15 31 L30 15 L50 31 L30 42 Z"
+      d="
+        M15 31
+        L30 15
+        L50 31
+        L30 42
+        Z
+      "
       fill="url(#diamondLeft)"
     />
 
 
     <path
-      d="M30 15 L70 15 L50 31 Z"
+      d="
+        M30 15
+        L70 15
+        L50 31
+        Z
+      "
       fill="#ffffff"
       opacity=".8"
     />
 
 
     <path
-      d="M70 15 L85 31 L50 31 Z"
+      d="
+        M70 15
+        L85 31
+        L50 31
+        Z
+      "
       fill="url(#diamondRight)"
     />
 
 
     <path
-      d="M15 31 L50 31 L30 42 Z"
+      d="
+        M15 31
+        L50 31
+        L30 42
+        Z
+      "
       fill="#35bd91"
     />
 
 
     <path
-      d="M50 31 L85 31 L70 42 Z"
+      d="
+        M50 31
+        L85 31
+        L70 42
+        Z
+      "
       fill="#168b65"
     />
 
 
     <path
-      d="M30 42 L50 31 L70 42 L50 88 Z"
+      d="
+        M30 42
+        L50 31
+        L70 42
+        L50 88
+        Z
+      "
       fill="#43cda0"
       opacity=".75"
     />
@@ -1859,7 +2713,12 @@ function diamondSVG(){
 
     <path
       class="diamondShine"
-      d="M34 20 L47 20 L39 27 Z"
+      d="
+        M34 20
+        L47 20
+        L39 27
+        Z
+      "
       fill="#ffffff"
     />
 
@@ -1871,7 +2730,7 @@ function diamondSVG(){
 
 
 /* =========================================
-   SVG BOMB
+   BOMB SVG
 ========================================= */
 
 function bombSVG(){
@@ -1891,11 +2750,29 @@ function bombSVG(){
         cx="35%"
         cy="25%"
       >
-        <stop offset="0%" stop-color="#65716d"/>
-        <stop offset="35%" stop-color="#303a37"/>
-        <stop offset="72%" stop-color="#111615"/>
-        <stop offset="100%" stop-color="#050707"/>
+
+        <stop
+          offset="0%"
+          stop-color="#65716d"
+        />
+
+        <stop
+          offset="35%"
+          stop-color="#303a37"
+        />
+
+        <stop
+          offset="72%"
+          stop-color="#111615"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#050707"
+        />
+
       </radialGradient>
+
 
       <linearGradient
         id="fuse"
@@ -1904,17 +2781,44 @@ function bombSVG(){
         x2="1"
         y2="0"
       >
-        <stop offset="0%" stop-color="#4a2a20"/>
-        <stop offset="100%" stop-color="#15100e"/>
+
+        <stop
+          offset="0%"
+          stop-color="#4a2a20"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#15100e"
+        />
+
       </linearGradient>
+
 
       <radialGradient
         id="fire"
       >
-        <stop offset="0%" stop-color="#fff8b0"/>
-        <stop offset="35%" stop-color="#ffb52e"/>
-        <stop offset="75%" stop-color="#ff492f"/>
-        <stop offset="100%" stop-color="#d31d31"/>
+
+        <stop
+          offset="0%"
+          stop-color="#fff8b0"
+        />
+
+        <stop
+          offset="35%"
+          stop-color="#ffb52e"
+        />
+
+        <stop
+          offset="75%"
+          stop-color="#ff492f"
+        />
+
+        <stop
+          offset="100%"
+          stop-color="#d31d31"
+        />
+
       </radialGradient>
 
     </defs>
@@ -1935,7 +2839,10 @@ function bombSVG(){
     <!-- fuse -->
 
     <path
-      d="M62 25 C66 15 77 16 77 8"
+      d="
+        M62 25
+        C66 15 77 16 77 8
+      "
       fill="none"
       stroke="url(#fuse)"
       stroke-width="5"
@@ -1946,10 +2853,13 @@ function bombSVG(){
     <!-- flame -->
 
     <path
-      d="M77 13
-         C71 10 73 5 79 2
-         C78 7 85 8 83 13
-         C82 17 77 18 77 13Z"
+      d="
+        M77 13
+        C71 10 73 5 79 2
+        C78 7 85 8 83 13
+        C82 17 77 18 77 13
+        Z
+      "
       fill="url(#fire)"
     />
 
@@ -2003,6 +2913,7 @@ function bombSVG(){
       opacity=".45"
     />
 
+
     <circle
       cx="65"
       cy="63"
@@ -2010,6 +2921,7 @@ function bombSVG(){
       fill="#9ba6a1"
       opacity=".35"
     />
+
 
     <circle
       cx="49"
@@ -2033,21 +2945,35 @@ function bombSVG(){
 function buildBoard(){
 
   const board=
-    document.getElementById("board");
+    document.getElementById(
+      "board"
+    );
+
 
   board.innerHTML="";
+
 
   state.board=
     Array(25).fill(false);
 
+
   let placed=0;
 
-  while(placed<state.bombs){
+
+  while(
+    placed<
+    state.bombs
+  ){
 
     const index=
-      Math.floor(Math.random()*25);
+      Math.floor(
+        Math.random()*25
+      );
 
-    if(!state.board[index]){
+
+    if(
+      !state.board[index]
+    ){
 
       state.board[index]=true;
 
@@ -2058,10 +2984,17 @@ function buildBoard(){
   }
 
 
-  for(let i=0;i<25;i++){
+  for(
+    let i=0;
+    i<25;
+    i++
+  ){
 
     const tile=
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
+
 
     tile.className="tile";
 
@@ -2069,19 +3002,29 @@ function buildBoard(){
 
     tile.dataset.index=i;
 
-    tile.innerHTML=
-      `<span style="
-        font-size:12px;
+
+    tile.innerHTML=`
+
+      <span style="
+        font-size:11px;
         color:#56615d;
         font-weight:900;
-      ">+</span>`;
+        opacity:.65;
+      ">+</span>
+
+    `;
+
 
     tile.addEventListener(
       "click",
       ()=>{
-        revealTile(i,tile);
+        revealTile(
+          i,
+          tile
+        );
       }
     );
+
 
     board.appendChild(tile);
 
@@ -2096,9 +3039,13 @@ function buildBoard(){
 
 function startRound(){
 
-  if(state.active)return;
+  if(state.active)
+    return;
 
-  const bet=validBet();
+
+  const bet=
+    validBet();
+
 
   if(!bet){
 
@@ -2114,6 +3061,7 @@ function startRound(){
 
   initAudio();
 
+
   state.active=true;
 
   state.bet=bet;
@@ -2125,41 +3073,60 @@ function startRound(){
 
   state.balance-=bet;
 
+
   updateBalance();
+
 
   buildBoard();
 
 
-  document.getElementById("startBtn")
-    .disabled=true;
+  document.getElementById(
+    "startBtn"
+  ).disabled=true;
 
-  document.getElementById("cashBtn")
-    .disabled=false;
 
-  document.getElementById("cashBtn")
-    .classList.remove("ready");
+  document.getElementById(
+    "cashBtn"
+  ).disabled=false;
 
-  document.getElementById("cashBtn")
-    .textContent=
+
+  document.getElementById(
+    "cashBtn"
+  ).classList.remove(
+    "ready"
+  );
+
+
+  document.getElementById(
+    "cashBtn"
+  ).textContent=
     "CASH OUT · 0 ◈";
 
 
-  document.getElementById("roundBet")
-    .textContent=money(bet);
+  document.getElementById(
+    "roundBet"
+  ).textContent=
+    money(bet);
 
-  document.getElementById("safeCount")
-    .textContent="0";
 
-  document.getElementById("potential")
-    .textContent="0 ◈";
+  document.getElementById(
+    "safeCount"
+  ).textContent="0";
+
+
+  document.getElementById(
+    "potential"
+  ).textContent="0 ◈";
 
 
   setMultiplier(1);
+
 
   showStatus(
     "Find the diamonds.",
     ""
   );
+
 
   uiClick();
 
@@ -2170,67 +3137,105 @@ function startRound(){
    REVEAL TILE
 ========================================= */
 
-function revealTile(index,tile){
+function revealTile(
+  index,
+  tile
+){
 
-  if(!state.active)return;
-
-  if(tile.classList.contains("open"))return;
-
-  tile.classList.add("open");
+  if(!state.active)
+    return;
 
 
-  /* BOMB */
+  if(
+    tile.classList.contains(
+      "open"
+    )
+  )
+    return;
 
-  if(state.board[index]){
 
-    tile.classList.add("bomb");
+  tile.classList.add(
+    "open"
+  );
+
+
+  /* ==============================
+     BOMB
+  ============================== */
+
+  if(
+    state.board[index]
+  ){
+
+    tile.classList.add(
+      "bomb"
+    );
+
 
     tile.innerHTML=
       bombSVG();
 
+
     revealBombs();
+
 
     state.active=false;
 
-    document.getElementById("cashBtn")
-      .disabled=true;
+
+    document.getElementById(
+      "cashBtn"
+    ).disabled=true;
+
 
     bombSound();
 
     shakeBoard();
+
 
     showStatus(
       "BOOM · ROUND LOST",
       "loss"
     );
 
+
     addHistory(
-      "−"+money(state.bet),
+      "−"+
+      money(state.bet),
       false
     );
 
+
     showResult(
       "BOOM",
-      "−"+money(state.bet),
+      "−"+
+      money(state.bet),
       false
     );
+
 
     setTimeout(
       resetAfterRound,
       1100
     );
 
+
     return;
 
   }
 
 
-  /* SAFE */
+  /* ==============================
+     SAFE
+  ============================== */
 
-  tile.classList.add("safe");
+  tile.classList.add(
+    "safe"
+  );
+
 
   tile.innerHTML=
     diamondSVG();
+
 
   state.revealed++;
 
@@ -2256,24 +3261,30 @@ function revealTile(index,tile){
     );
 
 
-  document.getElementById("safeCount")
-    .textContent=
+  document.getElementById(
+    "safeCount"
+  ).textContent=
     state.revealed;
 
 
-  document.getElementById("potential")
-    .textContent=
+  document.getElementById(
+    "potential"
+  ).textContent=
     money(potential);
 
 
-  document.getElementById("cashBtn")
-    .textContent=
+  document.getElementById(
+    "cashBtn"
+  ).textContent=
     "CASH OUT · "+
     money(potential);
 
 
-  document.getElementById("cashBtn")
-    .classList.add("ready");
+  document.getElementById(
+    "cashBtn"
+  ).classList.add(
+    "ready"
+  );
 
 
   diamondSound();
@@ -2298,20 +3309,26 @@ function revealTile(index,tile){
 function revealBombs(){
 
   const tiles=
-    document.querySelectorAll(".tile");
+    document.querySelectorAll(
+      ".tile"
+    );
+
 
   tiles.forEach(
     (tile,index)=>{
 
       if(
         state.board[index] &&
-        !tile.classList.contains("open")
+        !tile.classList.contains(
+          "open"
+        )
       ){
 
         tile.classList.add(
           "open",
           "bomb"
         );
+
 
         tile.innerHTML=
           bombSVG();
@@ -2330,7 +3347,9 @@ function revealBombs(){
 
 function cashOut(){
 
-  if(!state.active)return;
+  if(!state.active)
+    return;
+
 
   const payout=
     Math.floor(
@@ -2341,26 +3360,35 @@ function cashOut(){
 
   state.balance+=payout;
 
+
   updateBalance();
+
 
   state.active=false;
 
 
-  document.getElementById("cashBtn")
-    .disabled=true;
+  document.getElementById(
+    "cashBtn"
+  ).disabled=true;
 
-  document.getElementById("cashBtn")
-    .classList.remove("ready");
+
+  document.getElementById(
+    "cashBtn"
+  ).classList.remove(
+    "ready"
+  );
 
 
   showStatus(
-    "CASHED OUT · "+money(payout),
+    "CASHED OUT · "+
+    money(payout),
     "win"
   );
 
 
   addHistory(
-    "+"+money(payout),
+    "+"+
+    money(payout),
     true
   );
 
@@ -2369,12 +3397,13 @@ function cashOut(){
 
   winSound();
 
-  createParticles(32);
+  createParticles(30);
 
 
   showResult(
     "CASHED OUT",
-    "+"+money(payout),
+    "+"+
+    money(payout),
     true
   );
 
@@ -2405,28 +3434,42 @@ function resetAfterRound(){
   buildBoard();
 
 
-  document.getElementById("startBtn")
-    .disabled=false;
+  document.getElementById(
+    "startBtn"
+  ).disabled=false;
 
-  document.getElementById("cashBtn")
-    .disabled=true;
 
-  document.getElementById("cashBtn")
-    .classList.remove("ready");
+  document.getElementById(
+    "cashBtn"
+  ).disabled=true;
 
-  document.getElementById("cashBtn")
-    .textContent=
+
+  document.getElementById(
+    "cashBtn"
+  ).classList.remove(
+    "ready"
+  );
+
+
+  document.getElementById(
+    "cashBtn"
+  ).textContent=
     "CASH OUT · 0 ◈";
 
 
-  document.getElementById("safeCount")
-    .textContent="0";
+  document.getElementById(
+    "safeCount"
+  ).textContent="0";
 
-  document.getElementById("roundBet")
-    .textContent="0 ◈";
 
-  document.getElementById("potential")
-    .textContent="0 ◈";
+  document.getElementById(
+    "roundBet"
+  ).textContent="0 ◈";
+
+
+  document.getElementById(
+    "potential"
+  ).textContent="0 ◈";
 
 
   setMultiplier(1);
@@ -2444,22 +3487,32 @@ function resetAfterRound(){
    MULTIPLIER
 ========================================= */
 
-function setMultiplier(value){
+function setMultiplier(
+  value
+){
 
   const element=
-    document.getElementById("multiplier");
+    document.getElementById(
+      "multiplier"
+    );
+
 
   element.textContent=
-    value.toFixed(2)+"×";
+    value.toFixed(2)+
+    "×";
 
 
   if(value>=2.5){
 
-    element.classList.add("hot");
+    element.classList.add(
+      "hot"
+    );
 
   }else{
 
-    element.classList.remove("hot");
+    element.classList.remove(
+      "hot"
+    );
 
   }
 
@@ -2470,12 +3523,19 @@ function setMultiplier(value){
    STATUS
 ========================================= */
 
-function showStatus(text,type){
+function showStatus(
+  text,
+  type
+){
 
   const element=
-    document.getElementById("statusText");
+    document.getElementById(
+      "statusText"
+    );
+
 
   element.textContent=text;
+
 
   element.className=
     "statusText "+
@@ -2495,15 +3555,23 @@ function showStatus(text,type){
    HISTORY
 ========================================= */
 
-function addHistory(text,isWin){
+function addHistory(
+  text,
+  isWin
+){
 
   state.history.unshift({
-    text,
-    isWin
+    text:text,
+    isWin:isWin
   });
 
+
   state.history=
-    state.history.slice(0,10);
+    state.history.slice(
+      0,
+      10
+    );
+
 
   renderHistory();
 
@@ -2513,15 +3581,22 @@ function addHistory(text,isWin){
 function renderHistory(){
 
   const element=
-    document.getElementById("history");
+    document.getElementById(
+      "history"
+    );
 
 
-  if(!state.history.length){
+  if(
+    !state.history.length
+  ){
 
-    element.innerHTML=
-      `<div class="historyItem">
+    element.innerHTML=`
+
+      <div class="historyItem">
         NO ROUNDS
-      </div>`;
+      </div>
+
+    `;
 
     return;
 
@@ -2530,16 +3605,18 @@ function renderHistory(){
 
   element.innerHTML=
     state.history
-      .map(item=>`
+      .map(
+        item=>`
 
-        <div class="
-          historyItem
-          ${item.isWin?"win":"loss"}
-        ">
-          ${item.text}
-        </div>
+          <div class="
+            historyItem
+            ${item.isWin?"win":"loss"}
+          ">
+            ${item.text}
+          </div>
 
-      `)
+        `
+      )
       .join("");
 
 }
@@ -2563,7 +3640,8 @@ function showResult(
 
   document.getElementById(
     "resultTitle"
-  ).textContent=title;
+  ).textContent=
+    title;
 
 
   const valueElement=
@@ -2572,7 +3650,8 @@ function showResult(
     );
 
 
-  valueElement.textContent=value;
+  valueElement.textContent=
+    value;
 
 
   valueElement.style.color=
@@ -2581,11 +3660,17 @@ function showResult(
       :"var(--red)";
 
 
-  flash.classList.remove("show");
+  flash.classList.remove(
+    "show"
+  );
+
 
   void flash.offsetWidth;
 
-  flash.classList.add("show");
+
+  flash.classList.add(
+    "show"
+  );
 
 }
 
@@ -2601,11 +3686,18 @@ function shakeBoard(){
       "boardPanel"
     );
 
-  panel.classList.remove("shake");
+
+  panel.classList.remove(
+    "shake"
+  );
+
 
   void panel.offsetWidth;
 
-  panel.classList.add("shake");
+
+  panel.classList.add(
+    "shake"
+  );
 
 }
 
@@ -2614,7 +3706,9 @@ function shakeBoard(){
    PARTICLES
 ========================================= */
 
-function createParticles(count){
+function createParticles(
+  count
+){
 
   for(
     let i=0;
@@ -2623,9 +3717,13 @@ function createParticles(count){
   ){
 
     const particle=
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
-    particle.className="particle";
+
+    particle.className=
+      "particle";
 
 
     particle.style.left=
@@ -2633,7 +3731,8 @@ function createParticles(count){
         50+
         Math.random()*14-
         7
-      )+"vw";
+      )+
+      "vw";
 
 
     particle.style.top=
@@ -2641,7 +3740,8 @@ function createParticles(count){
         45+
         Math.random()*12-
         6
-      )+"vh";
+      )+
+      "vh";
 
 
     particle.style.setProperty(
@@ -2649,7 +3749,8 @@ function createParticles(count){
       (
         Math.random()*400-
         200
-      )+"px"
+      )+
+      "px"
     );
 
 
@@ -2658,7 +3759,8 @@ function createParticles(count){
       (
         -80-
         Math.random()*350
-      )+"px"
+      )+
+      "px"
     );
 
 
@@ -2671,7 +3773,7 @@ function createParticles(count){
       ()=>{
         particle.remove();
       },
-      1000
+      1100
     );
 
   }
@@ -2680,17 +3782,23 @@ function createParticles(count){
 
 
 /* =========================================
-   ENTER KEY LOGIN
+   LOGIN ENTER KEY
 ========================================= */
 
 document
-  .getElementById("password")
+  .getElementById(
+    "password"
+  )
   .addEventListener(
     "keydown",
     event=>{
 
-      if(event.key==="Enter"){
+      if(
+        event.key==="Enter"
+      ){
+
         login();
+
       }
 
     }
@@ -2703,15 +3811,26 @@ document
 
 updateSoundButton();
 
+
 if(state.user){
 
   document
-    .getElementById("loginScreen")
-    .classList.add("hidden");
+    .getElementById(
+      "loginScreen"
+    )
+    .classList.add(
+      "hidden"
+    );
+
 
   document
-    .getElementById("gameScreen")
-    .classList.remove("hidden");
+    .getElementById(
+      "gameScreen"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
 
   updateBalance();
 
@@ -2720,10 +3839,15 @@ if(state.user){
 }else{
 
   document
-    .getElementById("gameScreen")
-    .classList.add("hidden");
+    .getElementById(
+      "gameScreen"
+    )
+    .classList.add(
+      "hidden"
+    );
 
 }
+
 
 renderHistory();
 
