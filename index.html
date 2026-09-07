@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#050707">
 <title>NOIRVA MINES</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
 
 :root{
   --bg:#050707;
-  --bg2:#090c0c;
   --panel:#0d1111;
-  --panel2:#121717;
-  --line:#222a28;
+  --panel2:#111716;
+  --line:#252d2a;
   --text:#f4f7f5;
-  --muted:#74807c;
+  --muted:#75817c;
   --green:#19e39a;
-  --green2:#0c8d60;
+  --green2:#0aa86e;
   --red:#f04b5d;
   --gold:#e9c46a;
-  --cyan:#64d8ff;
+  --blue:#8ee7ff;
 }
 
 html,body{
@@ -33,6 +37,8 @@ html,body{
 
 body{
   overflow-x:hidden;
+  overscroll-behavior-x:none;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
 button,input{
@@ -41,54 +47,47 @@ button,input{
 
 button{
   cursor:pointer;
-}
-
-button:disabled{
-  cursor:not-allowed;
+  touch-action:manipulation;
 }
 
 .hidden{
   display:none!important;
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
+/* BACKGROUND */
 
-body:before{
+body::before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  background:
-    radial-gradient(circle at 50% -10%,#153e3025,transparent 35%),
-    radial-gradient(circle at 10% 80%,#0b42321a,transparent 25%),
-    #050707;
   z-index:-2;
+  background:
+    radial-gradient(circle at 50% -10%,#164f3b55,transparent 38%),
+    radial-gradient(circle at 0% 100%,#063a2a30,transparent 30%),
+    #050707;
 }
 
-body:after{
+body::after{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.035;
+  z-index:-1;
+  opacity:.025;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:80px 80px;
-  z-index:-1;
+  background-size:70px 70px;
 }
 
-/* =========================================================
-   LOGIN
-========================================================= */
+/* LOGIN */
 
 .loginScreen{
-  min-height:100vh;
+  min-height:100svh;
   display:grid;
   place-items:center;
-  padding:22px;
+  padding:20px;
 }
 
 .login{
@@ -97,21 +96,20 @@ body:after{
 }
 
 .mark{
-  width:66px;
-  height:66px;
-  margin:auto auto 19px;
-  border-radius:18px;
+  width:68px;
+  height:68px;
+  margin:0 auto 18px;
   display:grid;
   place-items:center;
-  border:1px solid #ffffff20;
+  border-radius:19px;
   background:
-    radial-gradient(circle at 35% 25%,#24332e,#0d1211 65%);
+    radial-gradient(circle at 35% 20%,#29483d,#0d1412 65%);
+  border:1px solid #ffffff18;
   box-shadow:
-    0 20px 70px #000,
-    inset 0 1px #ffffff15;
-  font-size:28px;
+    0 25px 80px #000,
+    inset 0 1px #ffffff18;
+  font-size:29px;
   font-weight:950;
-  letter-spacing:-2px;
 }
 
 .brand{
@@ -122,17 +120,17 @@ body:after{
 
 .tag{
   margin-top:8px;
-  color:#68736f;
+  color:#64706b;
   font-size:8px;
   letter-spacing:3px;
 }
 
 .loginBox{
-  margin-top:34px;
+  margin-top:32px;
   padding:23px;
-  background:#0d1110e8;
-  border:1px solid var(--line);
   border-radius:18px;
+  background:#0c1110ee;
+  border:1px solid var(--line);
   box-shadow:0 30px 100px #000b;
 }
 
@@ -140,38 +138,38 @@ body:after{
   display:block;
   margin-bottom:8px;
   text-align:left;
-  color:#75807b;
+  color:#75817c;
   font-size:8px;
   letter-spacing:2px;
 }
 
 .input{
   width:100%;
-  height:49px;
+  height:51px;
   margin-bottom:16px;
   padding:0 14px;
   border-radius:9px;
+  border:1px solid #252d2a;
   outline:none;
-  border:1px solid #242c29;
   background:#070a0a;
-  color:white;
+  color:#fff;
 }
 
 .input:focus{
   border-color:#19e39a66;
-  box-shadow:0 0 0 3px #19e39a0b;
+  box-shadow:0 0 0 3px #19e39a0d;
 }
 
 .mainBtn{
   width:100%;
-  height:50px;
+  height:52px;
   border:0;
-  border-radius:9px;
-  background:linear-gradient(180deg,#24eca4,#10ca83);
-  color:#03150e;
+  border-radius:10px;
+  background:linear-gradient(180deg,#28eda6,#0fc983);
+  color:#03140d;
   font-weight:950;
   letter-spacing:1px;
-  box-shadow:0 10px 30px #19e39a1c;
+  box-shadow:0 12px 35px #19e39a20;
 }
 
 .error{
@@ -183,14 +181,12 @@ body:after{
 
 .note{
   margin-top:14px;
-  color:#59635f;
+  color:#59645f;
   font-size:8px;
   line-height:1.7;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 .header{
   height:64px;
@@ -200,9 +196,13 @@ body:after{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 15px;
+  padding:
+    0 12px
+    max(12px,env(safe-area-inset-right))
+    0
+    max(12px,env(safe-area-inset-left));
   background:#070909e8;
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(22px);
   border-bottom:1px solid #202725;
 }
 
@@ -215,59 +215,61 @@ body:after{
 .headerRight{
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:6px;
 }
 
 .balance{
   min-width:92px;
-  padding:9px 10px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  padding:0 9px;
   border-radius:8px;
   border:1px solid #234336;
   background:#0b1712;
   color:var(--green);
   font-size:10px;
   font-weight:900;
-  text-align:center;
 }
 
 .headBtn{
-  height:36px;
+  min-width:40px;
+  height:37px;
   padding:0 9px;
   border-radius:8px;
-  border:1px solid #242a29;
+  border:1px solid #252d2a;
   background:#111515;
-  color:#8b9490;
+  color:#89938f;
   font-size:8px;
+  font-weight:700;
 }
 
-/* =========================================================
-   GAME PAGE
-========================================================= */
+/* PAGE */
 
 .page{
   width:min(900px,100%);
   margin:auto;
-  padding:17px 13px 60px;
+  padding:16px 10px 50px;
 }
 
 .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:14px;
+  margin-bottom:13px;
 }
 
 .back{
-  background:none;
   border:0;
+  background:none;
   color:#7e8985;
   font-size:10px;
+  padding:8px 0;
 }
 
 .title{
   font-size:17px;
   font-weight:950;
-  letter-spacing:.5px;
 }
 
 .miniBalance{
@@ -276,25 +278,25 @@ body:after{
   font-weight:900;
 }
 
+/* PANELS */
+
 .panel{
-  margin-bottom:10px;
-  padding:14px;
+  margin-bottom:9px;
+  padding:13px;
   border-radius:16px;
   background:
-    linear-gradient(145deg,#101515,#0b0f0f);
+    linear-gradient(145deg,#111716,#0a0e0e);
   border:1px solid var(--line);
   box-shadow:
-    0 18px 55px #0005,
-    inset 0 1px #ffffff04;
+    0 18px 55px #0006,
+    inset 0 1px #ffffff05;
 }
 
-/* =========================================================
-   STATUS DISPLAY
-========================================================= */
+/* STATUS */
 
 .status{
   text-align:center;
-  padding:4px 0 10px;
+  padding:6px 10px 10px;
 }
 
 .statusLabel{
@@ -304,12 +306,13 @@ body:after{
 }
 
 .multiplier{
-  margin-top:4px;
-  font-size:39px;
+  margin-top:3px;
+  font-size:40px;
+  line-height:1;
   font-weight:950;
   letter-spacing:-2px;
   color:var(--green);
-  text-shadow:0 0 30px #19e39a24;
+  text-shadow:0 0 30px #19e39a25;
   transition:.2s;
 }
 
@@ -320,21 +323,27 @@ body:after{
 
 .statusText{
   min-height:20px;
-  margin-top:3px;
-  color:#75807c;
+  margin-top:6px;
+  color:#75817c;
   font-size:9px;
 }
 
-/* =========================================================
-   MINE BOARD
-========================================================= */
+.statusText.win{
+  color:var(--green);
+}
+
+.statusText.loss{
+  color:#ff7884;
+}
+
+/* BOARD */
 
 .boardFrame{
-  padding:9px;
+  padding:8px;
   border-radius:18px;
   background:
-    linear-gradient(145deg,#252c2a,#090c0c 25%,#181e1c 75%,#070909);
-  border:1px solid #3a413e;
+    linear-gradient(145deg,#303835,#080b0b 27%,#1b211f 75%,#070909);
+  border:1px solid #3a433f;
   box-shadow:
     0 30px 70px #000,
     inset 0 1px #ffffff15,
@@ -344,69 +353,67 @@ body:after{
 .board{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:6px;
-  padding:7px;
+  gap:5px;
+  padding:6px;
   border-radius:13px;
   background:
-    radial-gradient(circle at 50% 30%,#111918,#070909 75%);
+    radial-gradient(circle at 50% 20%,#17201d,#070909 75%);
   border:1px solid #161d1b;
 }
+
+/* TILE */
 
 .tile{
   position:relative;
   aspect-ratio:1;
   min-width:0;
   border-radius:9px;
-  border:1px solid #2b3431;
+  border:1px solid #303936;
   background:
-    linear-gradient(145deg,#1c2321,#101514 55%,#0c1010);
+    linear-gradient(145deg,#202725,#121817 52%,#0b0f0f);
   box-shadow:
-    inset 0 1px #ffffff0a,
-    inset 0 -5px 10px #0007,
-    0 2px 5px #0008;
+    inset 0 1px #ffffff0b,
+    inset 0 -6px 12px #0009,
+    0 3px 6px #0009;
   display:grid;
   place-items:center;
   overflow:hidden;
-  transform:translateZ(0);
   transition:
-    transform .15s,
+    transform .13s,
     background .2s,
     border-color .2s,
     box-shadow .2s;
 }
 
-.tile:before{
+.tile::before{
   content:"";
   position:absolute;
-  left:10%;
-  right:10%;
-  top:8%;
-  height:35%;
+  left:8%;
+  right:8%;
+  top:6%;
+  height:38%;
   border-radius:50%;
-  background:#ffffff06;
-  filter:blur(3px);
+  background:#ffffff07;
+  filter:blur(4px);
   pointer-events:none;
 }
 
-.tile:not(.open):active{
+.tile:active{
   transform:scale(.91);
 }
 
 .tile:not(.open):hover{
-  border-color:#3f5750;
-  box-shadow:
-    inset 0 1px #ffffff0d,
-    0 0 20px #19e39a0c;
+  border-color:#496057;
 }
 
 .tile.open{
-  animation:tileOpen .24s ease-out;
+  animation:tileOpen .24s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes tileOpen{
   0%{
-    transform:scale(.7) rotateX(60deg);
-    opacity:.5;
+    transform:scale(.75) rotateX(55deg);
+    opacity:.35;
   }
   100%{
     transform:scale(1) rotateX(0);
@@ -414,87 +421,121 @@ body:after{
   }
 }
 
+/* SAFE TILE */
+
 .tile.safe{
   background:
-    radial-gradient(circle at 50% 40%,#164f3b,#0a241b 60%,#07130f);
-  border-color:#1d7355;
+    radial-gradient(circle at 50% 42%,#1d6049,#0c2c21 57%,#06130f);
+  border-color:#268262;
   box-shadow:
-    inset 0 1px #ffffff0b,
-    inset 0 -8px 15px #0007,
-    0 0 20px #19e39a16;
+    inset 0 1px #ffffff12,
+    inset 0 -9px 15px #0008,
+    0 0 24px #19e39a18;
 }
 
-.tile.bomb{
-  background:
-    radial-gradient(circle at 50% 40%,#702936,#32141b 60%,#16090c);
-  border-color:#9c3a49;
-  box-shadow:
-    inset 0 1px #ffffff0b,
-    0 0 30px #f04b5d22;
+/* DIAMOND */
+
+.diamondSVG{
+  width:60%;
+  height:60%;
+  overflow:visible;
+  filter:
+    drop-shadow(0 3px 4px #000)
+    drop-shadow(0 0 8px #5affc033);
+  animation:diamondIn .35s cubic-bezier(.2,.8,.2,1);
 }
 
-.tileContent{
-  position:relative;
-  z-index:2;
-  font-size:23px;
-  filter:drop-shadow(0 3px 5px #000);
-}
-
-.diamond{
-  color:#d8fff0;
-  text-shadow:
-    0 0 8px #19e39a,
-    0 0 22px #19e39a88;
-  animation:diamondPulse 1.3s infinite alternate;
-}
-
-@keyframes diamondPulse{
-  to{
-    transform:scale(1.09) rotate(4deg);
-    filter:drop-shadow(0 0 8px #19e39a);
+@keyframes diamondIn{
+  0%{
+    opacity:0;
+    transform:scale(.2) rotate(-15deg);
+  }
+  60%{
+    opacity:1;
+    transform:scale(1.15) rotate(3deg);
+  }
+  100%{
+    transform:scale(1) rotate(0);
   }
 }
 
-.mineIcon{
-  font-size:21px;
-  animation:minePop .25s ease-out;
+.diamondShine{
+  animation:shine 1.3s ease-in-out infinite;
 }
 
-@keyframes minePop{
-  0%{transform:scale(.2);opacity:0}
-  80%{transform:scale(1.15)}
-  100%{transform:scale(1);opacity:1}
+@keyframes shine{
+  0%,100%{opacity:.35}
+  50%{opacity:1}
 }
 
-/* =========================================================
-   CONTROLS
-========================================================= */
+/* BOMB TILE */
+
+.tile.bomb{
+  background:
+    radial-gradient(circle at 50% 40%,#762d39,#32151b 57%,#15090c);
+  border-color:#a43f4d;
+  box-shadow:
+    inset 0 1px #ffffff0b,
+    inset 0 -9px 15px #0009,
+    0 0 35px #f04b5d2c;
+}
+
+.bombSVG{
+  width:61%;
+  height:61%;
+  overflow:visible;
+  filter:
+    drop-shadow(0 4px 5px #000)
+    drop-shadow(0 0 8px #f04b5d30);
+  animation:bombPop .28s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes bombPop{
+  0%{
+    transform:scale(.2);
+    opacity:0;
+  }
+  75%{
+    transform:scale(1.13);
+  }
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* CONTROLS */
 
 .controls{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr;
   gap:8px;
 }
 
 .field{
   min-width:0;
   padding:10px;
-  border-radius:9px;
-  border:1px solid #242b29;
+  border-radius:10px;
+  border:1px solid #252d2a;
   background:#080b0b;
 }
 
 .field label{
-  margin-bottom:6px;
+  display:block;
+  margin-bottom:7px;
+  color:#75817c;
+  font-size:8px;
+  letter-spacing:2px;
 }
 
 .field input{
   width:100%;
+  height:30px;
   border:0;
   outline:0;
   background:none;
   color:white;
-  font-size:14px;
+  font-size:15px;
   font-weight:900;
 }
 
@@ -504,36 +545,50 @@ body:after{
   margin-top:7px;
 }
 
-.quick button{
+.quick button,
+.bombOption{
   flex:1;
   min-width:0;
-  height:30px;
-  border:1px solid #29312e;
-  border-radius:6px;
+  height:34px;
+  border-radius:7px;
+  border:1px solid #2a3330;
   background:#171c1b;
-  color:#909995;
+  color:#929c98;
   font-size:8px;
+  font-weight:800;
 }
 
-.quick button.active{
-  background:#103b2c;
-  color:var(--green);
-  border-color:#1b7453;
+.quick button:active,
+.bombOption:active{
+  transform:scale(.96);
 }
+
+.bombOptions{
+  display:flex;
+  gap:5px;
+}
+
+.bombOption.active{
+  background:#35171d;
+  border-color:#87333f;
+  color:#ff8490;
+}
+
+/* ACTIONS */
 
 .action{
   width:100%;
-  height:48px;
+  min-height:50px;
   margin-top:9px;
   border:0;
-  border-radius:9px;
-  background:linear-gradient(180deg,#23eca4,#0fc983);
+  border-radius:10px;
+  background:linear-gradient(180deg,#26eda6,#0fc983);
   color:#03140d;
   font-size:10px;
   font-weight:950;
-  letter-spacing:1.2px;
-  box-shadow:0 10px 30px #19e39a15;
-  transition:.15s;
+  letter-spacing:1.1px;
+  box-shadow:0 10px 30px #19e39a17;
+  transition:.12s;
 }
 
 .action:active{
@@ -541,80 +596,59 @@ body:after{
 }
 
 .action:disabled{
-  opacity:.35;
+  opacity:.3;
   box-shadow:none;
 }
 
 .cash{
-  background:linear-gradient(180deg,#eacb7c,#c79d3e);
+  background:linear-gradient(180deg,#efd184,#c69c40);
   color:#171006;
 }
 
 .cash.ready{
-  box-shadow:0 0 30px #e9c46a2c;
-  animation:cashPulse 1.1s infinite;
+  animation:cashPulse 1.15s ease-in-out infinite;
+  box-shadow:
+    0 0 25px #e9c46a30,
+    0 8px 30px #0005;
 }
 
 @keyframes cashPulse{
-  50%{filter:brightness(1.08)}
+  50%{
+    filter:brightness(1.09);
+  }
 }
 
-.bombOptions{
-  display:flex;
-  gap:6px;
-  margin-top:7px;
-}
-
-.bombOption{
-  flex:1;
-  height:31px;
-  border-radius:6px;
-  border:1px solid #29312e;
-  background:#171c1b;
-  color:#8e9894;
-  font-size:8px;
-  font-weight:800;
-}
-
-.bombOption.active{
-  background:#34161c;
-  border-color:#80303c;
-  color:#ff8490;
-}
-
-/* =========================================================
-   STATS
-========================================================= */
+/* STATS */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
+  gap:5px;
 }
 
 .stat{
-  padding:10px;
+  min-width:0;
+  padding:10px 7px;
   border-radius:8px;
   background:#090c0c;
   border:1px solid #202725;
+  text-align:center;
 }
 
 .stat strong{
   display:block;
-  font-size:13px;
+  font-size:12px;
 }
 
 .stat span{
   display:block;
-  margin-top:2px;
-  color:#66706d;
-  font-size:7px;
+  margin-top:3px;
+  color:#66716d;
+  font-size:6px;
   letter-spacing:1px;
 }
 
-/* =========================================================
-   HISTORY
-========================================================= */
+/* HISTORY */
 
 .history{
   display:flex;
@@ -629,15 +663,15 @@ body:after{
 
 .historyItem{
   flex:0 0 auto;
-  min-width:55px;
-  height:31px;
+  min-width:58px;
+  height:32px;
   padding:0 8px;
-  border-radius:6px;
   display:grid;
   place-items:center;
+  border-radius:7px;
   background:#171c1b;
-  color:#818b87;
   border:1px solid #272e2c;
+  color:#818b87;
   font-size:8px;
   font-weight:850;
 }
@@ -654,9 +688,7 @@ body:after{
   border-color:#63252f;
 }
 
-/* =========================================================
-   RESULT OVERLAY
-========================================================= */
+/* FLASH */
 
 .resultFlash{
   position:fixed;
@@ -706,19 +738,25 @@ body:after{
 }
 
 @keyframes resultCard{
-  0%{transform:scale(.65);opacity:0}
-  45%{transform:scale(1.04);opacity:1}
-  100%{transform:scale(1)}
+  0%{
+    transform:scale(.65);
+    opacity:0;
+  }
+  45%{
+    transform:scale(1.04);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1);
+  }
 }
 
-/* =========================================================
-   PARTICLES
-========================================================= */
+/* PARTICLES */
 
 .particle{
   position:fixed;
-  width:7px;
-  height:7px;
+  width:6px;
+  height:6px;
   border-radius:50%;
   background:var(--green);
   pointer-events:none;
@@ -737,10 +775,6 @@ body:after{
   }
 }
 
-/* =========================================================
-   SHAKE
-========================================================= */
-
 .shake{
   animation:shake .38s ease-out;
 }
@@ -753,41 +787,44 @@ body:after{
   80%{transform:translateX(3px)}
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* TABLET / DESKTOP */
 
 @media(min-width:650px){
-
-  .controls{
-    grid-template-columns:1fr 1fr 1fr;
-  }
 
   .page{
     padding-top:28px;
   }
 
-  .board{
-    gap:8px;
+  .controls{
+    grid-template-columns:1fr 1fr;
   }
 
-  .tileContent{
-    font-size:28px;
+  .board{
+    gap:8px;
+    padding:8px;
+  }
+
+  .tile{
+    border-radius:10px;
+  }
+
+  .diamondSVG,
+  .bombSVG{
+    width:58%;
+    height:58%;
   }
 }
 
-@media(max-width:390px){
+/* SMALL PHONES */
 
-  .header{
-    padding:0 10px;
-  }
+@media(max-width:360px){
 
   .logo{
     letter-spacing:3px;
   }
 
   .balance{
-    min-width:78px;
+    min-width:76px;
     font-size:9px;
   }
 
@@ -796,29 +833,31 @@ body:after{
   }
 
   .page{
-    padding-left:9px;
-    padding-right:9px;
+    padding-left:7px;
+    padding-right:7px;
   }
 
   .panel{
-    padding:11px;
+    padding:10px;
   }
 
   .boardFrame{
-    padding:6px;
+    padding:5px;
   }
 
   .board{
     gap:4px;
-    padding:5px;
+    padding:4px;
   }
 
   .tile{
     border-radius:7px;
   }
 
-  .tileContent{
-    font-size:18px;
+  .diamondSVG,
+  .bombSVG{
+    width:63%;
+    height:63%;
   }
 }
 </style>
@@ -826,280 +865,338 @@ body:after{
 
 <body>
 
-<!-- =======================================================
-LOGIN
-======================================================= -->
+<!-- LOGIN -->
 
 <section id="loginScreen" class="loginScreen">
 
-<div class="login">
+  <div class="login">
 
-<div class="mark">N</div>
+    <div class="mark">N</div>
 
-<div class="brand">NOIRVA</div>
-<div class="tag">MINES · VIRTUAL PLAYGROUND</div>
+    <div class="brand">NOIRVA</div>
 
-<div class="loginBox">
+    <div class="tag">
+      MINES · VIRTUAL PLAYGROUND
+    </div>
 
-<label class="label">USERNAME</label>
-<input
-  id="username"
-  class="input"
-  type="text"
-  autocomplete="username"
-  placeholder="Enter username">
+    <div class="loginBox">
 
-<label class="label">PASSWORD</label>
-<input
-  id="password"
-  class="input"
-  type="password"
-  autocomplete="current-password"
-  placeholder="Enter password">
+      <label class="label">
+        USERNAME
+      </label>
 
-<button class="mainBtn" onclick="login()">
-ENTER NOIRVA
-</button>
+      <input
+        id="username"
+        class="input"
+        type="text"
+        autocomplete="username"
+        placeholder="Enter username"
+      >
 
-<div id="loginError" class="error"></div>
+      <label class="label">
+        PASSWORD
+      </label>
 
-<div class="note">
-DEMO ACCESS · VIRTUAL COINS ONLY<br>
-NO REAL-MONEY WAGERING OR WITHDRAWALS
-</div>
+      <input
+        id="password"
+        class="input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter password"
+      >
 
-</div>
-</div>
+      <button
+        class="mainBtn"
+        onclick="login()"
+      >
+        ENTER NOIRVA
+      </button>
+
+      <div id="loginError" class="error"></div>
+
+      <div class="note">
+        DEMO ACCESS · VIRTUAL COINS ONLY<br>
+        NO REAL-MONEY WAGERING OR WITHDRAWALS
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- =======================================================
-GAME
-======================================================= -->
+<!-- GAME -->
 
 <section id="gameScreen" class="hidden">
 
 <header class="header">
 
-<div class="logo">NOIRVA</div>
+  <div class="logo">
+    NOIRVA
+  </div>
 
-<div class="headerRight">
+  <div class="headerRight">
 
-<div id="balance" class="balance">
-10,000 ◈
-</div>
+    <div id="balance" class="balance">
+      10,000 ◈
+    </div>
 
-<button
-  id="soundBtn"
-  class="headBtn"
-  onclick="toggleSound()">
-SOUND ON
-</button>
+    <button
+      id="soundBtn"
+      class="headBtn"
+      onclick="toggleSound()"
+    >
+      SOUND ON
+    </button>
 
-<button
-  class="headBtn"
-  onclick="logout()">
-EXIT
-</button>
+    <button
+      class="headBtn"
+      onclick="logout()"
+    >
+      EXIT
+    </button>
 
-</div>
+  </div>
+
 </header>
 
 
 <main class="page">
 
-<div class="top">
+  <div class="top">
 
-<button class="back" onclick="logout()">
-← EXIT GAME
-</button>
+    <button
+      class="back"
+      onclick="logout()"
+    >
+      ← EXIT GAME
+    </button>
 
-<div class="title">
-MINES
-</div>
+    <div class="title">
+      MINES
+    </div>
 
-<div id="miniBalance" class="miniBalance">
-10,000 ◈
-</div>
+    <div
+      id="miniBalance"
+      class="miniBalance"
+    >
+      10,000 ◈
+    </div>
 
-</div>
-
-
-<!-- STATUS -->
-
-<div class="panel status">
-
-<div class="statusLabel">
-CURRENT MULTIPLIER
-</div>
-
-<div id="multiplier" class="multiplier">
-1.00×
-</div>
-
-<div id="statusText" class="statusText">
-Choose your settings and start a round.
-</div>
-
-</div>
+  </div>
 
 
-<!-- BOARD -->
+  <!-- STATUS -->
 
-<div id="boardPanel" class="panel">
+  <div class="panel status">
 
-<div class="boardFrame">
+    <div class="statusLabel">
+      CURRENT MULTIPLIER
+    </div>
 
-<div id="board" class="board"></div>
+    <div
+      id="multiplier"
+      class="multiplier"
+    >
+      1.00×
+    </div>
 
-</div>
+    <div
+      id="statusText"
+      class="statusText"
+    >
+      Choose your settings and start a round.
+    </div>
 
-</div>
-
-
-<!-- CONTROLS -->
-
-<div class="panel">
-
-<div class="controls">
-
-<div class="field">
-
-<label>BET</label>
-
-<input
-  id="bet"
-  type="number"
-  min="1"
-  value="100">
-
-<div class="quick">
-
-<button onclick="setBet(50)">50</button>
-<button onclick="setBet(100)">100</button>
-<button onclick="setBet(500)">500</button>
-
-</div>
-
-</div>
+  </div>
 
 
-<div class="field">
+  <!-- BOARD -->
 
-<label>BOMBS</label>
+  <div
+    id="boardPanel"
+    class="panel"
+  >
 
-<div class="bombOptions">
+    <div class="boardFrame">
 
-<button
-  id="bomb3"
-  class="bombOption"
-  onclick="setBombs(3)">
-3
-</button>
+      <div
+        id="board"
+        class="board"
+      ></div>
 
-<button
-  id="bomb5"
-  class="bombOption active"
-  onclick="setBombs(5)">
-5
-</button>
+    </div>
 
-<button
-  id="bomb8"
-  class="bombOption"
-  onclick="setBombs(8)">
-8
-</button>
-
-<button
-  id="bomb12"
-  class="bombOption"
-  onclick="setBombs(12)">
-12
-</button>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 
-<button
-  id="startBtn"
-  class="action"
-  onclick="startRound()">
-START ROUND
-</button>
+  <!-- CONTROLS -->
+
+  <div class="panel">
+
+    <div class="controls">
+
+      <div class="field">
+
+        <label>
+          BET
+        </label>
+
+        <input
+          id="bet"
+          type="number"
+          min="1"
+          value="100"
+          inputmode="numeric"
+        >
+
+        <div class="quick">
+
+          <button onclick="setBet(50)">
+            50
+          </button>
+
+          <button onclick="setBet(100)">
+            100
+          </button>
+
+          <button onclick="setBet(500)">
+            500
+          </button>
+
+        </div>
+
+      </div>
 
 
-<button
-  id="cashBtn"
-  class="action cash"
-  disabled
-  onclick="cashOut()">
-CASH OUT · 0 ◈
-</button>
+      <div class="field">
 
-</div>
+        <label>
+          BOMBS
+        </label>
+
+        <div class="bombOptions">
+
+          <button
+            id="bomb3"
+            class="bombOption"
+            onclick="setBombs(3)"
+          >
+            3
+          </button>
+
+          <button
+            id="bomb5"
+            class="bombOption active"
+            onclick="setBombs(5)"
+          >
+            5
+          </button>
+
+          <button
+            id="bomb8"
+            class="bombOption"
+            onclick="setBombs(8)"
+          >
+            8
+          </button>
+
+          <button
+            id="bomb12"
+            class="bombOption"
+            onclick="setBombs(12)"
+          >
+            12
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
 
 
-<!-- STATS -->
-
-<div class="panel">
-
-<div class="stats">
-
-<div class="stat">
-<strong id="safeCount">0</strong>
-<span>SAFE TILES</span>
-</div>
-
-<div class="stat">
-<strong id="roundBet">0 ◈</strong>
-<span>ROUND BET</span>
-</div>
-
-<div class="stat">
-<strong id="potential">0 ◈</strong>
-<span>POTENTIAL WIN</span>
-</div>
-
-</div>
-
-</div>
+    <button
+      id="startBtn"
+      class="action"
+      onclick="startRound()"
+    >
+      START ROUND
+    </button>
 
 
-<!-- HISTORY -->
+    <button
+      id="cashBtn"
+      class="action cash"
+      disabled
+      onclick="cashOut()"
+    >
+      CASH OUT · 0 ◈
+    </button>
 
-<div class="panel">
+  </div>
 
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:9px;
-">
 
-<strong style="
-font-size:10px;
-letter-spacing:1px;
-">
-RECENT ROUNDS
-</strong>
+  <!-- STATS -->
 
-<span style="
-font-size:7px;
-color:#65706c;
-">
-VIRTUAL
-</span>
+  <div class="panel">
 
-</div>
+    <div class="stats">
 
-<div id="history" class="history"></div>
+      <div class="stat">
+        <strong id="safeCount">0</strong>
+        <span>SAFE TILES</span>
+      </div>
 
-</div>
+      <div class="stat">
+        <strong id="roundBet">0 ◈</strong>
+        <span>ROUND BET</span>
+      </div>
+
+      <div class="stat">
+        <strong id="potential">0 ◈</strong>
+        <span>POTENTIAL WIN</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- HISTORY -->
+
+  <div class="panel">
+
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:9px
+    ">
+
+      <strong style="
+        font-size:10px;
+        letter-spacing:1px
+      ">
+        RECENT ROUNDS
+      </strong>
+
+      <span style="
+        font-size:7px;
+        color:#65706c
+      ">
+        VIRTUAL
+      </span>
+
+    </div>
+
+    <div
+      id="history"
+      class="history"
+    ></div>
+
+  </div>
 
 </main>
 
@@ -1108,39 +1205,48 @@ VIRTUAL
 
 <!-- RESULT -->
 
-<div id="resultFlash" class="resultFlash">
+<div
+  id="resultFlash"
+  class="resultFlash"
+>
 
-<div class="resultCard">
+  <div class="resultCard">
 
-<div id="resultTitle" class="resultTitle">
-WIN
-</div>
+    <div
+      id="resultTitle"
+      class="resultTitle"
+    >
+      WIN
+    </div>
 
-<div id="resultValue" class="resultValue">
-+0 ◈
-</div>
+    <div
+      id="resultValue"
+      class="resultValue"
+    >
+      +0 ◈
+    </div>
 
-</div>
+  </div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   NOIRVA MINES ENGINE
-========================================================= */
+/* =========================================
+   STATE
+========================================= */
 
-const state = {
+const state={
 
-  user:
-    localStorage.getItem("noirva_user") || "",
+  user:localStorage.getItem("noirva_user")||"",
 
-  balance:
-    Number(localStorage.getItem("noirva_balance") || 10000),
+  balance:Number(
+    localStorage.getItem("noirva_balance")||10000
+  ),
 
   sound:
-    localStorage.getItem("noirva_sound") !== "off",
+    localStorage.getItem("noirva_sound")!=="off",
 
   bombs:5,
 
@@ -1159,19 +1265,24 @@ const state = {
 };
 
 
-let audioContext = null;
+let audioContext=null;
 
 
-/* =========================================================
-   BASIC HELPERS
-========================================================= */
+/* =========================================
+   MONEY
+========================================= */
 
 function money(value){
 
-  return Math.floor(value).toLocaleString() + " ◈";
+  return Math.floor(value)
+    .toLocaleString()+" ◈";
 
 }
 
+
+/* =========================================
+   SAVE
+========================================= */
 
 function save(){
 
@@ -1192,27 +1303,42 @@ function save(){
 }
 
 
+/* =========================================
+   BALANCE
+========================================= */
+
 function updateBalance(){
 
-  document.getElementById("balance").textContent =
-    money(state.balance);
+  document.getElementById("balance")
+    .textContent=money(state.balance);
 
-  document.getElementById("miniBalance").textContent =
-    money(state.balance);
+  document.getElementById("miniBalance")
+    .textContent=money(state.balance);
 
   save();
 
 }
 
 
+/* =========================================
+   BET
+========================================= */
+
 function setBet(value){
 
-  document.getElementById("bet").value = value;
+  if(state.active)return;
 
-  clickSound();
+  document.getElementById("bet")
+    .value=value;
+
+  uiClick();
 
 }
 
+
+/* =========================================
+   BOMBS
+========================================= */
 
 function setBombs(value){
 
@@ -1226,59 +1352,59 @@ function setBombs(value){
       button.classList.remove("active");
     });
 
-  const button =
-    document.getElementById("bomb"+value);
+  document
+    .getElementById("bomb"+value)
+    .classList.add("active");
 
-  if(button){
-    button.classList.add("active");
-  }
-
-  clickSound();
+  uiClick();
 
 }
 
 
+/* =========================================
+   VALID BET
+========================================= */
+
 function validBet(){
 
-  const value =
-    Math.floor(
-      Number(
-        document.getElementById("bet").value
-      )
-    );
+  const value=Math.floor(
+    Number(
+      document.getElementById("bet").value
+    )
+  );
 
   if(!Number.isFinite(value))return 0;
 
-  if(value < 1)return 0;
+  if(value<1)return 0;
 
-  if(value > state.balance)return 0;
+  if(value>state.balance)return 0;
 
   return value;
 
 }
 
 
-/* =========================================================
+/* =========================================
    LOGIN
-========================================================= */
+========================================= */
 
 function login(){
 
-  const username =
+  const username=
     document.getElementById("username")
-      .value
-      .trim();
+      .value.trim();
 
-  const password =
-    document.getElementById("password").value;
+  const password=
+    document.getElementById("password")
+      .value;
 
   if(
-    username.length < 1 ||
-    password.length < 3
+    username.length<1 ||
+    password.length<3
   ){
 
     document.getElementById("loginError")
-      .textContent =
+      .textContent=
       "Enter a username and 3+ character password.";
 
     return;
@@ -1291,12 +1417,10 @@ function login(){
 
   initAudio();
 
-  document
-    .getElementById("loginScreen")
+  document.getElementById("loginScreen")
     .classList.add("hidden");
 
-  document
-    .getElementById("gameScreen")
+  document.getElementById("gameScreen")
     .classList.remove("hidden");
 
   updateBalance();
@@ -1305,27 +1429,31 @@ function login(){
 
   updateSoundButton();
 
+  renderHistory();
+
 }
 
+
+/* =========================================
+   LOGOUT
+========================================= */
 
 function logout(){
 
   state.active=false;
 
-  document
-    .getElementById("gameScreen")
+  document.getElementById("gameScreen")
     .classList.add("hidden");
 
-  document
-    .getElementById("loginScreen")
+  document.getElementById("loginScreen")
     .classList.remove("hidden");
 
 }
 
 
-/* =========================================================
-   AUDIO
-========================================================= */
+/* =========================================
+   AUDIO ENGINE
+========================================= */
 
 function initAudio(){
 
@@ -1333,7 +1461,7 @@ function initAudio(){
 
     if(!audioContext){
 
-      audioContext =
+      audioContext=
         new(
           window.AudioContext ||
           window.webkitAudioContext
@@ -1343,7 +1471,7 @@ function initAudio(){
 
     if(
       audioContext &&
-      audioContext.state === "suspended"
+      audioContext.state==="suspended"
     ){
 
       audioContext.resume();
@@ -1355,11 +1483,17 @@ function initAudio(){
 }
 
 
-function playTone(
+/*
+  Richer audio than simple one-note beeps.
+  Uses multiple oscillators + envelopes.
+*/
+
+function tone(
   frequency,
-  duration=.08,
+  duration=.12,
   type="sine",
-  volume=.07
+  volume=.08,
+  delay=0
 ){
 
   if(!state.sound)return;
@@ -1368,133 +1502,213 @@ function playTone(
 
   if(!audioContext)return;
 
-  const oscillator =
+  const now=
+    audioContext.currentTime+delay;
+
+  const oscillator=
     audioContext.createOscillator();
 
-  const gain =
+  const gain=
     audioContext.createGain();
 
   oscillator.type=type;
 
   oscillator.frequency.setValueAtTime(
     frequency,
-    audioContext.currentTime
+    now
   );
 
   gain.gain.setValueAtTime(
-    volume,
-    audioContext.currentTime
+    .0001,
+    now
   );
 
   gain.gain.exponentialRampToValueAtTime(
-    .001,
-    audioContext.currentTime + duration
+    volume,
+    now+.015
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    now+duration
   );
 
   oscillator.connect(gain);
 
-  gain.connect(audioContext.destination);
+  gain.connect(
+    audioContext.destination
+  );
 
-  oscillator.start();
+  oscillator.start(now);
 
   oscillator.stop(
-    audioContext.currentTime + duration
+    now+duration+.03
   );
 
 }
 
 
-function clickSound(){
+/* soft UI click */
 
-  playTone(
-    420,
+function uiClick(){
+
+  tone(
+    520,
     .045,
-    "square",
+    "triangle",
     .035
   );
 
 }
 
 
-function safeSound(){
+/* diamond sound */
 
-  playTone(
+function diamondSound(){
+
+  tone(
     620,
-    .07,
+    .16,
     "sine",
-    .06
+    .065
   );
 
-  setTimeout(()=>{
-    playTone(
-      880,
-      .1,
-      "sine",
-      .055
-    );
-  },60);
+  tone(
+    930,
+    .18,
+    "sine",
+    .055,
+    .055
+  );
+
+  tone(
+    1320,
+    .24,
+    "sine",
+    .045,
+    .11
+  );
 
 }
 
 
+/* bomb sound */
+
 function bombSound(){
 
-  playTone(
-    180,
-    .18,
+  tone(
+    125,
+    .32,
     "sawtooth",
     .09
   );
 
-  setTimeout(()=>{
-    playTone(
-      95,
-      .28,
-      "square",
-      .08
-    );
-  },100);
+  tone(
+    72,
+    .45,
+    "square",
+    .075,
+    .08
+  );
+
+  tone(
+    42,
+    .5,
+    "sawtooth",
+    .05,
+    .15
+  );
 
 }
 
+
+/* cash-out sound */
 
 function cashSound(){
 
-  playTone(
-    500,
-    .08,
+  tone(
+    440,
+    .13,
     "sine",
-    .075
+    .07
   );
 
-  setTimeout(()=>{
-    playTone(
-      700,
-      .09,
-      "sine",
-      .08
-    );
-  },90);
+  tone(
+    660,
+    .15,
+    "sine",
+    .07,
+    .08
+  );
 
-  setTimeout(()=>{
-    playTone(
-      980,
-      .16,
-      "sine",
-      .09
-    );
-  },190);
+  tone(
+    880,
+    .17,
+    "sine",
+    .065,
+    .16
+  );
+
+  tone(
+    1320,
+    .28,
+    "sine",
+    .055,
+    .25
+  );
 
 }
 
+
+/* victory fanfare */
+
+function winSound(){
+
+  tone(
+    523,
+    .15,
+    "sine",
+    .06
+  );
+
+  tone(
+    659,
+    .16,
+    "sine",
+    .06,
+    .08
+  );
+
+  tone(
+    784,
+    .18,
+    "sine",
+    .06,
+    .16
+  );
+
+  tone(
+    1047,
+    .3,
+    "sine",
+    .07,
+    .25
+  );
+
+}
+
+
+/* =========================================
+   SOUND TOGGLE
+========================================= */
 
 function updateSoundButton(){
 
   document.getElementById("soundBtn")
-    .textContent =
+    .textContent=
     state.sound
-      ? "SOUND ON"
-      : "SOUND OFF";
+      ?"SOUND ON"
+      :"SOUND OFF";
 
 }
 
@@ -1505,9 +1719,7 @@ function toggleSound(){
 
   localStorage.setItem(
     "noirva_sound",
-    state.sound
-      ? "on"
-      : "off"
+    state.sound?"on":"off"
   );
 
   updateSoundButton();
@@ -1516,35 +1728,324 @@ function toggleSound(){
 
     initAudio();
 
-    clickSound();
+    uiClick();
 
   }
 
 }
 
 
-/* =========================================================
-   BOARD
-========================================================= */
+/* =========================================
+   SVG DIAMOND
+========================================= */
+
+function diamondSVG(){
+
+  return `
+
+  <svg
+    class="diamondSVG"
+    viewBox="0 0 100 100"
+    aria-hidden="true"
+  >
+
+    <defs>
+
+      <linearGradient
+        id="diamondMain"
+        x1="15%"
+        y1="0%"
+        x2="85%"
+        y2="100%"
+      >
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="25%" stop-color="#cffff0"/>
+        <stop offset="55%" stop-color="#72e8c0"/>
+        <stop offset="100%" stop-color="#1a9c72"/>
+      </linearGradient>
+
+      <linearGradient
+        id="diamondLeft"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+      >
+        <stop offset="0%" stop-color="#effff9"/>
+        <stop offset="100%" stop-color="#42cfa0"/>
+      </linearGradient>
+
+      <linearGradient
+        id="diamondRight"
+        x1="100%"
+        y1="0%"
+        x2="0%"
+        y2="100%"
+      >
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#0b7654"/>
+      </linearGradient>
+
+      <filter id="diamondGlow">
+
+        <feGaussianBlur
+          stdDeviation="3"
+          result="blur"
+        />
+
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+
+      </filter>
+
+    </defs>
+
+
+    <path
+      d="M15 31 L30 15 L70 15 L85 31 L50 88 Z"
+      fill="#8fffe0"
+      opacity=".18"
+      filter="url(#diamondGlow)"
+    />
+
+
+    <path
+      d="M15 31 L30 15 L70 15 L85 31 L50 88 Z"
+      fill="url(#diamondMain)"
+      stroke="#d8fff4"
+      stroke-width="1.5"
+    />
+
+
+    <path
+      d="M15 31 L30 15 L50 31 L30 42 Z"
+      fill="url(#diamondLeft)"
+    />
+
+
+    <path
+      d="M30 15 L70 15 L50 31 Z"
+      fill="#ffffff"
+      opacity=".8"
+    />
+
+
+    <path
+      d="M70 15 L85 31 L50 31 Z"
+      fill="url(#diamondRight)"
+    />
+
+
+    <path
+      d="M15 31 L50 31 L30 42 Z"
+      fill="#35bd91"
+    />
+
+
+    <path
+      d="M50 31 L85 31 L70 42 Z"
+      fill="#168b65"
+    />
+
+
+    <path
+      d="M30 42 L50 31 L70 42 L50 88 Z"
+      fill="#43cda0"
+      opacity=".75"
+    />
+
+
+    <path
+      class="diamondShine"
+      d="M34 20 L47 20 L39 27 Z"
+      fill="#ffffff"
+    />
+
+  </svg>
+
+  `;
+
+}
+
+
+/* =========================================
+   SVG BOMB
+========================================= */
+
+function bombSVG(){
+
+  return `
+
+  <svg
+    class="bombSVG"
+    viewBox="0 0 100 100"
+    aria-hidden="true"
+  >
+
+    <defs>
+
+      <radialGradient
+        id="bombBody"
+        cx="35%"
+        cy="25%"
+      >
+        <stop offset="0%" stop-color="#65716d"/>
+        <stop offset="35%" stop-color="#303a37"/>
+        <stop offset="72%" stop-color="#111615"/>
+        <stop offset="100%" stop-color="#050707"/>
+      </radialGradient>
+
+      <linearGradient
+        id="fuse"
+        x1="0"
+        y1="1"
+        x2="1"
+        y2="0"
+      >
+        <stop offset="0%" stop-color="#4a2a20"/>
+        <stop offset="100%" stop-color="#15100e"/>
+      </linearGradient>
+
+      <radialGradient
+        id="fire"
+      >
+        <stop offset="0%" stop-color="#fff8b0"/>
+        <stop offset="35%" stop-color="#ffb52e"/>
+        <stop offset="75%" stop-color="#ff492f"/>
+        <stop offset="100%" stop-color="#d31d31"/>
+      </radialGradient>
+
+    </defs>
+
+
+    <!-- shadow -->
+
+    <ellipse
+      cx="50"
+      cy="86"
+      rx="28"
+      ry="6"
+      fill="#000"
+      opacity=".55"
+    />
+
+
+    <!-- fuse -->
+
+    <path
+      d="M62 25 C66 15 77 16 77 8"
+      fill="none"
+      stroke="url(#fuse)"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+
+
+    <!-- flame -->
+
+    <path
+      d="M77 13
+         C71 10 73 5 79 2
+         C78 7 85 8 83 13
+         C82 17 77 18 77 13Z"
+      fill="url(#fire)"
+    />
+
+
+    <!-- bomb body -->
+
+    <circle
+      cx="48"
+      cy="55"
+      r="31"
+      fill="url(#bombBody)"
+      stroke="#87918e"
+      stroke-opacity=".35"
+      stroke-width="2"
+    />
+
+
+    <!-- cap -->
+
+    <rect
+      x="39"
+      y="20"
+      width="19"
+      height="10"
+      rx="3"
+      fill="#252d2b"
+      stroke="#69736f"
+      stroke-opacity=".35"
+    />
+
+
+    <!-- highlight -->
+
+    <ellipse
+      cx="38"
+      cy="43"
+      rx="10"
+      ry="7"
+      fill="#ffffff"
+      opacity=".12"
+    />
+
+
+    <!-- bolts -->
+
+    <circle
+      cx="29"
+      cy="58"
+      r="2.5"
+      fill="#9ba6a1"
+      opacity=".45"
+    />
+
+    <circle
+      cx="65"
+      cy="63"
+      r="2.5"
+      fill="#9ba6a1"
+      opacity=".35"
+    />
+
+    <circle
+      cx="49"
+      cy="77"
+      r="2"
+      fill="#9ba6a1"
+      opacity=".3"
+    />
+
+  </svg>
+
+  `;
+
+}
+
+
+/* =========================================
+   BUILD BOARD
+========================================= */
 
 function buildBoard(){
 
-  const board =
+  const board=
     document.getElementById("board");
 
   board.innerHTML="";
 
-  state.board =
+  state.board=
     Array(25).fill(false);
 
   let placed=0;
 
-  while(placed < state.bombs){
+  while(placed<state.bombs){
 
-    const index =
-      Math.floor(
-        Math.random()*25
-      );
+    const index=
+      Math.floor(Math.random()*25);
 
     if(!state.board[index]){
 
@@ -1559,7 +2060,7 @@ function buildBoard(){
 
   for(let i=0;i<25;i++){
 
-    const tile =
+    const tile=
       document.createElement("button");
 
     tile.className="tile";
@@ -1568,12 +2069,18 @@ function buildBoard(){
 
     tile.dataset.index=i;
 
-    tile.innerHTML =
-      `<span class="tileContent">?</span>`;
+    tile.innerHTML=
+      `<span style="
+        font-size:12px;
+        color:#56615d;
+        font-weight:900;
+      ">+</span>`;
 
     tile.addEventListener(
       "click",
-      ()=>revealTile(i,tile)
+      ()=>{
+        revealTile(i,tile);
+      }
     );
 
     board.appendChild(tile);
@@ -1583,9 +2090,9 @@ function buildBoard(){
 }
 
 
-/* =========================================================
-   ROUND START
-========================================================= */
+/* =========================================
+   START ROUND
+========================================= */
 
 function startRound(){
 
@@ -1604,6 +2111,7 @@ function startRound(){
 
   }
 
+
   initAudio();
 
   state.active=true;
@@ -1614,41 +2122,37 @@ function startRound(){
 
   state.multiplier=1;
 
+
   state.balance-=bet;
 
   updateBalance();
 
   buildBoard();
 
-  document
-    .getElementById("startBtn")
+
+  document.getElementById("startBtn")
     .disabled=true;
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
     .disabled=false;
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
     .classList.remove("ready");
 
-  document
-    .getElementById("cashBtn")
-    .textContent =
+  document.getElementById("cashBtn")
+    .textContent=
     "CASH OUT · 0 ◈";
 
-  document
-    .getElementById("roundBet")
-    .textContent =
-    money(bet);
 
-  document
-    .getElementById("safeCount")
+  document.getElementById("roundBet")
+    .textContent=money(bet);
+
+  document.getElementById("safeCount")
     .textContent="0";
 
-  document
-    .getElementById("potential")
+  document.getElementById("potential")
     .textContent="0 ◈";
+
 
   setMultiplier(1);
 
@@ -1657,14 +2161,14 @@ function startRound(){
     ""
   );
 
-  clickSound();
+  uiClick();
 
 }
 
 
-/* =========================================================
+/* =========================================
    REVEAL TILE
-========================================================= */
+========================================= */
 
 function revealTile(index,tile){
 
@@ -1674,19 +2178,21 @@ function revealTile(index,tile){
 
   tile.classList.add("open");
 
+
+  /* BOMB */
+
   if(state.board[index]){
 
     tile.classList.add("bomb");
 
-    tile.innerHTML =
-      `<span class="tileContent mineIcon">💣</span>`;
+    tile.innerHTML=
+      bombSVG();
 
     revealBombs();
 
     state.active=false;
 
-    document
-      .getElementById("cashBtn")
+    document.getElementById("cashBtn")
       .disabled=true;
 
     bombSound();
@@ -1719,64 +2225,62 @@ function revealTile(index,tile){
   }
 
 
+  /* SAFE */
+
   tile.classList.add("safe");
 
-  tile.innerHTML =
-    `<span class="tileContent diamond">◆</span>`;
+  tile.innerHTML=
+    diamondSVG();
 
   state.revealed++;
 
-  /*
-    A smooth progressive multiplier.
-    More safe tiles = higher potential.
-  */
 
-  state.multiplier =
-    1 +
-    state.revealed*.15 +
+  state.multiplier=
+    1+
+    state.revealed*.15+
     Math.pow(
       state.revealed,
       1.45
     )*.018;
 
+
   setMultiplier(
     state.multiplier
   );
 
-  const potential =
+
+  const potential=
     Math.floor(
-      state.bet *
+      state.bet*
       state.multiplier
     );
 
-  document
-    .getElementById("safeCount")
-    .textContent =
+
+  document.getElementById("safeCount")
+    .textContent=
     state.revealed;
 
-  document
-    .getElementById("potential")
-    .textContent =
+
+  document.getElementById("potential")
+    .textContent=
     money(potential);
 
-  document
-    .getElementById("cashBtn")
-    .textContent =
-    "CASH OUT · "+money(potential);
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
+    .textContent=
+    "CASH OUT · "+
+    money(potential);
+
+
+  document.getElementById("cashBtn")
     .classList.add("ready");
 
-  safeSound();
 
-  /*
-    If every non-bomb tile is safe,
-    automatically complete the round.
-  */
+  diamondSound();
+
 
   if(
-    state.revealed >=
+    state.revealed>=
     25-state.bombs
   ){
 
@@ -1787,13 +2291,13 @@ function revealTile(index,tile){
 }
 
 
-/* =========================================================
+/* =========================================
    REVEAL BOMBS
-========================================================= */
+========================================= */
 
 function revealBombs(){
 
-  const tiles =
+  const tiles=
     document.querySelectorAll(".tile");
 
   tiles.forEach(
@@ -1809,8 +2313,8 @@ function revealBombs(){
           "bomb"
         );
 
-        tile.innerHTML =
-          `<span class="tileContent mineIcon">💣</span>`;
+        tile.innerHTML=
+          bombSVG();
 
       }
 
@@ -1820,19 +2324,20 @@ function revealBombs(){
 }
 
 
-/* =========================================================
+/* =========================================
    CASH OUT
-========================================================= */
+========================================= */
 
 function cashOut(){
 
   if(!state.active)return;
 
-  const payout =
+  const payout=
     Math.floor(
-      state.bet *
+      state.bet*
       state.multiplier
     );
+
 
   state.balance+=payout;
 
@@ -1840,33 +2345,39 @@ function cashOut(){
 
   state.active=false;
 
-  document
-    .getElementById("cashBtn")
+
+  document.getElementById("cashBtn")
     .disabled=true;
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
     .classList.remove("ready");
+
 
   showStatus(
     "CASHED OUT · "+money(payout),
     "win"
   );
 
+
   addHistory(
     "+"+money(payout),
     true
   );
 
+
   cashSound();
 
-  createParticles(28);
+  winSound();
+
+  createParticles(32);
+
 
   showResult(
     "CASHED OUT",
     "+"+money(payout),
     true
   );
+
 
   setTimeout(
     resetAfterRound,
@@ -1876,9 +2387,9 @@ function cashOut(){
 }
 
 
-/* =========================================================
+/* =========================================
    RESET
-========================================================= */
+========================================= */
 
 function resetAfterRound(){
 
@@ -1890,38 +2401,36 @@ function resetAfterRound(){
 
   state.bet=0;
 
+
   buildBoard();
 
-  document
-    .getElementById("startBtn")
+
+  document.getElementById("startBtn")
     .disabled=false;
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
     .disabled=true;
 
-  document
-    .getElementById("cashBtn")
+  document.getElementById("cashBtn")
     .classList.remove("ready");
 
-  document
-    .getElementById("cashBtn")
-    .textContent =
+  document.getElementById("cashBtn")
+    .textContent=
     "CASH OUT · 0 ◈";
 
-  document
-    .getElementById("safeCount")
+
+  document.getElementById("safeCount")
     .textContent="0";
 
-  document
-    .getElementById("roundBet")
+  document.getElementById("roundBet")
     .textContent="0 ◈";
 
-  document
-    .getElementById("potential")
+  document.getElementById("potential")
     .textContent="0 ◈";
+
 
   setMultiplier(1);
+
 
   showStatus(
     "Choose your settings and start a round.",
@@ -1931,17 +2440,18 @@ function resetAfterRound(){
 }
 
 
-/* =========================================================
+/* =========================================
    MULTIPLIER
-========================================================= */
+========================================= */
 
 function setMultiplier(value){
 
-  const element =
+  const element=
     document.getElementById("multiplier");
 
-  element.textContent =
+  element.textContent=
     value.toFixed(2)+"×";
+
 
   if(value>=2.5){
 
@@ -1956,18 +2466,18 @@ function setMultiplier(value){
 }
 
 
-/* =========================================================
+/* =========================================
    STATUS
-========================================================= */
+========================================= */
 
 function showStatus(text,type){
 
-  const element =
+  const element=
     document.getElementById("statusText");
 
   element.textContent=text;
 
-  element.className =
+  element.className=
     "statusText "+
     (
       type==="win"
@@ -1981,9 +2491,9 @@ function showStatus(text,type){
 }
 
 
-/* =========================================================
+/* =========================================
    HISTORY
-========================================================= */
+========================================= */
 
 function addHistory(text,isWin){
 
@@ -1992,11 +2502,8 @@ function addHistory(text,isWin){
     isWin
   });
 
-  state.history =
-    state.history.slice(
-      0,
-      10
-    );
+  state.history=
+    state.history.slice(0,10);
 
   renderHistory();
 
@@ -2005,12 +2512,13 @@ function addHistory(text,isWin){
 
 function renderHistory(){
 
-  const element =
+  const element=
     document.getElementById("history");
+
 
   if(!state.history.length){
 
-    element.innerHTML =
+    element.innerHTML=
       `<div class="historyItem">
         NO ROUNDS
       </div>`;
@@ -2019,18 +2527,16 @@ function renderHistory(){
 
   }
 
-  element.innerHTML =
+
+  element.innerHTML=
     state.history
       .map(item=>`
 
-        <div class="historyItem ${
-          item.isWin
-            ?"win"
-            :"loss"
-        }">
-
+        <div class="
+          historyItem
+          ${item.isWin?"win":"loss"}
+        ">
           ${item.text}
-
         </div>
 
       `)
@@ -2039,9 +2545,9 @@ function renderHistory(){
 }
 
 
-/* =========================================================
-   RESULT FLASH
-========================================================= */
+/* =========================================
+   RESULT
+========================================= */
 
 function showResult(
   title,
@@ -2049,32 +2555,33 @@ function showResult(
   win
 ){
 
-  const flash =
+  const flash=
     document.getElementById(
       "resultFlash"
     );
+
 
   document.getElementById(
     "resultTitle"
   ).textContent=title;
 
-  const valueElement =
+
+  const valueElement=
     document.getElementById(
       "resultValue"
     );
 
+
   valueElement.textContent=value;
 
-  valueElement.style.color =
+
+  valueElement.style.color=
     win
-      ? "var(--green)"
-      : "var(--red)";
+      ?"var(--green)"
+      :"var(--red)";
+
 
   flash.classList.remove("show");
-
-  /*
-    Force browser to restart animation.
-  */
 
   void flash.offsetWidth;
 
@@ -2083,13 +2590,13 @@ function showResult(
 }
 
 
-/* =========================================================
-   BOARD SHAKE
-========================================================= */
+/* =========================================
+   SHAKE
+========================================= */
 
 function shakeBoard(){
 
-  const panel =
+  const panel=
     document.getElementById(
       "boardPanel"
     );
@@ -2103,9 +2610,9 @@ function shakeBoard(){
 }
 
 
-/* =========================================================
+/* =========================================
    PARTICLES
-========================================================= */
+========================================= */
 
 function createParticles(count){
 
@@ -2115,48 +2622,55 @@ function createParticles(count){
     i++
   ){
 
-    const particle =
-      document.createElement(
-        "div"
-      );
+    const particle=
+      document.createElement("div");
 
     particle.className="particle";
 
-    particle.style.left =
+
+    particle.style.left=
       (
-        50 +
-        Math.random()*12 -
-        6
+        50+
+        Math.random()*14-
+        7
       )+"vw";
 
-    particle.style.top =
+
+    particle.style.top=
       (
-        45 +
-        Math.random()*10 -
-        5
+        45+
+        Math.random()*12-
+        6
       )+"vh";
+
 
     particle.style.setProperty(
       "--x",
       (
-        Math.random()*360-180
+        Math.random()*400-
+        200
       )+"px"
     );
+
 
     particle.style.setProperty(
       "--y",
       (
-        -60 -
-        Math.random()*340
+        -80-
+        Math.random()*350
       )+"px"
     );
+
 
     document.body.appendChild(
       particle
     );
 
+
     setTimeout(
-      ()=>particle.remove(),
+      ()=>{
+        particle.remove();
+      },
       1000
     );
 
@@ -2165,9 +2679,27 @@ function createParticles(count){
 }
 
 
-/* =========================================================
-   STARTUP
-========================================================= */
+/* =========================================
+   ENTER KEY LOGIN
+========================================= */
+
+document
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    event=>{
+
+      if(event.key==="Enter"){
+        login();
+      }
+
+    }
+  );
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
 
 updateSoundButton();
 
