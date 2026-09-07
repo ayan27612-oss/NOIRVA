@@ -1,1658 +1,1436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NOIRVA | Premium Virtual Gaming</title>
-    <style>
-        :root {
-            --bg-dark: #0a0a0c;
-            --panel-bg: #1a1a1f;
-            --panel-hover: #2a2a32;
-            --text-main: #ffffff;
-            --text-muted: #8b8b99;
-            --accent-green: #22c55e;
-            --accent-red: #ef4444;
-            --accent-gold: #facc15;
-            --accent-blue: #3b82f6;
-            --border: #33333d;
-            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070909">
+<title>NOIRVA — Virtual Gaming</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070909;
+  --panel:#101313;
+  --panel2:#151919;
+  --line:#252a2a;
+  --text:#f5f7f7;
+  --muted:#858d8d;
+  --green:#16d98b;
+  --green2:#0ca96d;
+  --red:#ef4d5c;
+  --gold:#e8bd62;
+  --blue:#5d9cff;
+  --shadow:0 20px 70px #0008;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input{font:inherit}
+button{border:0;color:inherit;cursor:pointer}
+body{overflow-x:hidden}
+.hidden{display:none!important}
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            overscroll-behavior: none;
-        }
+#app{min-height:100vh}
+.screen{min-height:100vh}
 
-        /* UI Components */
-        .hidden { display: none !important; }
-        .flex { display: flex; }
-        .flex-col { display: flex; flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .text-center { text-align: center; }
-        
-        button {
-            background: var(--accent-blue);
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        button:hover:not(:disabled) { filter: brightness(1.2); transform: translateY(-1px); }
-        button:active:not(:disabled) { transform: translateY(1px); }
-        button:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
-        button.btn-green { background: var(--accent-green); }
-        button.btn-red { background: var(--accent-red); }
-        button.btn-gold { background: var(--accent-gold); color: #000; }
+/* LOGIN */
+#loginScreen{
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 50% 0,#123a2b44,transparent 38%),
+    #070909;
+}
+.login{width:100%;max-width:390px;text-align:center}
+.logoMark{
+  width:62px;height:62px;margin:0 auto 20px;
+  border:1px solid #ffffff22;border-radius:18px;
+  display:grid;place-items:center;
+  font-size:28px;font-weight:800;
+  background:#101414;
+  box-shadow:0 0 45px #16d98b14;
+}
+.logo{font-size:28px;font-weight:850;letter-spacing:8px}
+.tag{font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:8px}
+.loginCard{
+  margin-top:35px;padding:24px;
+  border:1px solid var(--line);border-radius:20px;
+  background:#0e1111cc;box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);
+  text-align:left;
+}
+.label{
+  display:block;font-size:9px;letter-spacing:2px;
+  color:#8e9696;margin:0 0 8px;
+}
+.input{
+  width:100%;height:48px;
+  background:#080a0a;border:1px solid #252a2a;
+  border-radius:10px;padding:0 14px;color:white;
+  outline:none;margin-bottom:17px;
+}
+.input:focus{border-color:#16d98b88}
+.primary{
+  width:100%;height:50px;border-radius:10px;
+  background:var(--green);color:#03150e;
+  font-weight:850;letter-spacing:1px;
+  transition:.2s;
+}
+.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.note{text-align:center;color:#687070;font-size:9px;line-height:1.6;margin-top:16px}
+.error{color:var(--red);font-size:11px;text-align:center;min-height:18px;margin-top:9px}
 
-        input, select {
-            background: #000;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            width: 100%;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus { border-color: var(--accent-blue); }
+/* APP */
+.appHeader{
+  height:64px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(16px,calc((100vw - 1180px)/2));
+  position:sticky;top:0;z-index:50;
+  background:#080a0ae8;backdrop-filter:blur(18px);
+}
+.headerLogo{font-weight:850;letter-spacing:4px}
+.headerRight{display:flex;align-items:center;gap:9px}
+.balance{
+  padding:9px 12px;border:1px solid #26302c;
+  border-radius:9px;background:#0d1411;
+  color:var(--green);font-size:12px;font-weight:800;
+}
+.soundBtn,.exitBtn{
+  height:36px;padding:0 11px;border:1px solid var(--line);
+  background:#101313;border-radius:8px;font-size:11px;
+}
+.exitBtn{color:#aab0b0}
 
-        /* Screens */
-        #app { height: 100vh; width: 100vw; display: flex; flex-direction: column; }
-        .screen { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.4s ease; padding: 20px; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        @keyframes pulseGlow { 0% { box-shadow: 0 0 10px var(--accent-gold); } 50% { box-shadow: 0 0 20px var(--accent-gold); } 100% { box-shadow: 0 0 10px var(--accent-gold); } }
+.container{width:min(1180px,100%);margin:auto;padding:25px 16px 80px}
 
-        /* Login */
-        #login-screen { justify-content: center; align-items: center; }
-        .login-box { background: var(--panel-bg); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: center; width: 100%; max-width: 400px; }
-        .brand { font-size: 2.5rem; font-weight: 900; letter-spacing: 4px; margin-bottom: 5px; background: linear-gradient(45deg, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .demo-badge { background: var(--accent-red); font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+.topbar{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:20px;margin-bottom:23px;
+}
+.eyebrow{font-size:9px;letter-spacing:3px;color:var(--green);margin-bottom:7px}
+h1{font-size:28px;letter-spacing:-1px}
+.sub{color:var(--muted);font-size:12px;margin-top:6px}
 
-        /* Header */
-        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--panel-bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .balance-box { display: flex; align-items: center; gap: 10px; background: #000; padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); font-weight: bold; font-size: 1.2rem; color: var(--accent-gold); }
-        .balance-box.anim { animation: pop 0.3s ease; }
-        .icon-btn { background: none; border: 1px solid var(--border); padding: 8px; border-radius: 8px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; }
-        
-        /* Lobby */
-        .grid-lobby { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .game-card { background: var(--panel-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .game-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); background: var(--panel-hover); }
-        .game-card i { font-size: 3rem; margin-bottom: 15px; display: block; }
-        
-        /* Game View */
-        .game-container { display: flex; flex-direction: column; flex: 1; gap: 20px; margin-top: 20px; height: calc(100vh - 120px); }
-        @media (min-width: 768px) { .game-container { flex-direction: row; } }
-        .game-controls { background: var(--panel-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 15px; min-width: 300px; }
-        .game-area { flex: 1; background: #000; border: 1px solid var(--border); border-radius: 12px; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-        
-        .control-group { display: flex; flex-direction: column; gap: 5px; }
-        .control-group label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: bold; }
-        
-        /* Canvas & Generic Overlays */
-        canvas { width: 100%; height: 100%; object-fit: contain; }
-        .overlay-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: 900; text-shadow: 0 4px 20px rgba(0,0,0,0.8); z-index: 10; pointer-events: none; opacity: 0; transition: opacity 0.3s; text-align: center; width: 100%; }
-        .overlay-msg.show { opacity: 1; animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .text-win { color: var(--accent-green); }
-        .text-lose { color: var(--accent-red); }
+.hero{
+  min-height:205px;border:1px solid var(--line);
+  border-radius:20px;padding:25px;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 20%,#16d98b18,transparent 35%),
+    linear-gradient(135deg,#111615,#0b0e0e);
+  margin-bottom:28px;
+}
+.hero:after{
+  content:"";position:absolute;width:250px;height:250px;
+  border:1px solid #16d98b15;border-radius:50%;
+  right:-70px;top:-100px;
+  box-shadow:0 0 0 35px #16d98b06,0 0 0 70px #16d98b03;
+}
+.hero h2{font-size:32px;max-width:500px;line-height:1.05}
+.hero p{max-width:480px;color:#8b9393;font-size:12px;line-height:1.7;margin-top:12px}
+.demo{
+  display:inline-flex;margin-top:18px;
+  font-size:9px;letter-spacing:1.5px;
+  padding:7px 10px;border-radius:5px;
+  color:#82e9bc;background:#0d261d;
+  border:1px solid #174b37;
+}
 
-        /* Specific Games Styles */
-        /* Mines */
-        .mines-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; padding: 20px; }
-        .mine-tile { background: var(--panel-hover); border: none; border-radius: 8px; aspect-ratio: 1; font-size: 2rem; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; }
-        .mine-tile:hover:not(:disabled) { filter: brightness(1.3); transform: scale(1.05); }
-        .mine-tile.revealed-safe { background: var(--accent-green); color: #fff; animation: pop 0.3s; }
-        .mine-tile.revealed-bomb { background: var(--accent-red); color: #fff; animation: pop 0.3s; }
-        .mine-tile:disabled { cursor: default; }
+.sectionTitle{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:25px 0 13px;
+}
+.sectionTitle h3{font-size:13px;letter-spacing:1px}
+.sectionTitle span{font-size:9px;color:#687070;letter-spacing:1px}
 
-        /* Cards (Blackjack) */
-        .bj-board { display: flex; flex-direction: column; gap: 40px; width: 100%; padding: 20px; align-items: center; }
-        .bj-hand { display: flex; gap: 10px; min-height: 120px; justify-content: center; }
-        .bj-card { width: 80px; height: 120px; background: #fff; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; color: #000; box-shadow: 0 4px 8px rgba(0,0,0,0.5); animation: fadeIn 0.3s; position: relative; }
-        .bj-card.red { color: var(--accent-red); }
-        .bj-card.hidden-card { background: var(--panel-hover); border: 2px solid var(--border); color: transparent; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px); }
-        .bj-label { text-align: center; color: var(--text-muted); font-weight: bold; margin-bottom: 10px; }
+.games{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+}
+.gameCard{
+  min-height:155px;border:1px solid var(--line);
+  background:linear-gradient(145deg,#121616,#0d1010);
+  border-radius:15px;padding:15px;
+  position:relative;overflow:hidden;
+  transition:.25s;
+}
+.gameCard:hover{transform:translateY(-3px);border-color:#394040}
+.gameIcon{
+  width:40px;height:40px;border-radius:11px;
+  display:grid;place-items:center;font-size:20px;
+  background:#181d1d;border:1px solid #293030;
+  margin-bottom:24px;
+}
+.gameCard h4{font-size:14px}
+.gameCard p{font-size:10px;color:#707979;margin-top:5px}
+.play{
+  position:absolute;right:12px;bottom:12px;
+  width:30px;height:30px;border-radius:50%;
+  background:#18211d;color:var(--green);
+  display:grid;place-items:center;
+}
+.gameCard[data-color="red"] .play{color:var(--red)}
+.gameCard[data-color="gold"] .play{color:var(--gold)}
+.gameCard[data-color="blue"] .play{color:var(--blue)}
 
-        /* Dice */
-        .dice-slider-container { width: 80%; padding: 40px 20px; text-align: center; }
-        .dice-slider { -webkit-appearance: none; width: 100%; height: 15px; background: linear-gradient(to right, var(--accent-green) 50%, var(--accent-red) 50%); border-radius: 10px; outline: none; margin: 20px 0; }
-        .dice-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 30px; height: 30px; border-radius: 50%; background: #fff; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-        .dice-result { font-size: 4rem; font-weight: 900; margin-bottom: 20px; transition: color 0.3s; }
+.footer{
+  margin-top:35px;padding-top:18px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;color:#555d5d;font-size:9px;
+}
 
-        /* Limbo */
-        .limbo-display { font-size: 6rem; font-weight: 900; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+/* GAME */
+#gameScreen{display:none}
+.gamePage{width:min(920px,100%);margin:auto;padding:18px 14px 70px}
+.gameNav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.back{background:none;color:#8b9292;font-size:11px}
+.gameTitle{font-size:18px;font-weight:800}
+.gameBalance{font-size:11px;color:var(--green);font-weight:800}
+.gamePanel{
+  background:#0f1212;border:1px solid var(--line);
+  border-radius:18px;padding:15px;margin-bottom:12px;
+  box-shadow:0 12px 50px #0004;
+}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.controlBox{background:#0a0d0d;border:1px solid #202525;border-radius:10px;padding:10px}
+.controlBox label{display:block;font-size:8px;letter-spacing:1.5px;color:#687070;margin-bottom:7px}
+.controlBox input{
+  width:100%;background:none;border:0;outline:0;color:white;font-size:14px;font-weight:750;
+}
+.quick{display:flex;gap:6px;margin-top:8px}
+.quick button,.choice{
+  flex:1;height:31px;background:#171b1b;border:1px solid #272d2d;
+  border-radius:7px;font-size:9px;color:#aab0b0;
+}
+.quick button:hover,.choice:hover{border-color:#4a5454}
+.action{
+  width:100%;height:48px;border-radius:10px;
+  background:var(--green);color:#03150e;
+  font-weight:900;letter-spacing:1px;margin-top:10px;
+}
+.action:disabled{opacity:.35;cursor:not-allowed}
+.secondary{
+  width:100%;height:44px;border-radius:9px;
+  background:#171b1b;border:1px solid #292f2f;color:white;
+  margin-top:9px;font-size:11px;font-weight:750;
+}
+.statRow{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stat{padding:10px;background:#0a0d0d;border:1px solid #1e2323;border-radius:9px}
+.stat b{display:block;font-size:14px}
+.stat span{font-size:8px;color:#687070;letter-spacing:1px}
 
-        /* Keno */
-        .keno-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; max-width: 500px; padding: 20px; }
-        @media (max-width: 600px) { .keno-grid { grid-template-columns: repeat(5, 1fr); } }
-        .keno-btn { background: var(--panel-hover); border-radius: 4px; padding: 10px 0; font-weight: bold; color: #fff; border: 2px solid transparent; cursor: pointer; transition: 0.2s; }
-        .keno-btn.selected { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.2); }
-        .keno-btn.hit { background: var(--accent-green); animation: pop 0.3s; }
-        .keno-btn.miss { background: var(--accent-red); opacity: 0.5; }
+/* MINES */
+.mineGrid{
+  width:min(470px,100%);margin:14px auto;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:7px;
+}
+.mineTile{
+  aspect-ratio:1;background:#171c1c;
+  border:1px solid #2b3232;border-radius:9px;
+  display:grid;place-items:center;font-size:22px;
+  transition:.18s;position:relative;overflow:hidden;
+}
+.mineTile:not(.open):hover{transform:translateY(-2px);background:#1b2321;border-color:#416a58}
+.mineTile.open{animation:flip .28s ease}
+.mineTile.safe{background:#0c2a20;border-color:#185a42}
+.mineTile.bomb{background:#321318;border-color:#6a2630}
+@keyframes flip{0%{transform:scale(.6);opacity:.2}100%{transform:scale(1);opacity:1}}
 
-        /* Tower */
-        .tower-grid { display: flex; flex-direction: column-reverse; gap: 8px; max-width: 300px; width: 100%; padding: 20px; }
-        .tower-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .tower-tile { background: var(--panel-hover); aspect-ratio: 2/1; border-radius: 6px; border: none; cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; }
-        .tower-tile.active-row { border: 2px solid var(--accent-blue); }
-        .tower-tile:hover:not(:disabled) { filter: brightness(1.2); }
-        .tower-tile.safe { background: var(--accent-green); animation: pop 0.3s; }
-        .tower-tile.bomb { background: var(--accent-red); animation: pop 0.3s; }
-        .tower-tile:disabled { cursor: not-allowed; opacity: 0.7; }
+/* CRASH */
+.crashBox{
+  height:290px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(#ffffff05 1px,transparent 1px),
+    linear-gradient(90deg,#ffffff05 1px,transparent 1px),#090c0c;
+  background-size:40px 40px;border-radius:14px;
+}
+.crashMultiplier{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-size:48px;font-weight:900;z-index:2;
+}
+.crashLine{
+  position:absolute;left:-10%;bottom:25px;
+  width:120%;height:160px;
+  border-top:3px solid var(--green);
+  transform:rotate(-18deg);transform-origin:left;
+  box-shadow:0 -4px 18px #16d98b66;
+}
+.crashed{color:var(--red)}
+.rising{animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.04)}}
 
-        /* History */
-        .history-strip { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; gap: 5px; justify-content: flex-end; overflow-x: hidden; z-index: 5; }
-        .history-item { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; background: rgba(0,0,0,0.6); }
+/* PLINKO */
+.plinko{
+  height:330px;position:relative;background:#090c0c;
+  border:1px solid #1e2323;border-radius:14px;
+  overflow:hidden;
+}
+.peg{position:absolute;width:6px;height:6px;background:#657070;border-radius:50%}
+.ball{
+  position:absolute;width:16px;height:16px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 18px #16d98b;
+  transition:transform .12s linear;z-index:3;
+}
+.slots{
+  position:absolute;bottom:0;left:0;right:0;height:48px;
+  display:grid;grid-template-columns:repeat(7,1fr);
+}
+.slot{display:grid;place-items:center;background:#141919;border:1px solid #252a2a;font-size:9px;color:var(--gold)}
 
-        /* Particles Layer */
-        #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-    </style>
+/* DICE */
+.diceFace{
+  height:180px;display:grid;place-items:center;
+  font-size:90px;background:#090c0c;border-radius:14px;
+}
+.diceControls{display:flex;gap:8px}
+.diceControls .choice.active{background:#123d2e;color:var(--green);border-color:#1e7656}
+
+/* WHEEL */
+.wheelWrap{display:grid;place-items:center;padding:15px}
+.wheel{
+  width:min(310px,75vw);aspect-ratio:1;border-radius:50%;
+  border:8px solid #292f2f;
+  background:conic-gradient(
+    #16d98b 0 12deg,#ef4d5c 12deg 48deg,
+    #121616 48deg 84deg,#ef4d5c 84deg 120deg,
+    #121616 120deg 156deg,#ef4d5c 156deg 192deg,
+    #121616 192deg 228deg,#ef4d5c 228deg 264deg,
+    #121616 264deg 300deg,#ef4d5c 300deg 336deg,
+    #121616 336deg 360deg);
+  box-shadow:0 0 0 2px #555 inset,0 0 50px #000;
+  position:relative;transition:transform 3.4s cubic-bezier(.1,.8,.12,1);
+}
+.wheel:after{
+  content:"";position:absolute;width:58px;height:58px;
+  border-radius:50%;background:#0b0e0e;border:5px solid #444;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.pointer{
+  width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;
+  border-top:22px solid var(--gold);margin-bottom:-2px;z-index:4;
+}
+
+/* BLACKJACK */
+.table{
+  min-height:310px;background:radial-gradient(circle,#123327,#07120e);
+  border-radius:16px;border:1px solid #214c3c;
+  padding:18px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.handLabel{font-size:9px;letter-spacing:2px;color:#8c9994;margin-bottom:9px}
+.cards{display:flex;gap:7px;min-height:78px}
+.card{
+  width:52px;height:72px;border-radius:7px;
+  background:#f1f1ed;color:#101313;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:6px;font-size:12px;font-weight:800;
+}
+.card.red{color:#d62f3d}
+.blackjackActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+
+/* ROULETTE */
+.roulette{
+  width:min(300px,76vw);aspect-ratio:1;margin:8px auto;
+  border-radius:50%;border:9px solid #343939;
+  background:conic-gradient(
+  #159a69 0 9.7deg,
+  #111 9.7deg 19.4deg,#e33c4d 19.4deg 29.1deg,
+  #111 29.1deg 38.8deg,#e33c4d 38.8deg 48.5deg,
+  #111 48.5deg 58.2deg,#e33c4d 58.2deg 67.9deg,
+  #111 67.9deg 77.6deg,#e33c4d 77.6deg 87.3deg,
+  #111 87.3deg 97deg,#e33c4d 97deg 106.7deg,
+  #111 106.7deg 116.4deg,#e33c4d 116.4deg 126.1deg,
+  #111 126.1deg 135.8deg,#e33c4d 135.8deg 145.5deg,
+  #111 145.5deg 155.2deg,#e33c4d 155.2deg 164.9deg,
+  #111 164.9deg 174.6deg,#e33c4d 174.6deg 184.3deg,
+  #111 184.3deg 194deg,#e33c4d 194deg 203.7deg,
+  #111 203.7deg 213.4deg,#e33c4d 213.4deg 223.1deg,
+  #111 223.1deg 232.8deg,#e33c4d 232.8deg 242.5deg,
+  #111 242.5deg 252.2deg,#e33c4d 252.2deg 261.9deg,
+  #111 261.9deg 271.6deg,#e33c4d 271.6deg 281.3deg,
+  #111 281.3deg 291deg,#e33c4d 291deg 300.7deg,
+  #111 300.7deg 310.4deg,#e33c4d 310.4deg 320.1deg,
+  #111 320.1deg 329.8deg,#e33c4d 329.8deg 339.5deg,
+  #111 339.5deg 349.2deg,#159a69 349.2deg 360deg);
+  box-shadow:inset 0 0 0 3px #777,0 0 50px #000;
+  transition:transform 3s cubic-bezier(.1,.8,.15,1);
+}
+.rouletteChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.rChoice{height:42px;border-radius:8px;font-size:10px;font-weight:850}
+.rRed{background:#6d2028}.rBlack{background:#222828}.rGreen{background:#125d43}
+
+/* KENO */
+.kGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.kNum{
+  aspect-ratio:1;border-radius:7px;background:#171b1b;
+  border:1px solid #292e2e;display:grid;place-items:center;font-size:11px;
+}
+.kNum.selected{background:#104b35;color:var(--green);border-color:#1b815a}
+.kNum.hit{background:#8c6822;color:white;border-color:#e8bd62;animation:hit .4s}
+@keyframes hit{50%{transform:scale(1.15)}}
+
+/* LIMBO */
+.limboNumber{
+  height:210px;display:grid;place-items:center;
+  background:#090c0c;border-radius:14px;
+  font-size:55px;font-weight:900;color:var(--green);
+}
+.targetRow{display:flex;gap:8px}
+.targetRow input{flex:1}
+
+/* TOWER */
+.tower{display:flex;flex-direction:column-reverse;gap:6px}
+.floor{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tTile{
+  height:50px;background:#171b1b;border:1px solid #292f2f;
+  border-radius:7px;display:grid;place-items:center;font-size:15px;
+}
+.tTile.safe{background:#0d3b2b;color:var(--green)}
+.tTile.bomb{background:#431a20;color:var(--red)}
+
+/* HISTORY */
+.history{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
+.hist{
+  min-width:32px;height:28px;border-radius:6px;
+  display:grid;place-items:center;font-size:9px;font-weight:800;
+  background:#171b1b;color:#a9b0b0;
+}
+.hist.win{color:var(--green);background:#0e2b21}
+.hist.loss{color:var(--red);background:#2b1116}
+
+.message{
+  min-height:32px;display:grid;place-items:center;
+  text-align:center;color:#7d8585;font-size:10px;margin:5px 0;
+}
+.winText{color:var(--green)!important}
+.lossText{color:var(--red)!important}
+
+.particle{
+  position:fixed;width:6px;height:6px;border-radius:50%;
+  pointer-events:none;z-index:999;background:var(--green);
+  animation:particle 900ms ease-out forwards;
+}
+@keyframes particle{
+  from{transform:translate(0,0) scale(1);opacity:1}
+  to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}
+}
+
+@media(min-width:700px){
+  .games{grid-template-columns:repeat(4,1fr)}
+  .controls{grid-template-columns:repeat(3,1fr)}
+  .gamePage{padding-top:30px}
+}
+@media(max-width:420px){
+  .headerLogo{font-size:13px}
+  .balance{font-size:10px}
+  .exitBtn{font-size:9px;padding:0 8px}
+  h1{font-size:24px}
+  .hero h2{font-size:27px}
+  .gameCard{min-height:145px}
+}
+</style>
 </head>
+
 <body>
-    <canvas id="particles"></canvas>
 
-    <div id="top-bar" class="top-bar hidden">
-        <div class="brand" style="font-size: 1.5rem; margin: 0; cursor: pointer;" onclick="app.showLobby()">NOIRVA</div>
-        <div class="flex items-center" style="gap: 15px;">
-            <div class="balance-box" id="global-balance">
-                <span style="font-size: 1rem;">🪙</span> <span id="balance-text">10,000.00</span>
-            </div>
-            <button class="icon-btn" id="btn-sound" onclick="app.toggleSound()">🔊</button>
-            <button class="icon-btn" onclick="app.logout()">🚪</button>
-        </div>
+<div id="app">
+
+<!-- LOGIN -->
+<section id="loginScreen" class="screen">
+  <div class="login">
+    <div class="logoMark">N</div>
+    <div class="logo">NOIRVA</div>
+    <div class="tag">PRIVATE VIRTUAL GAMING</div>
+
+    <div class="loginCard">
+      <label class="label">USERNAME</label>
+      <input id="username" class="input" placeholder="Enter username">
+
+      <label class="label">PASSWORD</label>
+      <input id="password" class="input" type="password" placeholder="Enter password">
+
+      <button class="primary" onclick="login()">ENTER NOIRVA</button>
+      <div id="loginError" class="error"></div>
+
+      <div class="note">
+        DEMO ACCESS · VIRTUAL COINS ONLY<br>
+        No real-money wagering, deposits or withdrawals.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOBBY -->
+<section id="lobby" class="screen hidden">
+  <header class="appHeader">
+    <div class="headerLogo">NOIRVA</div>
+    <div class="headerRight">
+      <div id="headerBalance" class="balance">10,000 ◈</div>
+      <button class="soundBtn" onclick="toggleSound()" id="soundBtn">SOUND ON</button>
+      <button class="exitBtn" onclick="logout()">EXIT</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">WELCOME BACK</div>
+        <h1 id="welcome">NOIRVA</h1>
+        <div class="sub">Choose a game and play with virtual coins.</div>
+      </div>
     </div>
 
-    <div id="app">
-        <div id="login-screen" class="screen">
-            <div class="login-box">
-                <div class="brand">NOIRVA</div>
-                <div class="demo-badge">DEMO / VIRTUAL COINS ONLY</div>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Premium Virtual Gaming Platform</p>
-                <div class="control-group">
-                    <input type="text" id="username" placeholder="Enter Username" autocomplete="off" maxlength="15">
-                </div>
-                <button style="width: 100%; margin-top: 20px;" onclick="app.login()">Enter Platform</button>
-            </div>
-        </div>
-
-        <div id="lobby-screen" class="screen hidden">
-            <div style="text-align: center; margin-top: 20px;">
-                <h1 style="font-size: 2rem;">Welcome, <span id="user-display" style="color: var(--accent-blue);">User</span></h1>
-                <p style="color: var(--text-muted);">Select a game to start playing.</p>
-            </div>
-            <div class="grid-lobby" id="lobby-grid"></div>
-        </div>
-
-        <div id="game-screen" class="screen hidden" style="max-width: 1400px; padding: 10px 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <button class="icon-btn" onclick="app.showLobby()" style="width: auto; padding: 8px 15px;">← Back to Lobby</button>
-                <h2 id="game-title" style="text-transform: uppercase; letter-spacing: 2px;">GAME</h2>
-            </div>
-            
-            <div class="game-container">
-                <div class="game-controls">
-                    <div class="control-group">
-                        <label>Bet Amount</label>
-                        <div class="flex" style="gap: 5px;">
-                            <input type="number" id="bet-input" value="10" min="1" step="1">
-                            <button onclick="document.getElementById('bet-input').value = Math.max(1, Math.floor(document.getElementById('bet-input').value / 2))">/2</button>
-                            <button onclick="document.getElementById('bet-input').value = Math.min(app.balance, document.getElementById('bet-input').value * 2)">x2</button>
-                        </div>
-                    </div>
-                    
-                    <div id="dynamic-controls" style="display: flex; flex-direction: column; gap: 15px;"></div>
-                    
-                    <button id="btn-action" class="btn-green" style="padding: 15px; font-size: 1.2rem; margin-top: auto;">PLAY</button>
-                </div>
-
-                <div class="game-area" id="game-area">
-                    <div class="history-strip" id="game-history"></div>
-                    <div class="overlay-msg" id="game-msg"></div>
-                    <div id="game-render" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; position:absolute; top:0; left:0;"></div>
-                </div>
-            </div>
-        </div>
+    <div class="hero">
+      <div class="eyebrow">NOIRVA PLAYGROUND</div>
+      <h2>10 games.<br>One virtual wallet.</h2>
+      <p>
+        A premium browser gaming experience built entirely for demo play.
+        Your balance is virtual and has no cash value.
+      </p>
+      <span class="demo">DEMO · VIRTUAL COINS ONLY</span>
     </div>
 
-    <script>
-        /**
-         * AUDIO SYSTEM (Web Audio API)
-         */
-        const AudioSys = {
-            ctx: null,
-            enabled: true,
-            init() {
-                if (!this.ctx) {
-                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-                }
-            },
-            play(type) {
-                if (!this.enabled || !this.ctx) return;
-                if (this.ctx.state === 'suspended') this.ctx.resume();
-                
-                const osc = this.ctx.createOscillator();
-                const gain = this.ctx.createGain();
-                osc.connect(gain);
-                gain.connect(this.ctx.destination);
-
-                const now = this.ctx.currentTime;
-                
-                if (type === 'click' || type === 'tick') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(type === 'click' ? 600 : 800, now);
-                    osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
-                    gain.gain.setValueAtTime(0.05, now);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-                    osc.start(now); osc.stop(now + 0.05);
-                } else if (type === 'win' || type === 'coin') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(400, now);
-                    osc.frequency.setValueAtTime(600, now + 0.1);
-                    osc.frequency.setValueAtTime(1000, now + 0.2);
-                    gain.gain.setValueAtTime(0, now);
-                    gain.gain.linearRampToValueAtTime(0.1, now + 0.05);
-                    gain.gain.linearRampToValueAtTime(0, now + 0.4);
-                    osc.start(now); osc.stop(now + 0.4);
-                } else if (type === 'lose' || type === 'bomb') {
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(300, now);
-                    osc.frequency.exponentialRampToValueAtTime(50, now + 0.3);
-                    gain.gain.setValueAtTime(0.1, now);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-                    osc.start(now); osc.stop(now + 0.3);
-                }
-            }
-        };
-
-        /**
-         * PARTICLES SYSTEM
-         */
-        const Particles = {
-            canvas: null, ctx: null, list: [],
-            init() {
-                this.canvas = document.getElementById('particles');
-                this.ctx = this.canvas.getContext('2d');
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
-                this.loop();
-            },
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-            },
-            spawn(x, y, color, count) {
-                for(let i=0; i<count; i++) {
-                    this.list.push({
-                        x: x, y: y,
-                        vx: (Math.random() - 0.5) * 10,
-                        vy: (Math.random() - 0.5) * 10,
-                        life: 1,
-                        color: color
-                    });
-                }
-            },
-            loop() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                for (let i = this.list.length - 1; i >= 0; i--) {
-                    let p = this.list[i];
-                    p.x += p.vx; p.y += p.vy; p.life -= 0.02;
-                    if (p.life <= 0) { this.list.splice(i, 1); continue; }
-                    this.ctx.globalAlpha = p.life;
-                    this.ctx.fillStyle = p.color;
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
-                    this.ctx.fill();
-                }
-                this.ctx.globalAlpha = 1;
-                requestAnimationFrame(() => this.loop());
-            }
-        };
-
-        /**
-         * CORE APP STATE & ROUTING
-         */
-        const app = {
-            balance: 10000,
-            user: '',
-            currentGame: null,
-            games: [],
-
-            init() {
-                Particles.init();
-                const savedUser = localStorage.getItem('nv_user');
-                const savedBal = localStorage.getItem('nv_bal');
-                const savedSound = localStorage.getItem('nv_snd');
-                
-                if (savedSound !== null) {
-                    AudioSys.enabled = savedSound === 'true';
-                    document.getElementById('btn-sound').innerText = AudioSys.enabled ? '🔊' : '🔇';
-                }
-
-                if (savedUser) {
-                    this.user = savedUser;
-                    this.balance = savedBal ? parseFloat(savedBal) : 10000;
-                    this.showLobby();
-                }
-                this.buildLobby();
-            },
-
-            login() {
-                const un = document.getElementById('username').value.trim();
-                if (!un) return;
-                this.user = un;
-                this.balance = 10000; // Reset demo balance on new login
-                this.save();
-                AudioSys.init();
-                AudioSys.play('click');
-                this.showLobby();
-            },
-
-            logout() {
-                localStorage.removeItem('nv_user');
-                location.reload();
-            },
-
-            save() {
-                localStorage.setItem('nv_user', this.user);
-                localStorage.setItem('nv_bal', this.balance.toFixed(2));
-            },
-
-            updateBalance(amount, isWin = false) {
-                this.balance += amount;
-                if (this.balance < 0) this.balance = 0;
-                this.save();
-                const balEl = document.getElementById('balance-text');
-                balEl.innerText = this.balance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                
-                const box = document.getElementById('global-balance');
-                box.classList.remove('anim');
-                void box.offsetWidth; // trigger reflow
-                box.classList.add('anim');
-
-                if (amount > 0) {
-                    box.style.color = 'var(--accent-green)';
-                    if(isWin) AudioSys.play('win');
-                } else if (amount < 0) {
-                    box.style.color = '#fff';
-                }
-                setTimeout(() => box.style.color = 'var(--accent-gold)', 300);
-            },
-
-            toggleSound() {
-                AudioSys.init();
-                AudioSys.enabled = !AudioSys.enabled;
-                localStorage.setItem('nv_snd', AudioSys.enabled);
-                document.getElementById('btn-sound').innerText = AudioSys.enabled ? '🔊' : '🔇';
-                AudioSys.play('click');
-            },
-
-            hideAll() {
-                ['login-screen', 'lobby-screen', 'game-screen', 'top-bar'].forEach(id => {
-                    document.getElementById(id).classList.add('hidden');
-                });
-            },
-
-            showLobby() {
-                this.hideAll();
-                document.getElementById('user-display').innerText = this.user;
-                this.updateBalance(0);
-                document.getElementById('top-bar').classList.remove('hidden');
-                document.getElementById('lobby-screen').classList.remove('hidden');
-                if (this.currentGame && this.currentGame.cleanup) {
-                    this.currentGame.cleanup();
-                    this.currentGame = null;
-                }
-            },
-
-            openGame(gameId) {
-                AudioSys.init(); AudioSys.play('click');
-                this.hideAll();
-                document.getElementById('top-bar').classList.remove('hidden');
-                document.getElementById('game-screen').classList.remove('hidden');
-                
-                const gameDef = this.games.find(g => g.id === gameId);
-                document.getElementById('game-title').innerText = gameDef.name;
-                
-                // Reset UI
-                document.getElementById('dynamic-controls').innerHTML = gameDef.controlsHtml || '';
-                document.getElementById('game-render').innerHTML = gameDef.renderHtml || '';
-                document.getElementById('game-msg').className = 'overlay-msg';
-                document.getElementById('game-history').innerHTML = '';
-                
-                const btn = document.getElementById('btn-action');
-                btn.innerText = gameDef.actionText || 'PLAY';
-                btn.className = 'btn-green';
-                btn.disabled = false;
-                
-                // Initialize game logic
-                this.currentGame = new gameDef.GameClass();
-                
-                // Rebind core button
-                btn.onclick = () => {
-                    AudioSys.play('click');
-                    this.currentGame.onAction();
-                };
-            },
-
-            buildLobby() {
-                const grid = document.getElementById('lobby-grid');
-                grid.innerHTML = '';
-                this.games.forEach(g => {
-                    const card = document.createElement('div');
-                    card.className = 'game-card';
-                    card.onclick = () => this.openGame(g.id);
-                    card.innerHTML = `<i style="color: ${g.color}">${g.icon}</i><h3>${g.name}</h3>`;
-                    grid.appendChild(card);
-                });
-            },
-
-            getBet() {
-                const val = parseFloat(document.getElementById('bet-input').value);
-                return (isNaN(val) || val <= 0) ? 0 : val;
-            },
-
-            showMsg(text, type) {
-                const msg = document.getElementById('game-msg');
-                msg.innerText = text;
-                msg.className = `overlay-msg show text-${type}`;
-                setTimeout(() => msg.classList.remove('show'), 2000);
-            },
-            
-            addHistory(text, color) {
-                const strip = document.getElementById('game-history');
-                const el = document.createElement('div');
-                el.className = 'history-item';
-                el.style.color = color;
-                el.innerText = text;
-                strip.prepend(el);
-                if (strip.children.length > 10) strip.lastChild.remove();
-            },
-            
-            triggerParticles(win) {
-                const rect = document.getElementById('game-area').getBoundingClientRect();
-                const x = rect.left + rect.width/2;
-                const y = rect.top + rect.height/2;
-                Particles.spawn(x, y, win ? '#22c55e' : '#ef4444', 30);
-            }
-        };
-
-        /**
-         * GAME DEFINITIONS
-         */
-
-        // 1. MINES
-        class MinesGame {
-            constructor() {
-                this.active = false;
-                this.mines = 3;
-                this.grid = [];
-                this.safeClicks = 0;
-                this.bet = 0;
-                this.multiplier = 1.0;
-                this.generateBoard();
-                
-                document.getElementById('mines-count').onchange = (e) => {
-                    if(!this.active) this.mines = parseInt(e.target.value);
-                };
-            }
-            generateBoard() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = '<div class="mines-grid" id="mines-board"></div>';
-                const board = document.getElementById('mines-board');
-                this.grid = Array(25).fill(0); // 0 safe, 1 mine
-                for(let i=0; i<25; i++) {
-                    const btn = document.createElement('button');
-                    btn.className = 'mine-tile';
-                    btn.disabled = true;
-                    btn.onclick = () => this.clickTile(i, btn);
-                    board.appendChild(btn);
-                }
-            }
-            onAction() {
-                if (this.active) { this.cashout(); return; }
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                
-                app.updateBalance(-bet);
-                this.bet = bet;
-                this.active = true;
-                this.safeClicks = 0;
-                this.multiplier = 1.0;
-                
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'CASHOUT';
-                btn.className = 'btn-gold';
-                document.getElementById('mines-count').disabled = true;
-                document.getElementById('bet-input').disabled = true;
-
-                // Set mines randomly
-                this.grid.fill(0);
-                let placed = 0;
-                while(placed < this.mines) {
-                    let idx = Math.floor(Math.random() * 25);
-                    if(this.grid[idx] === 0) { this.grid[idx] = 1; placed++; }
-                }
-
-                // Reset UI
-                const tiles = document.querySelectorAll('.mine-tile');
-                tiles.forEach(t => {
-                    t.className = 'mine-tile';
-                    t.innerHTML = '';
-                    t.disabled = false;
-                });
-            }
-            clickTile(idx, el) {
-                if(!this.active) return;
-                el.disabled = true;
-                if (this.grid[idx] === 1) {
-                    // Hit bomb
-                    el.classList.add('revealed-bomb');
-                    el.innerHTML = '💣';
-                    AudioSys.play('bomb');
-                    this.endGame(false);
-                } else {
-                    // Safe
-                    this.safeClicks++;
-                    el.classList.add('revealed-safe');
-                    el.innerHTML = '💎';
-                    AudioSys.play('coin');
-                    
-                    // Multiplier math (simplified)
-                    const remainingSafe = 25 - this.mines - this.safeClicks + 1;
-                    const totalRemaining = 25 - this.safeClicks + 1;
-                    this.multiplier *= (totalRemaining / remainingSafe) * 0.99; // 1% house edge
-                    
-                    document.getElementById('btn-action').innerText = `CASHOUT ${(this.bet * this.multiplier).toFixed(2)}`;
-                    
-                    if (this.safeClicks === 25 - this.mines) this.cashout(); // Max win
-                }
-            }
-            cashout() {
-                if(!this.active || this.safeClicks === 0) return;
-                const win = this.bet * this.multiplier;
-                app.updateBalance(win, true);
-                this.endGame(true, win);
-            }
-            endGame(win, amt = 0) {
-                this.active = false;
-                app.triggerParticles(win);
-                app.showMsg(win ? `+${amt.toFixed(2)}` : 'BUSTED', win ? 'win' : 'lose');
-                
-                // Reveal all
-                const tiles = document.querySelectorAll('.mine-tile');
-                tiles.forEach((t, i) => {
-                    t.disabled = true;
-                    if (t.innerHTML === '') {
-                        t.innerHTML = this.grid[i] === 1 ? '💣' : '💎';
-                        t.style.opacity = '0.5';
-                    }
-                });
-
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'PLAY';
-                btn.className = 'btn-green';
-                document.getElementById('mines-count').disabled = false;
-                document.getElementById('bet-input').disabled = false;
-
-                // Explicit requirement: clear board after game ends for new state
-                setTimeout(() => { if(!this.active) this.generateBoard(); }, 2000);
-            }
-        }
-
-        // 2. CRASH
-        class CrashGame {
-            constructor() {
-                this.active = false;
-                this.crashed = false;
-                this.multiplier = 1.0;
-                this.target = 1.0;
-                this.bet = 0;
-                this.timer = null;
-                this.points = [];
-                
-                const render = document.getElementById('game-render');
-                render.innerHTML = '<canvas id="crash-canvas"></canvas><div id="crash-text" style="position:absolute; font-size: 4rem; font-weight: 900; z-index: 2;">1.00x</div>';
-                this.canvas = document.getElementById('crash-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
-                this.draw();
-            }
-            cleanup() { cancelAnimationFrame(this.animFrame); }
-            resize() { this.canvas.width = this.canvas.clientWidth; this.canvas.height = this.canvas.clientHeight; this.draw(); }
-            
-            onAction() {
-                if (this.active) { this.cashout(); return; }
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                
-                app.updateBalance(-bet);
-                this.bet = bet;
-                this.active = true;
-                this.crashed = false;
-                this.multiplier = 1.0;
-                this.points = [{x: 0, y: 1.0}];
-                
-                // Generate crash point (1% instant crash, else log dist)
-                this.target = Math.random() < 0.05 ? 1.0 : Math.max(1.0, 0.99 / (1 - Math.random()));
-                
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'CASHOUT';
-                btn.className = 'btn-gold';
-                document.getElementById('bet-input').disabled = true;
-
-                this.lastTime = performance.now();
-                this.loop();
-            }
-            
-            loop() {
-                if(!this.active) return;
-                const now = performance.now();
-                const dt = (now - this.lastTime) / 1000;
-                this.lastTime = now;
-
-                // Exponential growth
-                this.multiplier += this.multiplier * dt * 0.1;
-                
-                if (this.multiplier >= this.target) {
-                    this.multiplier = this.target;
-                    this.crash();
-                } else {
-                    this.points.push({x: this.points.length, y: this.multiplier});
-                    this.draw();
-                    document.getElementById('crash-text').innerText = this.multiplier.toFixed(2) + 'x';
-                    document.getElementById('crash-text').style.color = '#fff';
-                    document.getElementById('btn-action').innerText = `CASHOUT ${(this.bet * this.multiplier).toFixed(2)}`;
-                    this.animFrame = requestAnimationFrame(() => this.loop());
-                }
-            }
-
-            draw() {
-                const w = this.canvas.width, h = this.canvas.height;
-                this.ctx.clearRect(0,0,w,h);
-                
-                // Grid
-                this.ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-                this.ctx.lineWidth = 1;
-                this.ctx.beginPath();
-                for(let i=0; i<w; i+=50) { this.ctx.moveTo(i,0); this.ctx.lineTo(i,h); }
-                for(let i=0; i<h; i+=50) { this.ctx.moveTo(0,i); this.ctx.lineTo(w,i); }
-                this.ctx.stroke();
-
-                if (this.points.length < 2) return;
-
-                const maxPtX = this.points.length;
-                const maxPtY = this.multiplier + 0.5;
-
-                this.ctx.beginPath();
-                this.ctx.moveTo(0, h);
-                for(let p of this.points) {
-                    const px = (p.x / maxPtX) * w;
-                    const py = h - ((p.y - 1) / (maxPtY - 1)) * h;
-                    this.ctx.lineTo(px, py);
-                }
-                
-                this.ctx.strokeStyle = this.crashed ? 'var(--accent-red)' : 'var(--accent-gold)';
-                this.ctx.lineWidth = 4;
-                this.ctx.stroke();
-                
-                // Fill under
-                this.ctx.lineTo(w, h);
-                this.ctx.lineTo(0, h);
-                this.ctx.fillStyle = this.crashed ? 'rgba(239,68,68,0.2)' : 'rgba(250,204,21,0.2)';
-                this.ctx.fill();
-            }
-
-            cashout() {
-                if(!this.active) return;
-                const win = this.bet * this.multiplier;
-                app.updateBalance(win, true);
-                app.addHistory(this.multiplier.toFixed(2) + 'x', 'var(--accent-green)');
-                app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                app.triggerParticles(true);
-                this.endGame();
-            }
-
-            crash() {
-                this.crashed = true;
-                AudioSys.play('bomb');
-                document.getElementById('crash-text').innerText = `CRASHED @ ${this.multiplier.toFixed(2)}x`;
-                document.getElementById('crash-text').style.color = 'var(--accent-red)';
-                app.addHistory(this.multiplier.toFixed(2) + 'x', 'var(--accent-red)');
-                app.triggerParticles(false);
-                this.draw();
-                this.endGame();
-            }
-
-            endGame() {
-                this.active = false;
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'PLAY';
-                btn.className = 'btn-green';
-                document.getElementById('bet-input').disabled = false;
-            }
-        }
-
-        // 3. PLINKO
-        class PlinkoGame {
-            constructor() {
-                this.active = false;
-                this.rows = 8;
-                this.balls = [];
-                const render = document.getElementById('game-render');
-                render.innerHTML = '<canvas id="plinko-canvas"></canvas>';
-                this.canvas = document.getElementById('plinko-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.multipliers = [10, 3, 1.5, 0.5, 0.5, 1.5, 3, 10]; // for 8 rows -> 9 slots (simplified to 8 slots mapping)
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
-                this.loop();
-            }
-            cleanup() { cancelAnimationFrame(this.animFrame); }
-            resize() { this.canvas.width = this.canvas.clientWidth; this.canvas.height = this.canvas.clientHeight; }
-            
-            onAction() {
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                app.updateBalance(-bet);
-                
-                // Create ball
-                this.balls.push({
-                    x: this.canvas.width / 2,
-                    y: 20,
-                    path: this.generatePath(),
-                    step: 0,
-                    progress: 0,
-                    bet: bet
-                });
-            }
-
-            generatePath() {
-                let p = []; let pos = 0;
-                for(let i=0; i<this.rows; i++) {
-                    const dir = Math.random() > 0.5 ? 1 : -1;
-                    pos += dir;
-                    p.push(dir);
-                }
-                return { moves: p, finalPos: pos };
-            }
-
-            loop() {
-                const w = this.canvas.width, h = this.canvas.height;
-                this.ctx.clearRect(0,0,w,h);
-                
-                const pegRadius = 4;
-                const startY = 50;
-                const rowH = (h - 100) / this.rows;
-                const colW = w / (this.rows + 2);
-
-                // Draw Pegs
-                this.ctx.fillStyle = '#fff';
-                for(let r=1; r<=this.rows; r++) {
-                    const pegs = r + 1;
-                    const rowWidth = pegs * colW;
-                    const startX = (w - rowWidth) / 2 + colW/2;
-                    for(let c=0; c<pegs; c++) {
-                        this.ctx.beginPath();
-                        this.ctx.arc(startX + c*colW, startY + r*rowH, pegRadius, 0, Math.PI*2);
-                        this.ctx.fill();
-                    }
-                }
-
-                // Draw Slots
-                const slots = this.rows + 1;
-                const slotsWidth = slots * colW;
-                const slotsStartX = (w - slotsWidth) / 2;
-                this.ctx.font = "bold 12px sans-serif";
-                this.ctx.textAlign = "center";
-                for(let i=0; i<slots; i++) {
-                    const mult = this.multipliers[i] || 0.5;
-                    this.ctx.fillStyle = mult > 1 ? 'var(--accent-green)' : 'var(--accent-red)';
-                    this.ctx.fillRect(slotsStartX + i*colW + 2, h - 30, colW - 4, 25);
-                    this.ctx.fillStyle = '#000';
-                    this.ctx.fillText(mult+'x', slotsStartX + i*colW + colW/2, h - 13);
-                }
-
-                // Animate Balls
-                for(let i = this.balls.length - 1; i >= 0; i--) {
-                    let b = this.balls[i];
-                    if (b.step < this.rows) {
-                        b.progress += 0.05; // speed
-                        if (b.progress >= 1) {
-                            b.step++;
-                            b.progress = 0;
-                            AudioSys.play('tick');
-                        }
-                        
-                        // Calculate pos
-                        const curR = b.step;
-                        const nextR = b.step + 1;
-                        const pegsCur = curR + 1;
-                        const startXCur = (w - pegsCur*colW) / 2 + colW/2;
-                        
-                        // This logic maps logical steps to visual coordinates
-                        let logXCur = 0; let logXNext = 0;
-                        for(let j=0; j<curR; j++) logXCur += b.path.moves[j];
-                        logXNext = logXCur + (b.path.moves[b.step] || 0);
-
-                        const pxCur = startXCur + (curR/2 + logXCur/2) * colW;
-                        
-                        const pegsNext = nextR + 1;
-                        const startXNext = (w - pegsNext*colW) / 2 + colW/2;
-                        const pxNext = startXNext + (nextR/2 + logXNext/2) * colW;
-
-                        const pyCur = startY + curR*rowH;
-                        const pyNext = startY + nextR*rowH;
-
-                        // Interpolate arc
-                        const t = b.progress;
-                        b.x = pxCur + (pxNext - pxCur) * t;
-                        // add bounce arc
-                        b.y = pyCur + (pyNext - pyCur) * t - Math.sin(t*Math.PI)*15;
-                        
-                        this.ctx.fillStyle = 'var(--accent-gold)';
-                        this.ctx.beginPath();
-                        this.ctx.arc(b.x, b.y, 6, 0, Math.PI*2);
-                        this.ctx.fill();
-                    } else {
-                        // Finished
-                        let logX = 0; for(let m of b.path.moves) logX += m;
-                        let slotIdx = this.rows/2 + logX/2;
-                        let mult = this.multipliers[slotIdx] || 0;
-                        let win = b.bet * mult;
-                        
-                        if(mult > 1) {
-                            app.updateBalance(win, true);
-                            app.addHistory(mult+'x', 'var(--accent-green)');
-                        } else {
-                            app.updateBalance(win);
-                            app.addHistory(mult+'x', 'var(--accent-red)');
-                        }
-                        this.balls.splice(i, 1);
-                    }
-                }
-                this.animFrame = requestAnimationFrame(() => this.loop());
-            }
-        }
-
-        // 4. DICE
-        class DiceGame {
-            constructor() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = `
-                    <div class="dice-slider-container">
-                        <div class="dice-result" id="dice-res">00.00</div>
-                        <input type="range" min="2" max="98" value="50" class="dice-slider" id="dice-range">
-                        <div class="flex justify-between" style="color: var(--text-muted); font-weight: bold;">
-                            <span>0</span><span>100</span>
-                        </div>
-                    </div>
-                `;
-                
-                const r = document.getElementById('dice-range');
-                r.oninput = () => {
-                    const val = r.value;
-                    const mult = (99 / val).toFixed(2);
-                    document.getElementById('dice-mult').innerText = mult + 'x';
-                    document.getElementById('dice-chance').innerText = val + '%';
-                    r.style.background = `linear-gradient(to right, var(--accent-green) ${val}%, var(--accent-red) ${val}%)`;
-                };
-            }
-            onAction() {
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                app.updateBalance(-bet);
-                
-                const btn = document.getElementById('btn-action');
-                btn.disabled = true;
-
-                const target = parseInt(document.getElementById('dice-range').value);
-                const mult = 99 / target;
-                
-                // Animation
-                let ticks = 0;
-                const resEl = document.getElementById('dice-res');
-                resEl.style.color = '#fff';
-                
-                const anim = setInterval(() => {
-                    resEl.innerText = (Math.random() * 100).toFixed(2);
-                    AudioSys.play('tick');
-                    ticks++;
-                    if (ticks > 15) {
-                        clearInterval(anim);
-                        const result = Math.random() * 100;
-                        resEl.innerText = result.toFixed(2);
-                        
-                        if (result < target) { // Win
-                            resEl.style.color = 'var(--accent-green)';
-                            const win = bet * mult;
-                            app.updateBalance(win, true);
-                            app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                            app.addHistory(mult.toFixed(2)+'x', 'var(--accent-green)');
-                            app.triggerParticles(true);
-                        } else {
-                            resEl.style.color = 'var(--accent-red)';
-                            app.showMsg('LOST', 'lose');
-                            app.addHistory('0.00x', 'var(--accent-red)');
-                            AudioSys.play('lose');
-                        }
-                        btn.disabled = false;
-                    }
-                }, 50);
-            }
-        }
-
-        // 5. WHEEL
-        class WheelGame {
-            constructor() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = `
-                    <div style="position:relative; width: 300px; height: 300px;">
-                        <canvas id="wheel-canvas" style="width:100%; height:100%; border-radius:50%; transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1);"></canvas>
-                        <div style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:15px solid transparent; border-right:15px solid transparent; border-top:25px solid white; z-index:10;"></div>
-                    </div>
-                `;
-                this.canvas = document.getElementById('wheel-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.canvas.width = 400; this.canvas.height = 400;
-                this.segments = [0, 1.5, 0, 2.0, 0, 1.2, 0, 3.0, 0, 5.0];
-                this.colors = ['#1a1a1f', '#3b82f6', '#1a1a1f', '#22c55e', '#1a1a1f', '#8b5cf6', '#1a1a1f', '#facc15', '#1a1a1f', '#ef4444'];
-                this.rotation = 0;
-                this.draw();
-            }
-            draw() {
-                const w = 400, h = 400, cx = w/2, cy = h/2, r = 190;
-                const arc = Math.PI * 2 / this.segments.length;
-                this.ctx.clearRect(0,0,w,h);
-                
-                for(let i=0; i<this.segments.length; i++) {
-                    this.ctx.beginPath();
-                    this.ctx.fillStyle = this.colors[i];
-                    this.ctx.moveTo(cx, cy);
-                    this.ctx.arc(cx, cy, r, i*arc, (i+1)*arc);
-                    this.ctx.lineTo(cx, cy);
-                    this.ctx.fill();
-                    this.ctx.stroke();
-
-                    this.ctx.save();
-                    this.ctx.translate(cx, cy);
-                    this.ctx.rotate(i*arc + arc/2);
-                    this.ctx.textAlign = "right";
-                    this.ctx.fillStyle = "#fff";
-                    this.ctx.font = "bold 24px sans-serif";
-                    this.ctx.fillText(this.segments[i] > 0 ? this.segments[i]+'x' : '0x', r - 20, 8);
-                    this.ctx.restore();
-                }
-            }
-            onAction() {
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                app.updateBalance(-bet);
-                
-                const btn = document.getElementById('btn-action');
-                btn.disabled = true;
-
-                // Pick result
-                const targetIdx = Math.floor(Math.random() * this.segments.length);
-                const mult = this.segments[targetIdx];
-                
-                // Spin math
-                const spinRot = 360 * 5; // 5 full spins
-                const arcDeg = 360 / this.segments.length;
-                // Target angle (so pointer hits middle of segment)
-                // Offset by 90deg because pointer is at top
-                const targetAngle = 360 - (targetIdx * arcDeg) - (arcDeg/2) + 270; 
-                this.rotation += spinRot + targetAngle - (this.rotation % 360);
-
-                this.canvas.style.transform = `rotate(${this.rotation}deg)`;
-                AudioSys.play('tick');
-
-                setTimeout(() => {
-                    if (mult > 0) {
-                        const win = bet * mult;
-                        app.updateBalance(win, true);
-                        app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                        app.addHistory(mult+'x', 'var(--accent-green)');
-                        app.triggerParticles(true);
-                    } else {
-                        app.showMsg('LOST', 'lose');
-                        app.addHistory('0x', 'var(--accent-red)');
-                        AudioSys.play('lose');
-                    }
-                    btn.disabled = false;
-                }, 4100);
-            }
-        }
-
-        // 6. BLACKJACK
-        class BlackjackGame {
-            constructor() {
-                this.deck = [];
-                this.pHand = [];
-                this.dHand = [];
-                this.state = 'idle'; // idle, player, dealer
-                
-                const render = document.getElementById('game-render');
-                render.innerHTML = `
-                    <div class="bj-board">
-                        <div>
-                            <div class="bj-label">DEALER (<span id="d-score">?</span>)</div>
-                            <div class="bj-hand" id="d-hand"></div>
-                        </div>
-                        <div id="bj-msg" style="font-size: 2rem; font-weight: bold; margin: 10px 0;"></div>
-                        <div>
-                            <div class="bj-label">PLAYER (<span id="p-score">0</span>)</div>
-                            <div class="bj-hand" id="p-hand"></div>
-                        </div>
-                    </div>
-                `;
-            }
-            initDeck() {
-                this.deck = [];
-                const suits = ['♠', '♥', '♦', '♣'];
-                const vals = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-                for(let s of suits) {
-                    for(let v of vals) {
-                        let val = parseInt(v);
-                        if (['J','Q','K'].includes(v)) val = 10;
-                        if (v === 'A') val = 11;
-                        this.deck.push({ s, v, val, red: (s==='♥' || s==='♦') });
-                    }
-                }
-                this.deck.sort(() => Math.random() - 0.5);
-            }
-            calcScore(hand) {
-                let s = 0; let aces = 0;
-                for(let c of hand) { s += c.val; if(c.v==='A') aces++; }
-                while(s > 21 && aces > 0) { s -= 10; aces--; }
-                return s;
-            }
-            drawCard(hand, elId, hidden=false) {
-                const c = this.deck.pop();
-                hand.push(c);
-                const el = document.getElementById(elId);
-                const div = document.createElement('div');
-                div.className = `bj-card ${c.red ? 'red' : ''} ${hidden ? 'hidden-card' : ''}`;
-                div.innerHTML = hidden ? '' : `${c.s}<br>${c.v}`;
-                el.appendChild(div);
-                AudioSys.play('tick');
-            }
-            updateScores(showDealer = false) {
-                document.getElementById('p-score').innerText = this.calcScore(this.pHand);
-                if (showDealer) {
-                    document.getElementById('d-score').innerText = this.calcScore(this.dHand);
-                    // unhide dealer card
-                    const dCards = document.getElementById('d-hand').children;
-                    if(dCards[1]) {
-                        dCards[1].className = `bj-card ${this.dHand[1].red ? 'red' : ''}`;
-                        dCards[1].innerHTML = `${this.dHand[1].s}<br>${this.dHand[1].v}`;
-                    }
-                }
-            }
-            onAction() {
-                if(this.state !== 'idle') return;
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                app.updateBalance(-bet);
-                this.bet = bet;
-                this.state = 'player';
-                this.initDeck();
-                this.pHand = []; this.dHand = [];
-                document.getElementById('p-hand').innerHTML = '';
-                document.getElementById('d-hand').innerHTML = '';
-                document.getElementById('bj-msg').innerText = '';
-                document.getElementById('d-score').innerText = '?';
-                
-                this.drawCard(this.pHand, 'p-hand');
-                this.drawCard(this.dHand, 'd-hand');
-                this.drawCard(this.pHand, 'p-hand');
-                this.drawCard(this.dHand, 'd-hand', true);
-                
-                this.updateScores();
-
-                document.getElementById('btn-action').classList.add('hidden');
-                document.getElementById('bj-controls').classList.remove('hidden');
-                document.getElementById('bet-input').disabled = true;
-
-                if (this.calcScore(this.pHand) === 21) {
-                    this.stand(); // Blackjack
-                }
-            }
-            hit() {
-                if(this.state !== 'player') return;
-                this.drawCard(this.pHand, 'p-hand');
-                this.updateScores();
-                if (this.calcScore(this.pHand) > 21) {
-                    this.endGame('bust');
-                }
-            }
-            stand() {
-                if(this.state !== 'player') return;
-                this.state = 'dealer';
-                this.updateScores(true);
-                
-                const dLoop = setInterval(() => {
-                    if (this.calcScore(this.dHand) < 17) {
-                        this.drawCard(this.dHand, 'd-hand');
-                        this.updateScores(true);
-                    } else {
-                        clearInterval(dLoop);
-                        this.resolve();
-                    }
-                }, 800);
-            }
-            resolve() {
-                const p = this.calcScore(this.pHand);
-                const d = this.calcScore(this.dHand);
-                if (d > 21 || p > d) this.endGame('win');
-                else if (d === p) this.endGame('push');
-                else this.endGame('lose');
-            }
-            endGame(res) {
-                this.state = 'idle';
-                const msg = document.getElementById('bj-msg');
-                if (res === 'win') {
-                    const win = this.calcScore(this.pHand) === 21 && this.pHand.length === 2 ? this.bet * 2.5 : this.bet * 2;
-                    app.updateBalance(win, true);
-                    msg.innerText = "YOU WIN!";
-                    msg.style.color = 'var(--accent-green)';
-                    app.triggerParticles(true);
-                } else if (res === 'push') {
-                    app.updateBalance(this.bet);
-                    msg.innerText = "PUSH";
-                    msg.style.color = 'var(--text-muted)';
-                } else {
-                    msg.innerText = res === 'bust' ? "BUST!" : "DEALER WINS";
-                    msg.style.color = 'var(--accent-red)';
-                    AudioSys.play('lose');
-                }
-                
-                document.getElementById('btn-action').classList.remove('hidden');
-                document.getElementById('bj-controls').classList.add('hidden');
-                document.getElementById('bet-input').disabled = false;
-            }
-        }
-
-        // 7. ROULETTE
-        class RouletteGame {
-            constructor() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = `
-                    <div style="display:flex; flex-direction:column; align-items:center; width:100%; gap:20px;">
-                        <div style="position:relative; width:300px; height:300px;">
-                            <canvas id="roulette-canvas" style="width:100%; height:100%; transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1);"></canvas>
-                            <div style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:20px solid white; z-index:10;"></div>
-                        </div>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;" id="r-recent"></div>
-                    </div>
-                `;
-                this.canvas = document.getElementById('roulette-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.canvas.width = 400; this.canvas.height = 400;
-                
-                this.nums = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
-                this.rotation = 0;
-                this.draw();
-            }
-            getColor(n) {
-                if (n === 0) return 'var(--accent-green)'; // IMPORTANT: GREEN 0
-                const reds = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-                return reds.includes(n) ? 'var(--accent-red)' : '#000'; // Black
-            }
-            draw() {
-                const w = 400, h = 400, cx = w/2, cy = h/2, r = 190;
-                const arc = Math.PI * 2 / this.nums.length;
-                this.ctx.clearRect(0,0,w,h);
-                
-                for(let i=0; i<this.nums.length; i++) {
-                    this.ctx.beginPath();
-                    this.ctx.fillStyle = this.getColor(this.nums[i]);
-                    this.ctx.moveTo(cx, cy);
-                    this.ctx.arc(cx, cy, r, i*arc, (i+1)*arc);
-                    this.ctx.lineTo(cx, cy);
-                    this.ctx.fill();
-                    
-                    this.ctx.strokeStyle = '#fff';
-                    this.ctx.lineWidth = 1;
-                    this.ctx.stroke();
-
-                    this.ctx.save();
-                    this.ctx.translate(cx, cy);
-                    this.ctx.rotate(i*arc + arc/2);
-                    this.ctx.textAlign = "right";
-                    this.ctx.fillStyle = "#fff";
-                    this.ctx.font = "bold 14px sans-serif";
-                    this.ctx.fillText(this.nums[i], r - 10, 5);
-                    this.ctx.restore();
-                }
-                // Inner center
-                this.ctx.beginPath();
-                this.ctx.arc(cx, cy, 120, 0, Math.PI*2);
-                this.ctx.fillStyle = 'var(--panel-bg)';
-                this.ctx.fill();
-                this.ctx.stroke();
-            }
-            onAction() {
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                
-                const type = document.getElementById('r-type').value;
-                const valStr = document.getElementById('r-val').value;
-                
-                if(type === 'number' && (valStr==='' || valStr<0 || valStr>36)) return app.showMsg('Pick 0-36', 'lose');
-                
-                app.updateBalance(-bet);
-                const btn = document.getElementById('btn-action');
-                btn.disabled = true;
-
-                // Result
-                const targetIdx = Math.floor(Math.random() * this.nums.length);
-                const resultNum = this.nums[targetIdx];
-                
-                // Animate
-                const spinRot = 360 * 6; 
-                const arcDeg = 360 / this.nums.length;
-                const targetAngle = 360 - (targetIdx * arcDeg) - (arcDeg/2) + 270;
-                this.rotation += spinRot + targetAngle - (this.rotation % 360);
-                this.canvas.style.transform = `rotate(${this.rotation}deg)`;
-                AudioSys.play('tick');
-
-                setTimeout(() => {
-                    let winMult = 0;
-                    if (type === 'red' && this.getColor(resultNum) === 'var(--accent-red)') winMult = 2;
-                    else if (type === 'black' && this.getColor(resultNum) === '#000') winMult = 2;
-                    else if (type === 'green' && resultNum === 0) winMult = 14;
-                    else if (type === 'even' && resultNum !== 0 && resultNum % 2 === 0) winMult = 2;
-                    else if (type === 'odd' && resultNum !== 0 && resultNum % 2 !== 0) winMult = 2;
-                    else if (type === 'number' && parseInt(valStr) === resultNum) winMult = 36;
-
-                    // Recent stats
-                    const rec = document.getElementById('r-recent');
-                    const el = document.createElement('div');
-                    el.style = `width: 30px; height: 30px; border-radius: 50%; display:flex; justify-content:center; align-items:center; font-weight:bold; color:white; background:${this.getColor(resultNum)}`;
-                    el.innerText = resultNum;
-                    rec.prepend(el);
-                    if(rec.children.length > 8) rec.lastChild.remove();
-
-                    if (winMult > 0) {
-                        const win = bet * winMult;
-                        app.updateBalance(win, true);
-                        app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                        app.triggerParticles(true);
-                    } else {
-                        app.showMsg('LOST', 'lose');
-                        AudioSys.play('lose');
-                    }
-                    btn.disabled = false;
-                }, 4100);
-            }
-        }
-
-        // 8. KENO
-        class KenoGame {
-            constructor() {
-                this.selected = [];
-                const render = document.getElementById('game-render');
-                render.innerHTML = '<div class="keno-grid" id="keno-board"></div>';
-                const board = document.getElementById('keno-board');
-                for(let i=1; i<=40; i++) {
-                    const btn = document.createElement('button');
-                    btn.className = 'keno-btn';
-                    btn.innerText = i;
-                    btn.onclick = () => this.toggle(i, btn);
-                    board.appendChild(btn);
-                }
-            }
-            toggle(n, el) {
-                const idx = this.selected.indexOf(n);
-                if (idx > -1) {
-                    this.selected.splice(idx, 1);
-                    el.classList.remove('selected');
-                } else {
-                    if(this.selected.length >= 10) return;
-                    this.selected.push(n);
-                    el.classList.add('selected');
-                }
-            }
-            onAction() {
-                if (this.selected.length === 0) return app.showMsg('Pick numbers', 'lose');
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                app.updateBalance(-bet);
-                
-                const btn = document.getElementById('btn-action');
-                btn.disabled = true;
-
-                // Clear board classes except selected
-                const tiles = document.querySelectorAll('.keno-btn');
-                tiles.forEach(t => { t.classList.remove('hit', 'miss'); });
-
-                // Draw 10
-                let drawn = [];
-                while(drawn.length < 10) {
-                    let r = Math.floor(Math.random()*40)+1;
-                    if(!drawn.includes(r)) drawn.push(r);
-                }
-
-                let matches = 0;
-                let step = 0;
-                const drawInterval = setInterval(() => {
-                    const num = drawn[step];
-                    const tile = tiles[num-1];
-                    if (this.selected.includes(num)) {
-                        tile.classList.add('hit'); matches++; AudioSys.play('coin');
-                    } else {
-                        tile.classList.add('miss'); AudioSys.play('tick');
-                    }
-                    step++;
-                    if (step >= 10) {
-                        clearInterval(drawInterval);
-                        this.finish(matches, bet);
-                        btn.disabled = false;
-                    }
-                }, 300);
-            }
-            finish(matches, bet) {
-                // simple payout
-                const mults = { 0:0, 1:0, 2:0, 3:0.5, 4:2, 5:5, 6:15, 7:50, 8:150, 9:500, 10:1000 };
-                // Adjust if picked less than 10
-                const perc = matches / this.selected.length;
-                let mult = 0;
-                if(perc === 1 && this.selected.length > 2) mult = Math.pow(this.selected.length, 1.5);
-                else if (perc > 0.5) mult = 2;
-                else if (perc > 0.3) mult = 0.5;
-
-                // Strict 10 pick logic map for simplicity
-                if(this.selected.length === 10) mult = mults[matches];
-
-                if (mult > 0) {
-                    const win = bet * mult;
-                    app.updateBalance(win, true);
-                    app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                    app.triggerParticles(true);
-                } else {
-                    app.showMsg('LOST', 'lose');
-                    AudioSys.play('lose');
-                }
-            }
-        }
-
-        // 9. LIMBO
-        class LimboGame {
-            constructor() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = `<div class="limbo-display" id="limbo-res">1.00x</div>`;
-            }
-            onAction() {
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                const target = parseFloat(document.getElementById('limbo-target').value);
-                if (isNaN(target) || target < 1.01) return app.showMsg('Invalid Target', 'lose');
-                
-                app.updateBalance(-bet);
-                const btn = document.getElementById('btn-action');
-                btn.disabled = true;
-                const display = document.getElementById('limbo-res');
-                display.style.color = '#fff';
-
-                let ticks = 0;
-                const result = Math.max(1.0, 0.99 / (1 - Math.random()));
-
-                const anim = setInterval(() => {
-                    display.innerText = (Math.random() * target * 2).toFixed(2) + 'x';
-                    AudioSys.play('tick');
-                    ticks++;
-                    if(ticks > 15) {
-                        clearInterval(anim);
-                        display.innerText = result.toFixed(2) + 'x';
-                        if (result >= target) {
-                            display.style.color = 'var(--accent-green)';
-                            const win = bet * target;
-                            app.updateBalance(win, true);
-                            app.showMsg(`WON ${win.toFixed(2)}`, 'win');
-                            app.triggerParticles(true);
-                            app.addHistory(result.toFixed(2)+'x', 'var(--accent-green)');
-                        } else {
-                            display.style.color = 'var(--accent-red)';
-                            app.showMsg('LOST', 'lose');
-                            AudioSys.play('lose');
-                            app.addHistory(result.toFixed(2)+'x', 'var(--accent-red)');
-                        }
-                        btn.disabled = false;
-                    }
-                }, 50);
-            }
-        }
-
-        // 10. TOWER
-        class TowerGame {
-            constructor() {
-                this.active = false;
-                this.level = 0;
-                this.bet = 0;
-                this.multiplier = 1.0;
-                this.grid = []; // 8 rows of 3
-                this.generateBoard();
-            }
-            generateBoard() {
-                const render = document.getElementById('game-render');
-                render.innerHTML = '<div class="tower-grid" id="tower-board"></div>';
-                const board = document.getElementById('tower-board');
-                this.grid = [];
-                for(let r=0; r<8; r++) {
-                    const rowDiv = document.createElement('div');
-                    rowDiv.className = 'tower-row';
-                    const bombIdx = Math.floor(Math.random() * 3);
-                    const rowData = [];
-                    for(let c=0; c<3; c++) {
-                        const isBomb = c === bombIdx;
-                        rowData.push(isBomb);
-                        const btn = document.createElement('button');
-                        btn.className = 'tower-tile';
-                        btn.disabled = true;
-                        btn.onclick = () => this.clickTile(r, c, btn, isBomb);
-                        rowDiv.appendChild(btn);
-                    }
-                    this.grid.push(rowData);
-                    board.appendChild(rowDiv);
-                }
-            }
-            onAction() {
-                if (this.active) { this.cashout(); return; }
-                const bet = app.getBet();
-                if (bet <= 0 || bet > app.balance) return app.showMsg('Invalid Bet', 'lose');
-                
-                app.updateBalance(-bet);
-                this.bet = bet;
-                this.active = true;
-                this.level = 0;
-                this.multiplier = 1.0;
-                
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'CASHOUT';
-                btn.className = 'btn-gold';
-                document.getElementById('bet-input').disabled = true;
-
-                // Reset specific board logic for new round without regenerating DOM structure if we don't want to, 
-                // but requirement says "Reset the entire board after every completed round".
-                this.generateBoard();
-                this.updateRowState();
-            }
-            updateRowState() {
-                const board = document.getElementById('tower-board');
-                Array.from(board.children).forEach((row, rIdx) => {
-                    if (rIdx === this.level) row.classList.add('active-row');
-                    else row.classList.remove('active-row');
-                    
-                    Array.from(row.children).forEach(btn => {
-                        btn.disabled = (rIdx !== this.level || !this.active);
-                    });
-                });
-            }
-            clickTile(r, c, el, isBomb) {
-                if(!this.active || r !== this.level) return;
-                
-                if (isBomb) {
-                    el.classList.add('bomb');
-                    el.innerText = '💣';
-                    AudioSys.play('bomb');
-                    this.endGame(false);
-                } else {
-                    el.classList.add('safe');
-                    el.innerText = '💎';
-                    AudioSys.play('coin');
-                    this.level++;
-                    this.multiplier *= 1.45; // payout logic
-                    
-                    document.getElementById('btn-action').innerText = `CASHOUT ${(this.bet * this.multiplier).toFixed(2)}`;
-                    
-                    if (this.level >= 8) {
-                        this.cashout(); // Top reached
-                    } else {
-                        this.updateRowState();
-                    }
-                }
-            }
-            cashout() {
-                if(!this.active || this.level === 0) return;
-                const win = this.bet * this.multiplier;
-                app.updateBalance(win, true);
-                this.endGame(true, win);
-            }
-            endGame(win, amt = 0) {
-                this.active = false;
-                app.triggerParticles(win);
-                app.showMsg(win ? `+${amt.toFixed(2)}` : 'BUSTED', win ? 'win' : 'lose');
-                
-                // Reveal all
-                const board = document.getElementById('tower-board');
-                Array.from(board.children).forEach((row, r) => {
-                    Array.from(row.children).forEach((btn, c) => {
-                        btn.disabled = true;
-                        if (btn.innerText === '') {
-                            btn.innerText = this.grid[r][c] ? '💣' : '💎';
-                            btn.style.opacity = '0.4';
-                        }
-                    });
-                });
-
-                const btn = document.getElementById('btn-action');
-                btn.innerText = 'PLAY';
-                btn.className = 'btn-green';
-                document.getElementById('bet-input').disabled = false;
-            }
-        }
-
-        // Register Games
-        app.games = [
-            {
-                id: 'mines', name: 'Mines', icon: '💣', color: '#ef4444',
-                controlsHtml: `
-                    <div class="control-group">
-                        <label>Mines Count</label>
-                        <select id="mines-count">
-                            <option value="3">3 Mines</option><option value="5">5 Mines</option>
-                            <option value="8">8 Mines</option><option value="12">12 Mines</option>
-                        </select>
-                    </div>
-                `,
-                GameClass: MinesGame
-            },
-            {
-                id: 'crash', name: 'Crash', icon: '📈', color: '#3b82f6',
-                GameClass: CrashGame
-            },
-            {
-                id: 'plinko', name: 'Plinko', icon: '🔽', color: '#8b5cf6',
-                GameClass: PlinkoGame
-            },
-            {
-                id: 'dice', name: 'Dice', icon: '🎲', color: '#22c55e',
-                controlsHtml: `
-                    <div style="display:flex; justify-content:space-between; color:var(--text-main); font-weight:bold; font-size:1.2rem; background:black; padding:10px; border-radius:8px;">
-                        <span>Mult: <span id="dice-mult" style="color:var(--accent-gold);">1.98x</span></span>
-                        <span>Chance: <span id="dice-chance" style="color:var(--accent-blue);">50%</span></span>
-                    </div>
-                `,
-                GameClass: DiceGame
-            },
-            {
-                id: 'wheel', name: 'Wheel', icon: '🎡', color: '#facc15',
-                GameClass: WheelGame
-            },
-            {
-                id: 'blackjack', name: 'Blackjack', icon: '🃏', color: '#ef4444',
-                controlsHtml: `
-                    <div id="bj-controls" class="hidden" style="display:flex; gap:10px;">
-                        <button style="flex:1;" class="btn-green" onclick="app.currentGame.hit()">HIT</button>
-                        <button style="flex:1;" class="btn-red" onclick="app.currentGame.stand()">STAND</button>
-                    </div>
-                `,
-                GameClass: BlackjackGame
-            },
-            {
-                id: 'roulette', name: 'Roulette', icon: '🎯', color: '#22c55e',
-                controlsHtml: `
-                    <div class="control-group">
-                        <label>Bet Type</label>
-                        <select id="r-type" onchange="document.getElementById('r-val').style.display = this.value==='number' ? 'block' : 'none'">
-                            <option value="red">Red (2x)</option><option value="black">Black (2x)</option>
-                            <option value="green">Green (14x)</option><option value="even">Even (2x)</option>
-                            <option value="odd">Odd (2x)</option><option value="number">Specific Number (36x)</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <input type="number" id="r-val" placeholder="Pick 0-36" style="display:none;" min="0" max="36">
-                    </div>
-                `,
-                GameClass: RouletteGame
-            },
-            {
-                id: 'keno', name: 'Keno', icon: '🎱', color: '#3b82f6',
-                GameClass: KenoGame
-            },
-            {
-                id: 'limbo', name: 'Limbo', icon: '🚀', color: '#facc15',
-                controlsHtml: `
-                    <div class="control-group">
-                        <label>Target Multiplier</label>
-                        <input type="number" id="limbo-target" value="2.00" min="1.01" step="0.01">
-                    </div>
-                `,
-                GameClass: LimboGame
-            },
-            {
-                id: 'tower', name: 'Tower', icon: '🗼', color: '#8b5cf6',
-                GameClass: TowerGame
-            }
-        ];
-
-        // Init App
-        window.onload = () => app.init();
-    </script>
+    <div class="sectionTitle">
+      <h3>ALL GAMES</h3>
+      <span>10 AVAILABLE</span>
+    </div>
+
+    <div class="games">
+      <div class="gameCard" onclick="openGame('mines')">
+        <div class="gameIcon">◆</div><h4>Mines</h4><p>Find diamonds. Avoid bombs.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="green" onclick="openGame('crash')">
+        <div class="gameIcon">↗</div><h4>Crash</h4><p>Ride the multiplier.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="gold" onclick="openGame('plinko')">
+        <div class="gameIcon">●</div><h4>Plinko</h4><p>Drop through the board.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="blue" onclick="openGame('dice')">
+        <div class="gameIcon">⚄</div><h4>Dice</h4><p>Predict the roll.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="gold" onclick="openGame('wheel')">
+        <div class="gameIcon">◉</div><h4>Wheel</h4><p>Spin for a multiplier.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" onclick="openGame('blackjack')">
+        <div class="gameIcon">♠</div><h4>Blackjack</h4><p>Beat the dealer.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="red" onclick="openGame('roulette')">
+        <div class="gameIcon">◎</div><h4>Roulette</h4><p>Red, black or green.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="blue" onclick="openGame('keno')">
+        <div class="gameIcon">#</div><h4>Keno</h4><p>Pick numbers and draw.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="green" onclick="openGame('limbo')">
+        <div class="gameIcon">∞</div><h4>Limbo</h4><p>Set your target.</p><div class="play">→</div>
+      </div>
+
+      <div class="gameCard" data-color="gold" onclick="openGame('tower')">
+        <div class="gameIcon">↑</div><h4>Tower</h4><p>Climb without hitting a bomb.</p><div class="play">→</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>NOIRVA DEMO</span>
+      <span>VIRTUAL COINS ONLY</span>
+    </div>
+  </main>
+</section>
+
+<!-- GAME SCREEN -->
+<section id="gameScreen" class="screen">
+  <header class="appHeader">
+    <div class="headerLogo">NOIRVA</div>
+    <div class="headerRight">
+      <div id="gameBalance" class="balance">10,000 ◈</div>
+      <button class="soundBtn" onclick="toggleSound()" id="gameSoundBtn">SOUND ON</button>
+    </div>
+  </header>
+
+  <main class="gamePage">
+    <div class="gameNav">
+      <button class="back" onclick="backLobby()">← ALL GAMES</button>
+      <div id="gameName" class="gameTitle">MINES</div>
+      <div id="gameMiniBalance" class="gameBalance">10,000 ◈</div>
+    </div>
+
+    <div id="gameContent"></div>
+  </main>
+</section>
+
+</div>
+
+<script>
+/* =========================================================
+   NOIRVA CORE
+========================================================= */
+
+const state={
+  user:localStorage.getItem("noirva_user")||"",
+  balance:Number(localStorage.getItem("noirva_balance")||10000),
+  sound:localStorage.getItem("noirva_sound")!=="off",
+  game:null,
+  history:[]
+};
+
+let audioCtx=null;
+
+function money(n){
+  return Math.floor(n).toLocaleString()+" ◈";
+}
+
+function save(){
+  localStorage.setItem("noirva_balance",Math.max(0,state.balance));
+  if(state.user)localStorage.setItem("noirva_user",state.user);
+}
+
+function updateBalance(){
+  ["headerBalance","gameBalance","gameMiniBalance"].forEach(id=>{
+    const e=document.getElementById(id);
+    if(e)e.textContent=money(state.balance);
+  });
+  save();
+}
+
+function login(){
+  const u=document.getElementById("username").value.trim();
+  const p=document.getElementById("password").value;
+  if(!u||p.length<3){
+    document.getElementById("loginError").textContent="Enter a username and 3+ character password.";
+    return;
+  }
+  state.user=u;
+  save();
+  initAudio();
+  showLobby();
+}
+
+function logout(){
+  state.game=null;
+  document.getElementById("lobby").classList.add("hidden");
+  document.getElementById("gameScreen").style.display="none";
+  document.getElementById("loginScreen").classList.remove("hidden");
+}
+
+function showLobby(){
+  document.getElementById("loginScreen").classList.add("hidden");
+  document.getElementById("gameScreen").style.display="none";
+  document.getElementById("lobby").classList.remove("hidden");
+  document.getElementById("welcome").textContent=state.user||"PLAYER";
+  updateBalance();
+}
+
+function backLobby(){
+  if(state.game==="crash" && crashTimer) clearInterval(crashTimer);
+  document.getElementById("gameScreen").style.display="none";
+  document.getElementById("lobby").classList.remove("hidden");
+  state.game=null;
+  updateBalance();
+}
+
+function openGame(game){
+  state.game=game;
+  document.getElementById("lobby").classList.add("hidden");
+  document.getElementById("gameScreen").style.display="block";
+  renderGame(game);
+  updateBalance();
+  clickSound();
+}
+
+function toggleSound(){
+  state.sound=!state.sound;
+  localStorage.setItem("noirva_sound",state.sound?"on":"off");
+  updateSoundButtons();
+  if(state.sound)clickSound();
+}
+
+function updateSoundButtons(){
+  document.querySelectorAll(".soundBtn").forEach(b=>b.textContent=state.sound?"SOUND ON":"SOUND OFF");
+}
+
+function initAudio(){
+  if(!audioCtx){
+    try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}
+  }
+}
+
+function tone(freq,duration=.08,type="sine",volume=.035){
+  if(!state.sound)return;
+  initAudio();
+  if(!audioCtx)return;
+  const o=audioCtx.createOscillator();
+  const g=audioCtx.createGain();
+  o.type=type;o.frequency.value=freq;
+  g.gain.setValueAtTime(volume,audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);
+  o.connect(g);g.connect(audioCtx.destination);
+  o.start();o.stop(audioCtx.currentTime+duration);
+}
+function clickSound(){tone(420,.045,"square",.02)}
+function winSound(){
+  tone(520,.08);setTimeout(()=>tone(720,.1),80);setTimeout(()=>tone(920,.16),170);
+}
+function loseSound(){tone(180,.18,"sawtooth",.025)}
+function tickSound(){tone(700,.025,"square",.012)}
+
+function addHistory(text,win=false){
+  state.history.unshift({text,win});
+  state.history=state.history.slice(0,12);
+}
+
+function historyHTML(){
+  if(!state.history.length)return '<div class="message">No rounds played yet.</div>';
+  return '<div class="history">'+state.history.map(x=>`<div class="hist ${x.win?"win":"loss"}">${x.text}</div>`).join("")+'</div>';
+}
+
+function particles(count=18){
+  for(let i=0;i<count;i++){
+    const p=document.createElement("div");
+    p.className="particle";
+    p.style.left=(50+Math.random()*20-10)+"vw";
+    p.style.top=(50+Math.random()*20-10)+"vh";
+    p.style.setProperty("--x",(Math.random()*300-150)+"px");
+    p.style.setProperty("--y",(Math.random()*-300-40)+"px");
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),950);
+  }
+}
+
+function renderGame(game){
+  const names={
+    mines:"MINES",crash:"CRASH",plinko:"PLINKO",dice:"DICE",
+    wheel:"WHEEL",blackjack:"BLACKJACK",roulette:"ROULETTE",
+    keno:"KENO",limbo:"LIMBO",tower:"TOWER"
+  };
+  document.getElementById("gameName").textContent=names[game];
+  const box=document.getElementById("gameContent");
+  box.innerHTML="";
+  ({
+    mines:renderMines,
+    crash:renderCrash,
+    plinko:renderPlinko,
+    dice:renderDice,
+    wheel:renderWheel,
+    blackjack:renderBlackjack,
+    roulette:renderRoulette,
+    keno:renderKeno,
+    limbo:renderLimbo,
+    tower:renderTower
+  })[game]();
+  updateSoundButtons();
+}
+
+/* =========================================================
+   MINES
+========================================================= */
+
+let mines={
+  active:false,bet:100,bombs:5,revealed:0,mult:1,board:[]
+};
+
+function renderMines(){
+  document.getElementById("gameContent").innerHTML=`
+    <div class="gamePanel">
+      <div class="controls">
+        <div class="controlBox">
+          <label>BET</label>
+          <input id="mineBet" type="number" value="100" min="1">
+          <div class="quick">
+            <button onclick="setVal('mineBet',50)">50</button>
+            <button onclick="setVal('mineBet',100)">100</button>
+            <button onclick="setVal('mineBet',500)">500</button>
+          </div>
+        </div>
+        <div class="controlBox">
+          <label>BOMBS</label>
+          <div class="quick">
+            <button onclick="setMineBombs(3)">3</button>
+            <button class="active" onclick="setMineBombs(5)">5</button>
+            <button onclick="setMineBombs(8)">8</button>
+            <button onclick="setMineBombs(12)">12</button>
+          </div>
+        </div>
+      </div>
+      <button class="action" id="mineStart" onclick="startMines()">START ROUND</button>
+      <div id="mineMsg" class="message">Choose your bet and start a round.</div>
+    </div>
+
+    <div class="gamePanel">
+      <div class="statRow">
+        <div class="stat"><b id="mineMult">1.00×</b><span>MULTIPLIER</span></div>
+        <div class="stat"><b id="mineSafe">0</b><span>SAFE</span></div>
+        <div class="stat"><b id="mineWin">0 ◈</b><span>CASH OUT</span></div>
+      </div>
+      <div id="mineGrid" class="mineGrid"></div>
+      <button id="mineCash" class="action" disabled onclick="cashMines()">CASH OUT</button>
+    </div>
+
+    <div class="gamePanel">
+      <div class="sectionTitle"><h3>RECENT ROUNDS</h3></div>
+      ${historyHTML()}
+    </div>`;
+  buildMines();
+}
+
+function setVal(id,v){document.getElementById(id).value=v;clickSound()}
+function setMineBombs(n){
+  mines.bombs=n;
+  document.querySelectorAll(".quick button").forEach(()=>{});
+  clickSound();
+}
+
+function buildMines(){
+  const grid=document.getElementById("mineGrid");
+  if(!grid)return;
+  grid.innerHTML="";
+  mines.board=Array(25).fill(false);
+  let count=0;
+  while(count<mines.bombs){
+    const i=Math.floor(Math.random()*25);
+    if(!mines.board[i]){mines.board[i]=true;count++}
+  }
+  for(let i=0;i<25;i++){
+    const b=document.createElement("button");
+    b.className="mineTile";
+    b.dataset.i=i;
+    b.onclick=()=>revealMine(i,b);
+    grid.appendChild(b);
+  }
+}
+
+function startMines(){
+  if(mines.active)return;
+  const bet=Math.floor(Number(document.getElementById("mineBet").value));
+  if(!bet||bet<1||bet>state.balance){
+    showGameMsg("Invalid bet or insufficient balance.","loss");return;
+  }
+  mines.bet=bet;mines.active=true;mines.revealed=0;mines.mult=1;
+  state.balance-=bet;updateBalance();
+  document.getElementById("mineStart").disabled=true;
+  document.getElementById("mineCash").disabled=false;
+  document.getElementById("mineWin").textContent=money(0);
+  document.getElementById("mineSafe").textContent="0";
+  document.getElementById("mineMult").textContent="1.00×";
+  buildMines();
+  showGameMsg("Find the diamonds.","");
+}
+
+function revealMine(i,b){
+  if(!mines.active||b.classList.contains("open"))return;
+  b.classList.add("open");
+  tickSound();
+
+  if(mines.board[i]){
+    b.classList.add("bomb");
+    b.textContent="💣";
+    revealAllMines();
+    mines.active=false;
+    state.history.unshift({text:"−"+money(mines.bet).replace(" ◈",""),win:false});
+    loseSound();
+    showGameMsg("BOOM. Round lost.","loss");
+    document.getElementById("mineCash").disabled=true;
+    setTimeout(resetMines,900);
+    return;
+  }
+
+  b.classList.add("safe");b.textContent="◆";
+  mines.revealed++;
+  mines.mult=1+(mines.revealed*.17)+(mines.revealed*mines.revealed*.008);
+  const win=Math.floor(mines.bet*mines.mult);
+  document.getElementById("mineMult").textContent=mines.mult.toFixed(2)+"×";
+  document.getElementById("mineSafe").textContent=mines.revealed;
+  document.getElementById("mineWin").textContent=money(win);
+
+  if(mines.revealed>=25-mines.bombs)cashMines();
+}
+
+function revealAllMines(){
+  document.querySelectorAll(".mineTile").forEach((b,i)=>{
+    if(mines.board[i]&&!b.classList.contains("open")){
+      b.classList.add("open","bomb");b.textContent="💣";
+    }
+  });
+}
+
+function cashMines(){
+  if(!mines.active)return;
+  const win=Math.floor(mines.bet*mines.mult);
+  state.balance+=win;updateBalance();
+  mines.active=false;
+  addHistory("+"+win,true);
+  winSound();particles(25);
+  showGameMsg("CASHED OUT · "+money(win),"win");
+  document.getElementById("mineCash").disabled=true;
+  setTimeout(resetMines,1000);
+}
+
+function resetMines(){
+  mines.active=false;mines.revealed=0;mines.mult=1;
+  const grid=document.getElementById("mineGrid");
+  if(!grid)return;
+  grid.innerHTML="";
+  buildMines();
+  document.getElementById("mineStart").disabled=false;
+  document.getElementById("mineCash").disabled=true;
+  document.getElementById("mineMult").textContent="1.00×";
+  document.getElementById("mineSafe").textContent="0";
+  document.getElementById("mineWin").textContent="0 ◈";
+  document.getElementById("mineMsg").textContent="Choose your bet and start a round.";
+  renderHistoryInGame();
+}
+
+/* =========================================================
+   CRASH
+========================================================= */
+
+let crashTimer=null,crash={active:false,mult:1,bet:100,point:2};
+
+function renderCrash(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div class="crashBox">
+      <div id="crashMult" class="crashMultiplier">1.00×</div>
+      <div id="crashLine" class="crashLine"></div>
+    </div>
+    <div id="crashMsg" class="message">Start a round and cash out before the crash.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox">
+      <label>BET</label><input id="crashBet" type="number" value="100" min="1">
+    </div>
+    <button id="crashStart" class="action" onclick="startCrash()">START</button>
+    <button id="crashCash" class="secondary" disabled onclick="cashCrash()">CASH OUT</button>
+  </div>
+  <div class="gamePanel"><div class="sectionTitle"><h3>HISTORY</h3></div>${historyHTML()}</div>`;
+}
+
+function startCrash(){
+  if(crash.active)return;
+  const bet=Math.floor(Number(document.getElementById("crashBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  crash={active:true,mult:1,bet,point:1.15+Math.random()*7};
+  document.getElementById("crashStart").disabled=true;
+  document.getElementById("crashCash").disabled=false;
+  document.getElementById("crashMult").classList.add("rising");
+  crashTimer=setInterval(()=>{
+    crash.mult*=1.012+Math.random()*.012;
+    document.getElementById("crashMult").textContent=crash.mult.toFixed(2)+"×";
+    document.getElementById("crashLine").style.transform=`rotate(${-18+Math.min(crash.mult*2,15)}deg)`;
+    if(crash.mult>=crash.point)crashEnd();
+  },80);
+}
+
+function cashCrash(){
+  if(!crash.active)return;
+  clearInterval(crashTimer);
+  const win=Math.floor(crash.bet*crash.mult);
+  state.balance+=win;updateBalance();
+  addHistory("+"+win,true);
+  crash.active=false;winSound();particles(20);
+  document.getElementById("crashCash").disabled=true;
+  document.getElementById("crashStart").disabled=false;
+  document.getElementById("crashMsg").textContent="CASHED OUT · "+money(win);
+  document.getElementById("crashMsg").className="message winText";
+}
+
+function crashEnd(){
+  clearInterval(crashTimer);crash.active=false;loseSound();
+  const e=document.getElementById("crashMult");
+  e.textContent=crash.point.toFixed(2)+"×";
+  e.classList.remove("rising");e.classList.add("crashed");
+  document.getElementById("crashCash").disabled=true;
+  document.getElementById("crashStart").disabled=false;
+  document.getElementById("crashMsg").textContent="CRASHED";
+  document.getElementById("crashMsg").className="message lossText";
+  addHistory("CRASH",false);
+}
+
+/* =========================================================
+   PLINKO
+========================================================= */
+
+function renderPlinko(){
+  let pegs="";
+  for(let r=0;r<8;r++){
+    for(let c=0;c<8;c++){
+      pegs+=`<i class="peg" style="left:${14+c*10+(r%2?5:0)}%;top:${10+r*10}%"></i>`;
+    }
+  }
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div class="plinko">${pegs}<div id="plinkoBall" class="ball"></div>
+      <div class="slots">
+        <div class="slot">0.5×</div><div class="slot">1×</div><div class="slot">1.5×</div>
+        <div class="slot">3×</div><div class="slot">1.5×</div><div class="slot">1×</div><div class="slot">0.5×</div>
+      </div>
+    </div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="plinkoBet" type="number" value="100"></div>
+    <button class="action" onclick="playPlinko()">DROP BALL</button>
+    <div id="plinkoMsg" class="message">Choose your bet.</div>
+  </div>`;
+}
+
+function playPlinko(){
+  const bet=Math.floor(Number(document.getElementById("plinkoBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  const mult=[.5,1,1.5,3,1.5,1,.5][Math.floor(Math.random()*7)];
+  const ball=document.getElementById("plinkoBall");
+  ball.style.left="50%";ball.style.top="2%";
+  let step=0;
+  const timer=setInterval(()=>{
+    step++;
+    ball.style.left=(50+(Math.random()*2-1)*step*4)+"%";
+    ball.style.top=Math.min(84,step*9)+"%";
+    tickSound();
+    if(step>=9){
+      clearInterval(timer);
+      const win=Math.floor(bet*mult);
+      state.balance+=win;updateBalance();
+      document.getElementById("plinkoMsg").textContent=`RESULT · ${mult}× · ${money(win)}`;
+      document.getElementById("plinkoMsg").className="message "+(win>=bet?"winText":"lossText");
+      addHistory((win>=bet?"+":"−")+win,win>=bet);
+      win>=bet?winSound():loseSound();
+      if(win>bet)particles(15);
+    }
+  },150);
+}
+
+/* =========================================================
+   DICE
+========================================================= */
+
+function renderDice(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div id="diceFace" class="diceFace">⚄</div>
+    <div id="diceMsg" class="message">Predict whether the roll will be HIGH or LOW.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="diceBet" type="number" value="100"></div>
+    <div class="diceControls">
+      <button class="choice" onclick="setDice('LOW',this)">LOW 1–3</button>
+      <button class="choice" onclick="setDice('HIGH',this)">HIGH 4–6</button>
+    </div>
+    <button class="action" onclick="rollDice()">ROLL DICE</button>
+  </div>`;
+}
+let diceChoice="HIGH";
+function setDice(x,b){
+  diceChoice=x;
+  document.querySelectorAll(".diceControls .choice").forEach(e=>e.classList.remove("active"));
+  b.classList.add("active");clickSound();
+}
+function rollDice(){
+  const bet=Math.floor(Number(document.getElementById("diceBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  const face=document.getElementById("diceFace");
+  let n=0;
+  const t=setInterval(()=>{
+    n=1+Math.floor(Math.random()*6);
+    face.textContent=["⚀","⚁","⚂","⚃","⚄","⚅"][n-1];tickSound();
+  },90);
+  setTimeout(()=>{
+    clearInterval(t);
+    const win=(diceChoice==="HIGH"?n>=4:n<=3);
+    const payout=win?Math.floor(bet*1.9):0;
+    state.balance+=payout;updateBalance();
+    document.getElementById("diceMsg").textContent=win?`WIN · ${money(payout)}`:`LOSS · Rolled ${n}`;
+    document.getElementById("diceMsg").className="message "+(win?"winText":"lossText");
+    addHistory(win?"+"+payout:"−"+bet,win);
+    win?winSound():loseSound();
+  },650);
+}
+
+/* =========================================================
+   WHEEL
+========================================================= */
+
+function renderWheel(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div class="wheelWrap">
+      <div class="pointer"></div><div id="wheel" class="wheel"></div>
+    </div>
+    <div id="wheelMsg" class="message">Spin the wheel.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="wheelBet" type="number" value="100"></div>
+    <button class="action" onclick="spinWheel()">SPIN</button>
+  </div>`;
+}
+function spinWheel(){
+  const bet=Math.floor(Number(document.getElementById("wheelBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  const mults=[0,0.5,1,1.5,2,3,0.5,1,5,0,1,2];
+  const mult=mults[Math.floor(Math.random()*mults.length)];
+  const wheel=document.getElementById("wheel");
+  wheel.style.transform=`rotate(${1440+Math.random()*360}deg)`;
+  setTimeout(()=>{
+    const win=Math.floor(bet*mult);
+    state.balance+=win;updateBalance();
+    document.getElementById("wheelMsg").textContent=`${mult}× · ${win?money(win):"NO WIN"}`;
+    document.getElementById("wheelMsg").className="message "+(win>=bet?"winText":"lossText");
+    addHistory(win>=bet?"+"+win:"−"+bet,win>=bet);
+    win>=bet?winSound():loseSound();
+  },3400);
+}
+
+/* =========================================================
+   BLACKJACK
+========================================================= */
+
+let bj={deck:[],player:[],dealer:[],bet:0,active:false};
+
+function newDeck(){
+  const suits=["♠","♥","♦","♣"],ranks=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+  let d=[];
+  suits.forEach(s=>ranks.forEach(r=>d.push({r,s})));
+  return d.sort(()=>Math.random()-.5);
+}
+function cardValue(cards){
+  let total=0,aces=0;
+  cards.forEach(c=>{
+    if(c.r==="A"){total+=11;aces++}
+    else if(["K","Q","J"].includes(c.r))total+=10;
+    else total+=Number(c.r);
+  });
+  while(total>21&&aces){total-=10;aces--}
+  return total;
+}
+function cardHTML(c){
+  const red=c.s==="♥"||c.s==="♦";
+  return `<div class="card ${red?"red":""}">${c.r}<span>${c.s}</span></div>`;
+}
+function renderBlackjack(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel table">
+    <div><div class="handLabel">DEALER · <span id="bjDealerVal">—</span></div><div id="bjDealer" class="cards"></div></div>
+    <div><div class="handLabel">PLAYER · <span id="bjPlayerVal">—</span></div><div id="bjPlayer" class="cards"></div></div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="bjBet" type="number" value="100"></div>
+    <button id="bjDeal" class="action" onclick="bjDeal()">DEAL</button>
+    <div class="blackjackActions">
+      <button id="bjHit" class="secondary" disabled onclick="bjHit()">HIT</button>
+      <button id="bjStand" class="secondary" disabled onclick="bjStand()">STAND</button>
+    </div>
+    <div id="bjMsg" class="message">Beat the dealer without going over 21.</div>
+  </div>`;
+}
+function bjDeal(){
+  if(bj.active)return;
+  const bet=Math.floor(Number(document.getElementById("bjBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  bj={deck:newDeck(),player:[],dealer:[],bet,active:true};
+  bj.player=[bj.deck.pop(),bj.deck.pop()];
+  bj.dealer=[bj.deck.pop(),bj.deck.pop()];
+  drawBJ(false);
+  document.getElementById("bjDeal").disabled=true;
+  document.getElementById("bjHit").disabled=false;
+  document.getElementById("bjStand").disabled=false;
+  if(cardValue(bj.player)===21)bjStand();
+}
+function drawBJ(showDealer=false){
+  document.getElementById("bjPlayer").innerHTML=bj.player.map(cardHTML).join("");
+  document.getElementById("bjDealer").innerHTML=showDealer?bj.dealer.map(cardHTML).join(""):cardHTML(bj.dealer[0])+'<div class="card">?</div>';
+  document.getElementById("bjPlayerVal").textContent=cardValue(bj.player);
+  document.getElementById("bjDealerVal").textContent=showDealer?cardValue(bj.dealer):bj.dealer[0]&&cardValue([bj.dealer[0]]);
+}
+function bjHit(){
+  if(!bj.active)return;
+  bj.player.push(bj.deck.pop());drawBJ();
+  if(cardValue(bj.player)>21)bjFinish("bust");
+}
+function bjStand(){
+  if(!bj.active)return;
+  while(cardValue(bj.dealer)<17)bj.dealer.push(bj.deck.pop());
+  const p=cardValue(bj.player),d=cardValue(bj.dealer);
+  drawBJ(true);
+  if(p>21)bjFinish("bust");
+  else if(d>21)bjFinish("win");
+  else if(p>d)bjFinish("win");
+  else if(p<d)bjFinish("lose");
+  else bjFinish("push");
+}
+function bjFinish(result){
+  bj.active=false;
+  let payout=0;
+  if(result==="win")payout=Math.floor(bj.bet*2);
+  if(result==="push")payout=bj.bet;
+  state.balance+=payout;updateBalance();
+  const msg={win:"YOU WIN",lose:"DEALER WINS",bust:"BUST",push:"PUSH"}[result];
+  document.getElementById("bjMsg").textContent=msg+(payout?` · ${money(payout)}`:"");
+  document.getElementById("bjMsg").className="message "+(result==="win"||result==="push"?"winText":"lossText");
+  document.getElementById("bjHit").disabled=true;
+  document.getElementById("bjStand").disabled=true;
+  document.getElementById("bjDeal").disabled=false;
+  addHistory(result==="win"?"+"+payout:result==="push"?"PUSH":"−"+bj.bet,result==="win"||result==="push");
+  result==="win"?winSound():loseSound();
+}
+
+/* =========================================================
+   ROULETTE
+========================================================= */
+
+function renderRoulette(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div id="roulette" class="roulette"></div>
+    <div id="rouletteResult" class="message">Place a color bet.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="rouletteBet" type="number" value="100"></div>
+    <div class="rouletteChoices" style="margin-top:10px">
+      <button class="rChoice rRed" onclick="roulette('red')">RED · 2×</button>
+      <button class="rChoice rBlack" onclick="roulette('black')">BLACK · 2×</button>
+      <button class="rChoice rGreen" onclick="roulette('green')">GREEN 0 · 14×</button>
+    </div>
+  </div>
+  <div class="gamePanel">
+    <div class="sectionTitle"><h3>RECENT NUMBERS</h3></div>
+    <div id="rouletteNums" class="history"><div class="hist">0</div><div class="hist">17</div><div class="hist">32</div></div>
+  </div>`;
+}
+function roulette(choice){
+  const bet=Math.floor(Number(document.getElementById("rouletteBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  const n=Math.floor(Math.random()*37);
+  const red=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(n);
+  const result=n===0?"green":red?"red":"black";
+  const win=result===choice;
+  const mult=choice==="green"?14:2;
+  const payout=win?bet*mult:0;
+  const wheel=document.getElementById("roulette");
+  wheel.style.transform=`rotate(${1440+Math.random()*720}deg)`;
+  setTimeout(()=>{
+    state.balance+=payout;updateBalance();
+    const e=document.getElementById("rouletteResult");
+    e.textContent=`${n} · ${result.toUpperCase()} · ${win?"WIN "+money(payout):"LOSS"}`;
+    e.className="message "+(win?"winText":"lossText");
+    addHistory(win?"+"+payout:"−"+bet,win);
+    win?winSound():loseSound();
+  },3000);
+}
+
+/* =========================================================
+   KENO
+========================================================= */
+
+let kenoSelected=new Set();
+
+function renderKeno(){
+  let nums="";
+  for(let i=1;i<=25;i++)nums+=`<button class="kNum" id="k${i}" onclick="toggleKeno(${i})">${i}</button>`;
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div class="kGrid">${nums}</div>
+    <div id="kenoMsg" class="message">Select 3–8 numbers.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controlBox"><label>BET</label><input id="kenoBet" type="number" value="100"></div>
+    <button class="action" onclick="drawKeno()">DRAW NUMBERS</button>
+  </div>`;
+  kenoSelected=new Set();
+}
+function toggleKeno(n){
+  if(kenoSelected.has(n))kenoSelected.delete(n);
+  else if(kenoSelected.size<8)kenoSelected.add(n);
+  document.getElementById("k"+n).classList.toggle("selected",kenoSelected.has(n));
+  clickSound();
+}
+function drawKeno(){
+  if(kenoSelected.size<3){showGameMsg("Select at least 3 numbers.","loss");return}
+  const bet=Math.floor(Number(document.getElementById("kenoBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  const drawn=[];
+  while(drawn.length<10){
+    const n=1+Math.floor(Math.random()*25);
+    if(!drawn.includes(n))drawn.push(n);
+  }
+  let hits=0;
+  drawn.forEach((n,i)=>setTimeout(()=>{
+    document.getElementById("k"+n).classList.add("hit");tickSound();
+  },i*120));
+  setTimeout(()=>{
+    drawn.forEach(n=>{if(kenoSelected.has(n))hits++});
+    const payout=hits>=kenoSelected.size-1?bet*(hits===kenoSelected.size?5:2):0;
+    state.balance+=payout;updateBalance();
+    const e=document.getElementById("kenoMsg");
+    e.textContent=`${hits} HITS · ${payout?money(payout):"NO WIN"}`;
+    e.className="message "+(payout?"winText":"lossText");
+    addHistory(payout?"+"+payout:"−"+bet,!!payout);
+    payout?winSound():loseSound();
+  },1400);
+}
+
+/* =========================================================
+   LIMBO
+========================================================= */
+
+function renderLimbo(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div id="limboNumber" class="limboNumber">?</div>
+    <div id="limboMsg" class="message">Set a target multiplier.</div>
+  </div>
+  <div class="gamePanel">
+    <div class="controls">
+      <div class="controlBox"><label>BET</label><input id="limboBet" type="number" value="100"></div>
+      <div class="controlBox"><label>TARGET</label><input id="limboTarget" type="number" value="2" min="1.01" step=".1"></div>
+    </div>
+    <button class="action" onclick="playLimbo()">PLAY LIMBO</button>
+  </div>`;
+}
+function playLimbo(){
+  const bet=Math.floor(Number(document.getElementById("limboBet").value));
+  const target=Number(document.getElementById("limboTarget").value);
+  if(!bet||bet>state.balance||target<1.01){showGameMsg("Invalid values.","loss");return}
+  state.balance-=bet;updateBalance();
+  const result=1+Math.random()*9;
+  const e=document.getElementById("limboNumber");
+  let n=0;
+  const t=setInterval(()=>{e.textContent=(1+Math.random()*9).toFixed(2)+"×"},60);
+  setTimeout(()=>{
+    clearInterval(t);e.textContent=result.toFixed(2)+"×";
+    const win=result>=target;
+    const payout=win?Math.floor(bet*target):0;
+    state.balance+=payout;updateBalance();
+    document.getElementById("limboMsg").textContent=win?`WIN · ${money(payout)}`:"TARGET MISSED";
+    document.getElementById("limboMsg").className="message "+(win?"winText":"lossText");
+    addHistory(win?"+"+payout:"−"+bet,win);
+    win?winSound():loseSound();
+  },700);
+}
+
+/* =========================================================
+   TOWER
+========================================================= */
+
+let tower={active:false,level:0,bet:100,bombs:[]};
+
+function renderTower(){
+  document.getElementById("gameContent").innerHTML=`
+  <div class="gamePanel">
+    <div id="towerBoard" class="tower"></div>
+  </div>
+  <div class="gamePanel">
+    <div class="controls">
+      <div class="controlBox"><label>BET</label><input id="towerBet" type="number" value="100"></div>
+      <div class="controlBox"><label>LEVEL</label><input id="towerLevel" value="0" disabled></div>
+    </div>
+    <button id="towerStart" class="action" onclick="startTower()">START CLIMB</button>
+    <button id="towerCash" class="secondary" disabled onclick="cashTower()">CASH OUT</button>
+    <div id="towerMsg" class="message">Climb through 8 levels.</div>
+  </div>`;
+  buildTower();
+}
+function buildTower(){
+  const b=document.getElementById("towerBoard");
+  if(!b)return;
+  b.innerHTML="";
+  for(let i=0;i<8;i++){
+    b.innerHTML+=`<div class="floor">
+      <button class="tTile" onclick="towerPick(${i},0)" disabled>◆</button>
+      <button class="tTile" onclick="towerPick(${i},1)" disabled>◆</button>
+    </div>`;
+  }
+}
+function startTower(){
+  const bet=Math.floor(Number(document.getElementById("towerBet").value));
+  if(!bet||bet>state.balance){showGameMsg("Invalid bet.","loss");return}
+  state.balance-=bet;updateBalance();
+  tower={active:true,level:0,bet,bombs:Array.from({length:8},()=>Math.floor(Math.random()*2))};
+  document.getElementById("towerStart").disabled=true;
+  document.getElementById("towerCash").disabled=false;
+  document.querySelectorAll(".tTile").forEach(e=>e.disabled=false);
+  document.getElementById("towerLevel").value=0;
+  document.getElementById("towerMsg").textContent="Choose a tile.";
+}
+function towerPick(level,side){
+  if(!tower.active||level!==tower.level)return;
+  const tiles=document.querySelectorAll(".floor")[7-level].querySelectorAll(".tTile");
+  if(side===tower.bombs[level]){
+    tiles[side].classList.add("bomb");tiles[side].textContent="💣";
+    towerFail();return;
+  }
+  tiles[side].classList.add("safe");tiles[side].textContent="◆";
+  tiles[1-side].disabled=true;
+  tower.level++;
+  document.getElementById("towerLevel").value=tower.level;
+  document.getElementById("towerMsg").textContent=`SAFE · ${towerMultiplier().toFixed(2)}×`;
+  if(tower.level>=8)cashTower();
+}
+function towerMultiplier(){return 1+tower.level*.42+tower.level*tower.level*.035}
+function cashTower(){
+  if(!tower.active)return;
+  const payout=Math.floor(tower.bet*towerMultiplier());
+  state.balance+=payout;updateBalance();
+  tower.active=false;
+  addHistory("+"+payout,true);winSound();particles(20);
+  document.getElementById("towerCash").disabled=true;
+  document.getElementById("towerMsg").textContent="CASHED OUT · "+money(payout);
+  document.getElementById("towerMsg").className="message winText";
+  setTimeout(resetTower,900);
+}
+function towerFail(){
+  tower.active=false;loseSound();
+  addHistory("−"+tower.bet,false);
+  document.getElementById("towerCash").disabled=true;
+  document.getElementById("towerMsg").textContent="BOMB · ROUND LOST";
+  document.getElementById("towerMsg").className="message lossText";
+  setTimeout(resetTower,900);
+}
+function resetTower(){
+  tower={active:false,level:0,bet:100,bombs:[]};
+  buildTower();
+  document.getElementById("towerStart").disabled=false;
+  document.getElementById("towerCash").disabled=true;
+  document.getElementById("towerLevel").value=0;
+  document.getElementById("towerMsg").textContent="Climb through 8 levels.";
+}
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function showGameMsg(text,type=""){
+  const ids={
+    mines:"mineMsg",crash:"crashMsg",plinko:"plinkoMsg",
+    dice:"diceMsg",wheel:"wheelMsg",roulette:"rouletteResult",
+    keno:"kenoMsg",limbo:"limboMsg",tower:"towerMsg",blackjack:"bjMsg"
+  };
+  const e=document.getElementById(ids[state.game]);
+  if(!e)return;
+  e.textContent=text;
+  e.className="message "+(type==="win"?"winText":type==="loss"?"lossText":"");
+}
+
+function renderHistoryInGame(){
+  const panel=document.querySelector("#gameContent .sectionTitle");
+  if(panel){
+    const p=panel.parentElement;
+    p.innerHTML='<div class="sectionTitle"><h3>RECENT ROUNDS</h3></div>'+historyHTML();
+  }
+}
+
+updateSoundButtons();
+
+if(state.user){
+  showLobby();
+}else{
+  document.getElementById("loginScreen").classList.remove("hidden");
+}
+</script>
 </body>
 </html>
-
