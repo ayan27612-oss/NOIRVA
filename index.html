@@ -2,51 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>NOIRVA • Mines</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#08090b;
+  --bg:#07080a;
   --panel:#111318;
-  --panel2:#171920;
-  --line:#252832;
+  --panel2:#181b21;
+  --line:#292d36;
   --text:#f5f5f5;
-  --muted:#858a96;
+  --muted:#777d89;
   --green:#20d47a;
-  --green2:#0ea85d;
   --red:#ff4057;
   --gold:#ffc857;
   --blue:#4ea1ff;
 }
 
 body{
-  font-family:Inter,Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at 50% -10%,#20242d 0,#08090b 45%);
+    radial-gradient(circle at 50% -15%,#252a34 0,#07080a 48%);
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
 }
 
-button,input{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
+button,input{font:inherit}
+button{border:0;cursor:pointer}
+.hidden{display:none!important}
 
 /* LOGIN */
 
@@ -55,7 +41,7 @@ button{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:22px;
+  padding:20px;
 }
 
 .login{
@@ -66,41 +52,36 @@ button{
 }
 
 @keyframes loginIn{
-  from{
-    opacity:0;
-    transform:translateY(25px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 .logoMark{
   width:64px;
   height:64px;
-  margin:0 auto 16px;
-  border:1px solid #353943;
+  margin:auto;
   border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:30px;
   font-weight:900;
-  background:linear-gradient(145deg,#20242c,#0e1014);
-  box-shadow:0 15px 45px #0008;
+  background:linear-gradient(145deg,#252a33,#0d0f13);
+  border:1px solid #373c47;
+  box-shadow:0 20px 60px #0009;
 }
 
 .brand{
+  margin-top:16px;
   font-size:31px;
-  letter-spacing:8px;
   font-weight:900;
+  letter-spacing:8px;
 }
 
 .tag{
   margin-top:7px;
-  color:#747985;
-  font-size:10px;
+  color:#737985;
+  font-size:9px;
   letter-spacing:3px;
 }
 
@@ -108,18 +89,18 @@ button{
   margin-top:35px;
   padding:22px;
   background:#101217;
-  border:1px solid #272a32;
+  border:1px solid #282c34;
   border-radius:18px;
-  box-shadow:0 25px 70px #0008;
+  box-shadow:0 25px 70px #0009;
 }
 
 .label{
   display:block;
   text-align:left;
-  font-size:10px;
-  color:#858a95;
+  margin-bottom:8px;
+  font-size:9px;
+  color:#858b96;
   letter-spacing:1.5px;
-  margin:0 0 8px;
 }
 
 .input{
@@ -128,15 +109,13 @@ button{
   margin-bottom:17px;
   padding:0 14px;
   color:white;
-  background:#090a0d;
+  background:#080a0d;
   border:1px solid #292d36;
   border-radius:10px;
   outline:none;
 }
 
-.input:focus{
-  border-color:#4a505c;
-}
+.input:focus{border-color:#505662}
 
 .loginBtn{
   width:100%;
@@ -146,38 +125,29 @@ button{
   color:#08090b;
   font-weight:900;
   letter-spacing:1px;
-  transition:.2s;
-}
-
-.loginBtn:active{
-  transform:scale(.97);
 }
 
 .demo{
-  margin-top:16px;
-  color:#626772;
-  font-size:10px;
+  margin-top:15px;
+  color:#646a75;
+  font-size:9px;
   line-height:1.7;
 }
 
-/* APP */
-
-.app{
-  min-height:100vh;
-}
+/* HEADER */
 
 header{
   height:64px;
-  padding:0 16px;
+  padding:0 15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #20232a;
-  background:#090a0cdd;
-  backdrop-filter:blur(18px);
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:20;
+  background:#090a0ddd;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #20232a;
 }
 
 .headerLogo{
@@ -189,24 +159,24 @@ header{
 .headerRight{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
 }
 
 .demoBadge{
   padding:7px 9px;
   border-radius:7px;
+  color:#6fe8a5;
+  background:#113321;
+  border:1px solid #205a3b;
   font-size:8px;
   letter-spacing:1px;
-  color:#70e9a9;
-  background:#123222;
-  border:1px solid #205b3a;
 }
 
 .exit{
   padding:8px 10px;
+  color:#a0a5af;
+  background:#181b21;
   border-radius:7px;
-  color:#999eaa;
-  background:#181a20;
   font-size:9px;
 }
 
@@ -216,34 +186,32 @@ main{
   width:100%;
   max-width:760px;
   margin:auto;
-  padding:18px 14px 35px;
+  padding:18px 14px 40px;
 }
 
 .topbar{
   display:flex;
-  justify-content:space-between;
   align-items:flex-end;
+  justify-content:space-between;
   margin-bottom:15px;
 }
 
 .gameTitle{
-  font-size:24px;
+  font-size:25px;
   font-weight:900;
 }
 
 .gameSubtitle{
   margin-top:4px;
-  font-size:10px;
-  color:#707580;
-  letter-spacing:1px;
+  color:#707681;
+  font-size:9px;
+  letter-spacing:1.5px;
 }
 
-.balance{
-  text-align:right;
-}
+.balance{text-align:right}
 
 .balanceLabel{
-  color:#707580;
+  color:#707681;
   font-size:8px;
   letter-spacing:1px;
 }
@@ -252,17 +220,16 @@ main{
   margin-top:3px;
   font-size:18px;
   font-weight:900;
-  color:#fff;
 }
 
-/* GAME CARD */
+/* GAME */
 
 .gameCard{
   padding:14px;
-  border:1px solid #242832;
-  background:linear-gradient(145deg,#13151a,#0e1014);
+  background:linear-gradient(145deg,#14161b,#0e1014);
+  border:1px solid #282c35;
   border-radius:18px;
-  box-shadow:0 25px 70px #0007;
+  box-shadow:0 25px 70px #0008;
 }
 
 .statusRow{
@@ -273,17 +240,17 @@ main{
 }
 
 .stat{
-  padding:10px 8px;
-  border-radius:10px;
-  background:#090b0e;
-  border:1px solid #20232a;
+  padding:10px 6px;
   text-align:center;
+  background:#090b0e;
+  border:1px solid #22262e;
+  border-radius:10px;
 }
 
 .stat span{
   display:block;
+  color:#666c77;
   font-size:8px;
-  color:#686e79;
   letter-spacing:1px;
 }
 
@@ -293,19 +260,15 @@ main{
   font-size:14px;
 }
 
-#multiplier{
-  color:var(--gold);
-}
-
-#currentBet{
-  color:var(--blue);
-}
+#multiplier{color:var(--gold)}
+#currentBet{color:var(--blue)}
+#safeCount{color:var(--green)}
 
 /* GRID */
 
 .mineGrid{
   width:100%;
-  aspect-ratio:1/1;
+  aspect-ratio:1;
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:7px;
@@ -313,108 +276,44 @@ main{
 
 .tile{
   position:relative;
-  border-radius:11px;
-  border:1px solid #30343e;
-  background:
-    linear-gradient(145deg,#22262f,#14171c);
-  box-shadow:
-    inset 0 1px #ffffff08,
-    0 5px 12px #0007;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:25px;
+  border-radius:11px;
+  background:linear-gradient(145deg,#252932,#15181e);
+  border:1px solid #353a45;
+  box-shadow:
+    inset 0 1px #ffffff09,
+    0 6px 14px #0008;
   overflow:hidden;
-  transition:
-    transform .18s,
-    background .25s,
-    border-color .25s,
-    box-shadow .25s;
+  transition:.18s;
 }
 
 .tile:not(.revealed):active{
-  transform:scale(.92);
+  transform:scale(.91);
 }
 
-.tile:not(.revealed):hover{
-  border-color:#464c58;
+.tile:hover{
+  border-color:#4a505c;
   transform:translateY(-2px);
 }
 
-.tile::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent,#ffffff08,transparent);
-  transform:translateX(-100%);
-}
-
-.tile:not(.revealed):hover::after{
-  animation:shine .6s;
-}
-
-@keyframes shine{
-  to{transform:translateX(100%)}
-}
-
-.tile.revealed{
-  cursor:default;
-}
-
-.tile.diamond{
-  background:
-    radial-gradient(circle at 50% 45%,#153f31,#0c201a);
-  border-color:#1c9e65;
-  box-shadow:
-    inset 0 0 25px #18d67818,
-    0 0 20px #18d67816;
-  animation:diamondReveal .45s ease;
-}
-
-@keyframes diamondReveal{
-  0%{
-    transform:scale(.65) rotate(-8deg);
-    opacity:.3;
-  }
-  70%{
-    transform:scale(1.08);
-  }
-  100%{
-    transform:scale(1);
-  }
-}
-
-.tile.bomb{
-  background:
-    radial-gradient(circle at 50% 45%,#481923,#1c0d11);
-  border-color:#c52f48;
-  animation:bombReveal .5s ease;
-}
-
-@keyframes bombReveal{
-  0%,100%{transform:translateX(0)}
-  20%{transform:translateX(-7px)}
-  40%{transform:translateX(7px)}
-  60%{transform:translateX(-5px)}
-  80%{transform:translateX(4px)}
-}
-
 .hiddenGem{
-  width:11px;
-  height:11px;
+  width:10px;
+  height:10px;
   border-radius:50%;
-  background:#555b67;
-  box-shadow:0 0 8px #ffffff08;
-}
-
-.tile.revealed .hiddenGem{
-  display:none;
+  background:#555b65;
+  box-shadow:0 0 8px #fff1;
 }
 
 .tileIcon{
+  position:absolute;
+  font-size:27px;
   opacity:0;
-  transform:scale(.2);
+  transform:scale(.1);
 }
+
+.tile.revealed .hiddenGem{display:none}
 
 .tile.revealed .tileIcon{
   opacity:1;
@@ -422,65 +321,87 @@ main{
   transition:.35s cubic-bezier(.2,1.5,.5,1);
 }
 
+.tile.diamond{
+  background:radial-gradient(circle,#174b37,#0b2119);
+  border-color:#20a96a;
+  box-shadow:
+    inset 0 0 25px #20d47a22,
+    0 0 22px #20d47a1c;
+  animation:diamond .4s ease;
+}
+
+@keyframes diamond{
+  0%{transform:scale(.65);opacity:.3}
+  70%{transform:scale(1.08)}
+  100%{transform:scale(1);opacity:1}
+}
+
+.tile.bomb{
+  background:radial-gradient(circle,#541c29,#1b0c10);
+  border-color:#d63750;
+  animation:bomb .5s ease;
+}
+
+@keyframes bomb{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(4px)}
+}
+
 /* CONTROLS */
 
-.controls{
-  margin-top:14px;
-}
+.controls{margin-top:14px}
 
 .betLine{
   display:flex;
-  gap:8px;
-  align-items:center;
+  gap:7px;
 }
 
 .betInput{
   flex:1;
   height:46px;
-  background:#090b0e;
-  border:1px solid #282c35;
+  padding:0 12px;
   color:white;
+  background:#080a0d;
+  border:1px solid #292d36;
   border-radius:9px;
-  padding:0 13px;
   outline:none;
 }
 
 .quick{
+  min-width:45px;
   height:46px;
-  min-width:44px;
   border-radius:9px;
+  color:#aeb3bd;
   background:#191c22;
-  border:1px solid #292d35;
-  color:#aeb2bc;
-  font-size:10px;
+  border:1px solid #2a2e37;
+  font-size:9px;
   font-weight:800;
 }
 
-.quick:active{
-  transform:scale(.94);
-}
-
 .mineCount{
-  margin-top:10px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px;
+  margin-top:9px;
 }
 
 .mineBtn{
   height:39px;
   border-radius:8px;
   color:#9ca1ac;
-  background:#181b20;
-  border:1px solid #282c34;
-  font-size:10px;
+  background:#191c22;
+  border:1px solid #292d35;
+  font-size:9px;
   font-weight:800;
 }
 
 .mineBtn.active{
   color:white;
-  background:#183d2c;
-  border-color:#238354;
+  background:#17432f;
+  border-color:#238456;
 }
 
 .actionRow{
@@ -490,8 +411,7 @@ main{
   margin-top:10px;
 }
 
-.startBtn,
-.cashBtn{
+.startBtn,.cashBtn{
   height:50px;
   border-radius:10px;
   font-weight:900;
@@ -500,41 +420,48 @@ main{
 }
 
 .startBtn{
-  background:linear-gradient(135deg,#24dc7f,#0ea95d);
   color:#03150c;
-  box-shadow:0 8px 25px #16bd691c;
+  background:linear-gradient(135deg,#27df82,#0da65b);
 }
 
 .cashBtn{
-  background:#242831;
-  color:#b5bac5;
-  border:1px solid #343943;
+  color:#b7bcc5;
+  background:#252932;
+  border:1px solid #353a44;
 }
 
 .cashBtn.ready{
+  color:#1a1203;
   background:#ffc857;
-  color:#171107;
-  border-color:#ffd97f;
-  animation:pulseCash 1.5s infinite;
+  animation:pulse 1.4s infinite;
 }
 
-@keyframes pulseCash{
-  50%{
-    box-shadow:0 0 25px #ffc85733;
-  }
+@keyframes pulse{
+  50%{box-shadow:0 0 25px #ffc85744}
 }
 
-.startBtn:active,
-.cashBtn:active{
+.startBtn:active,.cashBtn:active{
   transform:scale(.97);
 }
 
-.startBtn:disabled,
-.cashBtn:disabled{
+button:disabled{
   opacity:.4;
   cursor:not-allowed;
-  animation:none;
+  animation:none!important;
 }
+
+/* MESSAGE */
+
+.message{
+  min-height:20px;
+  margin-top:10px;
+  text-align:center;
+  color:#858b96;
+  font-size:10px;
+}
+
+.message.win{color:var(--green)}
+.message.lose{color:var(--red)}
 
 /* INFO */
 
@@ -547,15 +474,15 @@ main{
 
 .infoBox{
   padding:13px;
-  border-radius:12px;
   background:#111319;
-  border:1px solid #242831;
+  border:1px solid #252933;
+  border-radius:12px;
 }
 
 .infoTitle{
-  font-size:9px;
-  letter-spacing:1.2px;
   color:#777d88;
+  font-size:8px;
+  letter-spacing:1.2px;
 }
 
 .infoValue{
@@ -564,35 +491,26 @@ main{
   font-weight:900;
 }
 
-.infoValue.green{
-  color:var(--green);
-}
-
-.infoValue.red{
-  color:var(--red);
-}
+.green{color:var(--green)}
 
 /* HISTORY */
 
-.history{
-  margin-top:15px;
-}
+.history{margin-top:15px}
 
 .sectionTitle{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin-bottom:9px;
 }
 
 .sectionTitle strong{
-  font-size:11px;
+  font-size:10px;
   letter-spacing:1px;
 }
 
 .sectionTitle span{
-  font-size:8px;
   color:#646a75;
+  font-size:8px;
 }
 
 .historyList{
@@ -602,45 +520,22 @@ main{
   scrollbar-width:none;
 }
 
-.historyList::-webkit-scrollbar{
-  display:none;
-}
+.historyList::-webkit-scrollbar{display:none}
 
 .historyItem{
-  min-width:72px;
-  padding:10px 7px;
+  min-width:70px;
+  padding:9px 6px;
+  text-align:center;
+  background:#111319;
   border:1px solid #252933;
   border-radius:9px;
-  background:#111319;
-  text-align:center;
 }
 
-.historyItem .hIcon{
-  font-size:17px;
-}
-
-.historyItem .hText{
+.hIcon{font-size:17px}
+.hText{
   margin-top:4px;
+  color:#858b95;
   font-size:8px;
-  color:#888e99;
-}
-
-/* MESSAGE */
-
-.message{
-  text-align:center;
-  min-height:19px;
-  margin-top:11px;
-  font-size:10px;
-  color:#858b96;
-}
-
-.message.win{
-  color:var(--green);
-}
-
-.message.lose{
-  color:var(--red);
 }
 
 /* PARTICLES */
@@ -652,10 +547,10 @@ main{
   border-radius:50%;
   pointer-events:none;
   z-index:100;
-  animation:particleFly .8s ease-out forwards;
+  animation:particle .8s ease-out forwards;
 }
 
-@keyframes particleFly{
+@keyframes particle{
   from{
     opacity:1;
     transform:translate(0,0) scale(1);
@@ -666,43 +561,17 @@ main{
   }
 }
 
-/* RESPONSIVE */
-
 @media(max-width:380px){
-  main{
-    padding:14px 10px 30px;
-  }
-
-  .gameCard{
-    padding:10px;
-  }
-
-  .mineGrid{
-    gap:5px;
-  }
-
-  .tile{
-    border-radius:8px;
-    font-size:21px;
-  }
-
-  .demoBadge{
-    display:none;
-  }
-
-  .brand{
-    font-size:27px;
-  }
+  main{padding:14px 10px 30px}
+  .gameCard{padding:10px}
+  .mineGrid{gap:5px}
+  .tile{border-radius:8px;font-size:21px}
+  .demoBadge{display:none}
 }
 
 @media(min-width:700px){
-  main{
-    padding-top:30px;
-  }
-
-  .tile{
-    font-size:32px;
-  }
+  main{padding-top:30px}
+  .tileIcon{font-size:32px}
 }
 </style>
 </head>
@@ -712,16 +581,19 @@ main{
 <!-- LOGIN -->
 
 <section id="loginScreen">
+
   <div class="login">
 
     <div class="logoMark">N</div>
 
     <div class="brand">NOIRVA</div>
+
     <div class="tag">PRIVATE VIRTUAL GAMING</div>
 
     <div class="loginBox">
 
       <label class="label">USERNAME</label>
+
       <input
         class="input"
         id="username"
@@ -731,6 +603,7 @@ main{
       >
 
       <label class="label">PASSWORD</label>
+
       <input
         class="input"
         id="password"
@@ -750,21 +623,30 @@ main{
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
 <!-- GAME -->
 
-<section id="gameScreen" class="app hidden">
+<section id="gameScreen" class="hidden">
 
 <header>
 
   <div class="headerLogo">NOIRVA</div>
 
   <div class="headerRight">
-    <div class="demoBadge">DEMO • VIRTUAL</div>
-    <button class="exit" id="exitBtn">EXIT</button>
+
+    <div class="demoBadge">
+      DEMO • VIRTUAL
+    </div>
+
+    <button class="exit" id="exitBtn">
+      EXIT
+    </button>
+
   </div>
 
 </header>
@@ -781,7 +663,9 @@ main{
 
     <div class="balance">
       <div class="balanceLabel">BALANCE</div>
-      <div class="balanceValue" id="balance">10,000</div>
+      <div class="balanceValue" id="balance">
+        10,000
+      </div>
     </div>
 
   </div>
@@ -793,7 +677,7 @@ main{
 
       <div class="stat">
         <span>BET</span>
-        <strong id="currentBet">0</strong>
+        <strong id="currentBet">100</strong>
       </div>
 
       <div class="stat">
@@ -803,7 +687,7 @@ main{
 
       <div class="stat">
         <span>SAFE</span>
-        <strong id="safeCount">25</strong>
+        <strong id="safeCount">22</strong>
       </div>
 
     </div>
@@ -830,19 +714,38 @@ main{
           inputmode="numeric"
         >
 
-        <button class="quick" data-bet="100">100</button>
-        <button class="quick" data-bet="500">500</button>
-        <button class="quick" data-bet="1000">1K</button>
+        <button class="quick" data-bet="100">
+          100
+        </button>
+
+        <button class="quick" data-bet="500">
+          500
+        </button>
+
+        <button class="quick" data-bet="1000">
+          1K
+        </button>
 
       </div>
 
 
       <div class="mineCount">
 
-        <button class="mineBtn active" data-mines="3">3 BOMBS</button>
-        <button class="mineBtn" data-mines="5">5 BOMBS</button>
-        <button class="mineBtn" data-mines="8">8 BOMBS</button>
-        <button class="mineBtn" data-mines="12">12 BOMBS</button>
+        <button class="mineBtn active" data-mines="3">
+          3 BOMBS
+        </button>
+
+        <button class="mineBtn" data-mines="5">
+          5 BOMBS
+        </button>
+
+        <button class="mineBtn" data-mines="8">
+          8 BOMBS
+        </button>
+
+        <button class="mineBtn" data-mines="12">
+          12 BOMBS
+        </button>
 
       </div>
 
@@ -898,7 +801,7 @@ main{
 <script>
 
 /* =========================
-   STATE
+   GAME STATE
 ========================= */
 
 let balance = 10000;
@@ -915,11 +818,14 @@ let multiplier = 1;
    AUDIO
 ========================= */
 
-let audioCtx;
+let audioCtx = null;
 
 function audioReady(){
+
   if(!audioCtx){
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    audioCtx =
+      new(window.AudioContext ||
+      window.webkitAudioContext)();
   }
 
   if(audioCtx.state === "suspended"){
@@ -931,13 +837,20 @@ function tone(freq,duration,type="sine",volume=.04){
 
   audioReady();
 
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
+  const osc =
+    audioCtx.createOscillator();
 
-  osc.type = type;
-  osc.frequency.value = freq;
+  const gain =
+    audioCtx.createGain();
 
-  gain.gain.setValueAtTime(0,audioCtx.currentTime);
+  osc.type=type;
+  osc.frequency.value=freq;
+
+  gain.gain.setValueAtTime(
+    0,
+    audioCtx.currentTime
+  );
+
   gain.gain.linearRampToValueAtTime(
     volume,
     audioCtx.currentTime+.015
@@ -952,7 +865,10 @@ function tone(freq,duration,type="sine",volume=.04){
   gain.connect(audioCtx.destination);
 
   osc.start();
-  osc.stop(audioCtx.currentTime+duration);
+
+  osc.stop(
+    audioCtx.currentTime+duration
+  );
 }
 
 function sound(type){
@@ -962,19 +878,34 @@ function sound(type){
   }
 
   if(type==="diamond"){
+
     tone(700,.08,"sine",.04);
-    setTimeout(()=>tone(1050,.14,"sine",.04),70);
+
+    setTimeout(()=>{
+      tone(1050,.14,"sine",.04);
+    },70);
   }
 
   if(type==="cash"){
+
     tone(500,.08,"sine",.035);
-    setTimeout(()=>tone(750,.1,"sine",.04),80);
-    setTimeout(()=>tone(1050,.18,"sine",.045),170);
+
+    setTimeout(()=>{
+      tone(750,.1,"sine",.04);
+    },80);
+
+    setTimeout(()=>{
+      tone(1050,.18,"sine",.045);
+    },170);
   }
 
   if(type==="bomb"){
+
     tone(90,.25,"sawtooth",.07);
-    setTimeout(()=>tone(55,.35,"sawtooth",.04),100);
+
+    setTimeout(()=>{
+      tone(55,.35,"sawtooth",.04);
+    },100);
   }
 }
 
@@ -988,19 +919,22 @@ document.getElementById("loginBtn").onclick=()=>{
   audioReady();
   sound("click");
 
-  const username=
-    document.getElementById("username").value.trim();
+  const username =
+    document.getElementById("username")
+    .value.trim();
 
-  const password=
-    document.getElementById("password").value;
+  const password =
+    document.getElementById("password")
+    .value;
 
-  const error=
+  const error =
     document.getElementById("loginError");
 
-  if(username.length<2 || password.length<3){
+  if(username.length<2 ||
+     password.length<3){
 
-    error.textContent=
-      "Enter a username and a password of at least 3 characters.";
+    error.textContent =
+      "Enter a username and password of at least 3 characters.";
 
     return;
   }
@@ -1013,10 +947,14 @@ document.getElementById("loginBtn").onclick=()=>{
   document.getElementById("gameScreen")
     .classList.remove("hidden");
 
-  buildBoard();
+  resetRoundBoard();
 
 };
 
+
+/* =========================
+   EXIT
+========================= */
 
 document.getElementById("exitBtn").onclick=()=>{
 
@@ -1027,54 +965,64 @@ document.getElementById("exitBtn").onclick=()=>{
 
   document.getElementById("loginScreen")
     .classList.remove("hidden");
-
 };
 
 
 /* =========================
-   BET
+   QUICK BET
 ========================= */
 
-document.querySelectorAll(".quick").forEach(btn=>{
+document.querySelectorAll(".quick")
+.forEach(button=>{
 
-  btn.onclick=()=>{
+  button.onclick=()=>{
 
     sound("click");
 
-    document.getElementById("betInput").value=
-      btn.dataset.bet;
+    document.getElementById("betInput")
+      .value=button.dataset.bet;
 
-    bet=Number(btn.dataset.bet);
+    bet=Number(button.dataset.bet);
+
+    updateUI();
   };
 
 });
 
 
-document.getElementById("betInput").oninput=e=>{
+document.getElementById("betInput")
+.oninput=e=>{
+
   bet=Number(e.target.value)||0;
+
+  updateUI();
 };
 
 
 /* =========================
-   MINES
+   MINE COUNT
 ========================= */
 
-document.querySelectorAll(".mineBtn").forEach(btn=>{
+document.querySelectorAll(".mineBtn")
+.forEach(button=>{
 
-  btn.onclick=()=>{
+  button.onclick=()=>{
 
-    if(gameActive) return;
+    if(gameActive)return;
 
     sound("click");
 
     document.querySelectorAll(".mineBtn")
-      .forEach(x=>x.classList.remove("active"));
+    .forEach(x=>{
+      x.classList.remove("active");
+    });
 
-    btn.classList.add("active");
+    button.classList.add("active");
 
-    mines=Number(btn.dataset.mines);
+    mines =
+      Number(button.dataset.mines);
 
-    buildBoard();
+    resetRoundBoard();
 
   };
 
@@ -1082,19 +1030,17 @@ document.querySelectorAll(".mineBtn").forEach(btn=>{
 
 
 /* =========================
-   BOARD
+   BUILD FRESH BOARD
 ========================= */
 
 function buildBoard(){
 
-  const grid=document.getElementById("mineGrid");
+  const grid =
+    document.getElementById("mineGrid");
 
   grid.innerHTML="";
 
   board=[];
-
-  revealed=0;
-  multiplier=1;
 
   for(let i=0;i<25;i++){
 
@@ -1103,7 +1049,8 @@ function buildBoard(){
       revealed:false
     });
 
-    const tile=document.createElement("button");
+    const tile =
+      document.createElement("button");
 
     tile.className="tile";
 
@@ -1112,7 +1059,9 @@ function buildBoard(){
       <div class="tileIcon"></div>
     `;
 
-    tile.onclick=()=>revealTile(i);
+    tile.onclick=()=>{
+      revealTile(i);
+    };
 
     grid.appendChild(tile);
   }
@@ -1122,42 +1071,120 @@ function buildBoard(){
 
 
 /* =========================
-   START
+   RESET ROUND BOARD
 ========================= */
 
-document.getElementById("startBtn").onclick=()=>{
+function resetRoundBoard(){
+
+  gameActive=false;
+
+  revealed=0;
+
+  multiplier=1;
+
+  /* DELETE EVERYTHING
+     FROM PREVIOUS ROUND */
+
+  board=[];
+
+  const grid =
+    document.getElementById("mineGrid");
+
+  if(grid){
+    grid.innerHTML="";
+  }
+
+  /* BUILD 25 COMPLETELY
+     NEW HIDDEN TILES */
+
+  buildBoard();
+
+  /* RESET CONTROLS */
+
+  document.getElementById("cashBtn")
+    .disabled=true;
+
+  document.getElementById("cashBtn")
+    .classList.remove("ready");
+
+  document.getElementById("startBtn")
+    .disabled=false;
+
+  document.getElementById("betInput")
+    .disabled=false;
+
+  document.querySelectorAll(".mineBtn")
+    .forEach(x=>{
+      x.disabled=false;
+    });
+
+  /* RESET ROUND INFO */
+
+  document.getElementById("roundWin")
+    .textContent="0";
+
+  document.getElementById("lastResult")
+    .textContent="—";
+
+  showMessage(
+    "Choose your bet and start a round."
+  );
+
+  updateUI();
+}
+
+
+/* =========================
+   START ROUND
+========================= */
+
+document.getElementById("startBtn")
+.onclick=()=>{
 
   audioReady();
   sound("click");
 
-  if(gameActive) return;
+  if(gameActive)return;
 
-  bet=Number(document.getElementById("betInput").value)||0;
+  bet =
+    Number(
+      document.getElementById("betInput").value
+    ) || 0;
 
   if(bet<10){
 
-    showMessage("Minimum virtual bet is 10 coins.");
+    showMessage(
+      "Minimum virtual bet is 10 coins."
+    );
 
     return;
   }
 
   if(bet>balance){
 
-    showMessage("Not enough virtual coins.");
+    showMessage(
+      "Not enough virtual coins."
+    );
 
     return;
   }
 
+  /* TAKE VIRTUAL BET */
+
   balance-=bet;
 
   gameActive=true;
+
   revealed=0;
+
   multiplier=1;
+
+  /* NEW RANDOM MINES */
 
   createMines();
 
   document.getElementById("cashBtn")
-    .disabled=false;
+    .disabled=true;
 
   document.getElementById("startBtn")
     .disabled=true;
@@ -1166,66 +1193,76 @@ document.getElementById("startBtn").onclick=()=>{
     .disabled=true;
 
   document.querySelectorAll(".mineBtn")
-    .forEach(x=>x.disabled=true);
+    .forEach(x=>{
+      x.disabled=true;
+    });
 
-  showMessage("Round started. Find the diamonds.");
+  showMessage(
+    "Round started. Find the diamonds."
+  );
 
   updateUI();
 };
 
 
 /* =========================
-   CREATE MINES
+   CREATE RANDOM MINES
 ========================= */
 
 function createMines(){
 
-  board.forEach(x=>{
-    x.mine=false;
-    x.revealed=false;
+  board.forEach(tile=>{
+    tile.mine=false;
+    tile.revealed=false;
   });
 
   let placed=0;
 
   while(placed<mines){
 
-    const index=
+    const index =
       Math.floor(Math.random()*25);
 
     if(!board[index].mine){
 
       board[index].mine=true;
-      placed++;
 
+      placed++;
     }
   }
 }
 
 
 /* =========================
-   REVEAL
+   REVEAL TILE
 ========================= */
 
 function revealTile(index){
 
-  if(!gameActive) return;
+  if(!gameActive)return;
 
   const data=board[index];
 
-  if(data.revealed) return;
+  if(data.revealed)return;
 
   data.revealed=true;
 
-  const tile=
-    document.querySelectorAll(".tile")[index];
+  const tiles =
+    document.querySelectorAll(".tile");
+
+  const tile=tiles[index];
 
   tile.classList.add("revealed");
+
+
+  /* BOMB */
 
   if(data.mine){
 
     tile.classList.add("bomb");
 
-    tile.querySelector(".tileIcon").textContent="💣";
+    tile.querySelector(".tileIcon")
+      .textContent="💣";
 
     sound("bomb");
 
@@ -1243,12 +1280,15 @@ function revealTile(index){
       .disabled=false;
 
     document.querySelectorAll(".mineBtn")
-      .forEach(x=>x.disabled=false);
+      .forEach(x=>{
+        x.disabled=false;
+      });
 
-    document.getElementById("lastResult").textContent=
-      "BOMB";
+    document.getElementById("lastResult")
+      .textContent="BOMB";
 
-    document.getElementById("roundWin").textContent="0";
+    document.getElementById("roundWin")
+      .textContent="0";
 
     showMessage(
       "💣 Bomb found. Round ended.",
@@ -1259,36 +1299,57 @@ function revealTile(index){
 
     updateUI();
 
+    /* IMPORTANT:
+       WAIT FOR ANIMATION,
+       THEN FULL RESET */
+
+    setTimeout(()=>{
+      resetRoundBoard();
+    },1000);
+
     return;
   }
 
+
+  /* DIAMOND */
 
   revealed++;
 
   tile.classList.add("diamond");
 
-  tile.querySelector(".tileIcon").textContent="💎";
+  tile.querySelector(".tileIcon")
+    .textContent="💎";
 
   sound("diamond");
 
   createParticles(tile);
 
-  multiplier=
+  multiplier =
     calculateMultiplier();
 
-  const potential=
+  const potential =
     Math.floor(bet*multiplier);
 
-  document.getElementById("roundWin").textContent=
-    format(potential);
+  document.getElementById("roundWin")
+    .textContent=format(potential);
+
+  document.getElementById("cashBtn")
+    .disabled=false;
+
+  document.getElementById("cashBtn")
+    .classList.add("ready");
 
   showMessage(
     `💎 Diamond found • ${multiplier.toFixed(2)}x`
   );
 
+  /* ALL SAFE TILES FOUND */
+
   if(revealed >= 25-mines){
 
-    cashOut();
+    setTimeout(()=>{
+      cashOut();
+    },300);
 
     return;
   }
@@ -1303,17 +1364,19 @@ function revealTile(index){
 
 function calculateMultiplier(){
 
-  const safeTotal=25-mines;
+  const safeTotal =
+    25-mines;
 
   let value=1;
 
   for(let i=0;i<revealed;i++){
 
-    value*=
-      (25-i)/(safeTotal-i);
+    value *=
+      (25-i) /
+      (safeTotal-i);
   }
 
-  return Math.max(1, value*.96);
+  return Math.max(1,value*.96);
 }
 
 
@@ -1321,16 +1384,20 @@ function calculateMultiplier(){
    CASH OUT
 ========================= */
 
-document.getElementById("cashBtn").onclick=()=>{
+document.getElementById("cashBtn")
+.onclick=()=>{
+
   cashOut();
+
 };
 
 
 function cashOut(){
 
-  if(!gameActive || revealed<=0) return;
+  if(!gameActive || revealed<=0)
+    return;
 
-  const win=
+  const win =
     Math.floor(bet*multiplier);
 
   balance+=win;
@@ -1344,6 +1411,9 @@ function cashOut(){
   document.getElementById("cashBtn")
     .disabled=true;
 
+  document.getElementById("cashBtn")
+    .classList.remove("ready");
+
   document.getElementById("startBtn")
     .disabled=false;
 
@@ -1351,27 +1421,40 @@ function cashOut(){
     .disabled=false;
 
   document.querySelectorAll(".mineBtn")
-    .forEach(x=>x.disabled=false);
+    .forEach(x=>{
+      x.disabled=false;
+    });
 
-  document.getElementById("roundWin").textContent=
-    format(win);
+  document.getElementById("roundWin")
+    .textContent=format(win);
 
-  document.getElementById("lastResult").textContent=
-    "+"+format(win);
+  document.getElementById("lastResult")
+    .textContent="+"+format(win);
 
   showMessage(
     `CASHED OUT • ${format(win)} VIRTUAL COINS`,
     "win"
   );
 
-  addHistory("💎",`${multiplier.toFixed(2)}x`);
+  addHistory(
+    "💎",
+    `${multiplier.toFixed(2)}x`
+  );
 
   updateUI();
+
+  /* IMPORTANT:
+     AFTER WIN, CLEAR ALL OLD
+     DIAMONDS/BOMBS */
+
+  setTimeout(()=>{
+    resetRoundBoard();
+  },1000);
 }
 
 
 /* =========================
-   REVEAL MINES
+   REVEAL ALL BOMBS
 ========================= */
 
 function revealAllMines(){
@@ -1380,19 +1463,20 @@ function revealAllMines(){
 
     if(data.mine){
 
-      const tile=
+      const tile =
         document.querySelectorAll(".tile")[index];
 
-      tile.classList.add(
-        "revealed",
-        "bomb"
-      );
+      if(tile){
 
-      tile.querySelector(".tileIcon")
-        .textContent="💣";
+        tile.classList.add(
+          "revealed",
+          "bomb"
+        );
 
+        tile.querySelector(".tileIcon")
+          .textContent="💣";
+      }
     }
-
   });
 }
 
@@ -1403,21 +1487,27 @@ function revealAllMines(){
 
 function createParticles(tile){
 
-  const rect=tile.getBoundingClientRect();
+  const rect =
+    tile.getBoundingClientRect();
 
-  for(let i=0;i<10;i++){
+  for(let i=0;i<12;i++){
 
-    const p=document.createElement("div");
+    const p =
+      document.createElement("div");
 
     p.className="particle";
 
-    p.style.left=
-      rect.left+rect.width/2+"px";
+    p.style.left =
+      rect.left+
+      rect.width/2+
+      "px";
 
-    p.style.top=
-      rect.top+rect.height/2+"px";
+    p.style.top =
+      rect.top+
+      rect.height/2+
+      "px";
 
-    p.style.background=
+    p.style.background =
       i%2 ? "#20d47a" : "#ffc857";
 
     p.style.setProperty(
@@ -1427,12 +1517,14 @@ function createParticles(tile){
 
     p.style.setProperty(
       "--y",
-      (Math.random()*-120-20)+"px"
+      (Math.random()*-130-20)+"px"
     );
 
     document.body.appendChild(p);
 
-    setTimeout(()=>p.remove(),850);
+    setTimeout(()=>{
+      p.remove();
+    },850);
   }
 }
 
@@ -1441,14 +1533,15 @@ function createScreenParticles(){
 
   for(let i=0;i<30;i++){
 
-    const p=document.createElement("div");
+    const p =
+      document.createElement("div");
 
     p.className="particle";
 
     p.style.left="50%";
     p.style.top="50%";
 
-    p.style.background=
+    p.style.background =
       i%2 ? "#20d47a" : "#ffc857";
 
     p.style.setProperty(
@@ -1463,7 +1556,9 @@ function createScreenParticles(){
 
     document.body.appendChild(p);
 
-    setTimeout(()=>p.remove(),850);
+    setTimeout(()=>{
+      p.remove();
+    },850);
   }
 }
 
@@ -1474,10 +1569,11 @@ function createScreenParticles(){
 
 function addHistory(icon,text){
 
-  const list=
+  const list =
     document.getElementById("historyList");
 
-  const item=document.createElement("div");
+  const item =
+    document.createElement("div");
 
   item.className="historyItem";
 
@@ -1500,12 +1596,13 @@ function addHistory(icon,text){
 
 function showMessage(text,type=""){
 
-  const el=
+  const el =
     document.getElementById("message");
 
   el.textContent=text;
 
-  el.className="message "+type;
+  el.className =
+    "message "+type;
 }
 
 
@@ -1515,31 +1612,52 @@ function showMessage(text,type=""){
 
 function format(number){
 
-  return Number(number).toLocaleString("en-IN");
+  return Number(number)
+    .toLocaleString("en-IN");
 }
 
 
 function updateUI(){
 
-  document.getElementById("balance")
-    .textContent=format(balance);
+  const balanceEl =
+    document.getElementById("balance");
 
-  document.getElementById("currentBet")
-    .textContent=format(bet);
+  if(balanceEl){
+    balanceEl.textContent=
+      format(balance);
+  }
 
-  document.getElementById("multiplier")
-    .textContent=
+  const betEl =
+    document.getElementById("currentBet");
+
+  if(betEl){
+    betEl.textContent=
+      format(bet);
+  }
+
+  const multiEl =
+    document.getElementById("multiplier");
+
+  if(multiEl){
+    multiEl.textContent=
       multiplier.toFixed(2)+"x";
+  }
 
-  document.getElementById("safeCount")
-    .textContent=
-      Math.max(0,25-mines-revealed);
+  const safeEl =
+    document.getElementById("safeCount");
 
+  if(safeEl){
+    safeEl.textContent=
+      Math.max(
+        0,
+        25-mines-revealed
+      );
+  }
 }
 
 
 /* =========================
-   INITIAL
+   INITIAL BOARD
 ========================= */
 
 buildBoard();
