@@ -2,498 +2,706 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#070707">
-<title>NOIRVA — Virtual Casino</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NOIRVA • Mines</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
+*{
+  box-sizing:border-box;
   margin:0;
-  background:#050505;
-  color:#f5f5f5;
-  font-family:Arial,Helvetica,sans-serif;
-  -webkit-tap-highlight-color:transparent;
+  padding:0;
 }
-button{font:inherit}
-button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+:root{
+  --bg:#08090b;
+  --panel:#111318;
+  --panel2:#171920;
+  --line:#252832;
+  --text:#f5f5f5;
+  --muted:#858a96;
+  --green:#20d47a;
+  --green2:#0ea85d;
+  --red:#ff4057;
+  --gold:#ffc857;
+  --blue:#4ea1ff;
+}
+
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,#20242d 0,#08090b 45%);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* LOGIN */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+}
+
+.login{
+  width:100%;
+  max-width:390px;
+  text-align:center;
+  animation:loginIn .7s ease;
+}
+
+@keyframes loginIn{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.logoMark{
+  width:64px;
+  height:64px;
+  margin:0 auto 16px;
+  border:1px solid #353943;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:900;
+  background:linear-gradient(145deg,#20242c,#0e1014);
+  box-shadow:0 15px 45px #0008;
+}
+
+.brand{
+  font-size:31px;
+  letter-spacing:8px;
+  font-weight:900;
+}
+
+.tag{
+  margin-top:7px;
+  color:#747985;
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+.loginBox{
+  margin-top:35px;
+  padding:22px;
+  background:#101217;
+  border:1px solid #272a32;
+  border-radius:18px;
+  box-shadow:0 25px 70px #0008;
+}
+
+.label{
+  display:block;
+  text-align:left;
+  font-size:10px;
+  color:#858a95;
+  letter-spacing:1.5px;
+  margin:0 0 8px;
+}
+
+.input{
+  width:100%;
+  height:48px;
+  margin-bottom:17px;
+  padding:0 14px;
+  color:white;
+  background:#090a0d;
+  border:1px solid #292d36;
+  border-radius:10px;
+  outline:none;
+}
+
+.input:focus{
+  border-color:#4a505c;
+}
+
+.loginBtn{
+  width:100%;
+  height:50px;
+  border-radius:10px;
+  background:#f5f5f5;
+  color:#08090b;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:.2s;
+}
+
+.loginBtn:active{
+  transform:scale(.97);
+}
+
+.demo{
+  margin-top:16px;
+  color:#626772;
+  font-size:10px;
+  line-height:1.7;
+}
+
+/* APP */
 
 .app{
-  width:100%;
-  max-width:760px;
   min-height:100vh;
-  margin:auto;
-  background:#0a0a0a;
-  overflow:hidden;
 }
 
-.header{
+header{
   height:64px;
+  padding:0 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 16px;
-  border-bottom:1px solid #202020;
-  background:rgba(10,10,10,.94);
-  backdrop-filter:blur(16px);
+  border-bottom:1px solid #20232a;
+  background:#090a0cdd;
+  backdrop-filter:blur(18px);
   position:sticky;
   top:0;
   z-index:50;
 }
 
-.logo{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:5px;
+.headerLogo{
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
-.demo{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+.headerRight{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.demoBadge{
+  padding:7px 9px;
+  border-radius:7px;
   font-size:8px;
-  letter-spacing:2px;
-  color:#666;
-  white-space:nowrap;
+  letter-spacing:1px;
+  color:#70e9a9;
+  background:#123222;
+  border:1px solid #205b3a;
+}
+
+.exit{
+  padding:8px 10px;
+  border-radius:7px;
+  color:#999eaa;
+  background:#181a20;
+  font-size:9px;
+}
+
+/* MAIN */
+
+main{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  padding:18px 14px 35px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:15px;
+}
+
+.gameTitle{
+  font-size:24px;
+  font-weight:900;
+}
+
+.gameSubtitle{
+  margin-top:4px;
+  font-size:10px;
+  color:#707580;
+  letter-spacing:1px;
 }
 
 .balance{
-  border:1px solid #292929;
-  background:#111;
-  border-radius:30px;
-  padding:8px 12px;
-  min-width:100px;
-  text-align:center;
+  text-align:right;
 }
-.balance small{
-  color:#666;
+
+.balanceLabel{
+  color:#707580;
   font-size:8px;
   letter-spacing:1px;
 }
-.balance strong{
-  display:block;
-  margin-top:2px;
-  font-size:13px;
-}
 
-.hero{
-  padding:30px 18px 18px;
-  text-align:center;
-}
-.kicker{
-  color:#666;
-  font-size:9px;
-  letter-spacing:4px;
-  margin-bottom:9px;
-}
-.hero h1{
-  margin:0;
-  font-size:38px;
-  letter-spacing:-1px;
-}
-.hero p{
-  color:#777;
-  font-size:12px;
-  margin:9px 0 0;
-}
-
-.game{
-  padding:0 12px 35px;
-}
-
-.wheel-area{
-  position:relative;
-  display:flex;
-  justify-content:center;
-  padding:12px 0 18px;
-}
-
-.pointer{
-  position:absolute;
-  z-index:5;
-  top:5px;
-  left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:0;
-  border-left:9px solid transparent;
-  border-right:9px solid transparent;
-  border-top:20px solid #fff;
-  filter:drop-shadow(0 2px 5px #000);
-}
-
-.wheel{
-  width:min(72vw,300px);
-  height:min(72vw,300px);
-  max-width:300px;
-  max-height:300px;
-  border-radius:50%;
-  border:9px solid #272727;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-  repeating-conic-gradient(
-    from -7.5deg,
-    #161616 0deg 9.73deg,
-    #7b1717 9.73deg 19.46deg
-  );
-  box-shadow:
-    0 0 0 2px #454545,
-    0 18px 55px rgba(0,0,0,.6),
-    inset 0 0 35px rgba(255,255,255,.05);
-  transition:transform 3.8s cubic-bezier(.08,.75,.12,1);
-}
-
-.wheel:before{
-  content:"";
-  width:62%;
-  height:62%;
-  border-radius:50%;
-  border:2px solid #777;
-  background:
-    radial-gradient(circle,#191919 0 31%,#0b0b0b 32% 55%,#171717 56% 57%,#0a0a0a 58%);
-  position:absolute;
-}
-
-.wheel:after{
-  content:"NOIRVA";
-  position:absolute;
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  background:#080808;
-  border:1px solid #555;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:8px;
-  letter-spacing:2px;
-  font-weight:700;
-}
-
-.number-ring{
-  position:absolute;
-  inset:0;
-  z-index:2;
-}
-
-.number{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:25px;
-  height:25px;
-  margin:-12.5px;
-  text-align:center;
-  font-size:9px;
-  font-weight:700;
-  line-height:25px;
-  transform-origin:12.5px 12.5px;
+.balanceValue{
+  margin-top:3px;
+  font-size:18px;
+  font-weight:900;
   color:#fff;
 }
 
-.result{
-  text-align:center;
-  min-height:64px;
-  padding:4px 0 12px;
-}
-.result-number{
-  font-size:30px;
-  font-weight:700;
-  transition:transform .25s,opacity .25s;
-}
-.result-color{
-  font-size:9px;
-  letter-spacing:3px;
-  color:#777;
-  margin-top:3px;
+/* GAME CARD */
+
+.gameCard{
+  padding:14px;
+  border:1px solid #242832;
+  background:linear-gradient(145deg,#13151a,#0e1014);
+  border-radius:18px;
+  box-shadow:0 25px 70px #0007;
 }
 
-.bet-summary{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border:1px solid #242424;
-  background:#101010;
-  border-radius:9px;
-  padding:12px 13px;
-  margin-bottom:12px;
-}
-.bet-summary span{
-  color:#666;
-  font-size:9px;
-  letter-spacing:1px;
-}
-.bet-summary strong{
-  font-size:13px;
-}
-
-.section-title{
-  color:#666;
-  font-size:9px;
-  letter-spacing:2px;
-  margin:18px 2px 8px;
-  text-transform:uppercase;
-}
-
-.color-bets{
+.statusRow{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:7px;
+  margin-bottom:12px;
 }
-.color-btn{
-  height:45px;
-  border:1px solid #303030;
-  background:#141414;
-  color:#ddd;
-  border-radius:7px;
-  cursor:pointer;
-  font-size:10px;
+
+.stat{
+  padding:10px 8px;
+  border-radius:10px;
+  background:#090b0e;
+  border:1px solid #20232a;
+  text-align:center;
+}
+
+.stat span{
+  display:block;
+  font-size:8px;
+  color:#686e79;
   letter-spacing:1px;
-  transition:.18s ease;
 }
-.color-btn.red.active{
-  background:#641616;
-  border-color:#a63a3a;
-}
-.color-btn.black.active{
-  background:#303030;
-  border-color:#777;
-}
-.color-btn.green.active{
-  background:#123d2b;
-  border-color:#2e7655;
-}
-.color-btn:active{transform:scale(.96)}
 
-.number-grid{
+.stat strong{
+  display:block;
+  margin-top:4px;
+  font-size:14px;
+}
+
+#multiplier{
+  color:var(--gold);
+}
+
+#currentBet{
+  color:var(--blue);
+}
+
+/* GRID */
+
+.mineGrid{
+  width:100%;
+  aspect-ratio:1/1;
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:4px;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
 }
-.number-btn{
-  height:38px;
-  border:1px solid #292929;
-  border-radius:5px;
-  color:#eee;
-  font-size:11px;
-  cursor:pointer;
-  transition:.15s ease;
-}
-.number-btn.red{background:#511515}
-.number-btn.black{background:#171717}
-.number-btn.green{
-  background:#10402c;
-  grid-column:span 6;
-}
-.number-btn.active{
-  box-shadow:inset 0 0 0 2px #fff;
-  transform:translateY(-1px);
-}
-.number-btn:active{transform:scale(.94)}
 
-.chips{
+.tile{
+  position:relative;
+  border-radius:11px;
+  border:1px solid #30343e;
+  background:
+    linear-gradient(145deg,#22262f,#14171c);
+  box-shadow:
+    inset 0 1px #ffffff08,
+    0 5px 12px #0007;
   display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:3px 1px 7px;
-  scrollbar-width:none;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  overflow:hidden;
+  transition:
+    transform .18s,
+    background .25s,
+    border-color .25s,
+    box-shadow .25s;
 }
-.chips::-webkit-scrollbar{display:none}
 
-.chip{
-  flex:0 0 auto;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  border:1px solid #555;
-  background:#171717;
-  color:#fff;
-  cursor:pointer;
-  font-size:10px;
-  transition:.18s ease;
+.tile:not(.revealed):active{
+  transform:scale(.92);
 }
-.chip.active{
-  background:#fff;
-  color:#000;
-  border-color:#fff;
+
+.tile:not(.revealed):hover{
+  border-color:#464c58;
   transform:translateY(-2px);
 }
-.chip:active{transform:scale(.92)}
 
-.spin{
-  width:100%;
-  height:56px;
-  border:0;
-  border-radius:8px;
-  margin-top:15px;
-  background:#f4f4f4;
-  color:#050505;
-  font-weight:700;
-  font-size:12px;
-  letter-spacing:2px;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  transition:.2s ease;
-}
-.spin:before{
+.tile::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(110deg,transparent,rgba(255,255,255,.5),transparent);
+  background:linear-gradient(120deg,transparent,#ffffff08,transparent);
   transform:translateX(-100%);
 }
-.spin:hover:before{animation:shine .8s ease}
-.spin:active{transform:scale(.985)}
-.spin:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+
+.tile:not(.revealed):hover::after{
+  animation:shine .6s;
 }
 
 @keyframes shine{
   to{transform:translateX(100%)}
 }
 
-.message{
-  text-align:center;
-  min-height:35px;
-  padding-top:11px;
-  font-size:11px;
-  color:#777;
-  letter-spacing:.4px;
+.tile.revealed{
+  cursor:default;
 }
 
-.message.win{
-  color:#ddd;
-  animation:winPulse .55s ease;
-}
-.message.loss{
-  color:#777;
-  animation:lossShake .3s ease;
+.tile.diamond{
+  background:
+    radial-gradient(circle at 50% 45%,#153f31,#0c201a);
+  border-color:#1c9e65;
+  box-shadow:
+    inset 0 0 25px #18d67818,
+    0 0 20px #18d67816;
+  animation:diamondReveal .45s ease;
 }
 
-@keyframes winPulse{
-  0%{transform:scale(.9);opacity:.2}
-  60%{transform:scale(1.08);opacity:1}
-  100%{transform:scale(1)}
+@keyframes diamondReveal{
+  0%{
+    transform:scale(.65) rotate(-8deg);
+    opacity:.3;
+  }
+  70%{
+    transform:scale(1.08);
+  }
+  100%{
+    transform:scale(1);
+  }
 }
-@keyframes lossShake{
+
+.tile.bomb{
+  background:
+    radial-gradient(circle at 50% 45%,#481923,#1c0d11);
+  border-color:#c52f48;
+  animation:bombReveal .5s ease;
+}
+
+@keyframes bombReveal{
   0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-4px)}
-  75%{transform:translateX(4px)}
+  20%{transform:translateX(-7px)}
+  40%{transform:translateX(7px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(4px)}
 }
 
-.panel{
-  border-top:1px solid #202020;
-  margin-top:18px;
-  padding:20px 2px 0;
+.hiddenGem{
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:#555b67;
+  box-shadow:0 0 8px #ffffff08;
 }
 
-.panel-title{
+.tile.revealed .hiddenGem{
+  display:none;
+}
+
+.tileIcon{
+  opacity:0;
+  transform:scale(.2);
+}
+
+.tile.revealed .tileIcon{
+  opacity:1;
+  transform:scale(1);
+  transition:.35s cubic-bezier(.2,1.5,.5,1);
+}
+
+/* CONTROLS */
+
+.controls{
+  margin-top:14px;
+}
+
+.betLine{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.betInput{
+  flex:1;
+  height:46px;
+  background:#090b0e;
+  border:1px solid #282c35;
+  color:white;
+  border-radius:9px;
+  padding:0 13px;
+  outline:none;
+}
+
+.quick{
+  height:46px;
+  min-width:44px;
+  border-radius:9px;
+  background:#191c22;
+  border:1px solid #292d35;
+  color:#aeb2bc;
   font-size:10px;
-  letter-spacing:2px;
-  color:#777;
-  margin-bottom:12px;
+  font-weight:800;
 }
+
+.quick:active{
+  transform:scale(.94);
+}
+
+.mineCount{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.mineBtn{
+  height:39px;
+  border-radius:8px;
+  color:#9ca1ac;
+  background:#181b20;
+  border:1px solid #282c34;
+  font-size:10px;
+  font-weight:800;
+}
+
+.mineBtn.active{
+  color:white;
+  background:#183d2c;
+  border-color:#238354;
+}
+
+.actionRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.startBtn,
+.cashBtn{
+  height:50px;
+  border-radius:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:.18s;
+}
+
+.startBtn{
+  background:linear-gradient(135deg,#24dc7f,#0ea95d);
+  color:#03150c;
+  box-shadow:0 8px 25px #16bd691c;
+}
+
+.cashBtn{
+  background:#242831;
+  color:#b5bac5;
+  border:1px solid #343943;
+}
+
+.cashBtn.ready{
+  background:#ffc857;
+  color:#171107;
+  border-color:#ffd97f;
+  animation:pulseCash 1.5s infinite;
+}
+
+@keyframes pulseCash{
+  50%{
+    box-shadow:0 0 25px #ffc85733;
+  }
+}
+
+.startBtn:active,
+.cashBtn:active{
+  transform:scale(.97);
+}
+
+.startBtn:disabled,
+.cashBtn:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+  animation:none;
+}
+
+/* INFO */
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:12px;
+}
+
+.infoBox{
+  padding:13px;
+  border-radius:12px;
+  background:#111319;
+  border:1px solid #242831;
+}
+
+.infoTitle{
+  font-size:9px;
+  letter-spacing:1.2px;
+  color:#777d88;
+}
+
+.infoValue{
+  margin-top:5px;
+  font-size:15px;
+  font-weight:900;
+}
+
+.infoValue.green{
+  color:var(--green);
+}
+
+.infoValue.red{
+  color:var(--red);
+}
+
+/* HISTORY */
 
 .history{
+  margin-top:15px;
+}
+
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:9px;
+}
+
+.sectionTitle strong{
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.sectionTitle span{
+  font-size:8px;
+  color:#646a75;
+}
+
+.historyList{
   display:flex;
   gap:7px;
   overflow-x:auto;
   scrollbar-width:none;
 }
-.history::-webkit-scrollbar{display:none}
-.history-item{
-  flex:0 0 38px;
-  height:38px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+.historyList::-webkit-scrollbar{
+  display:none;
+}
+
+.historyItem{
+  min-width:72px;
+  padding:10px 7px;
+  border:1px solid #252933;
+  border-radius:9px;
+  background:#111319;
+  text-align:center;
+}
+
+.historyItem .hIcon{
+  font-size:17px;
+}
+
+.historyItem .hText{
+  margin-top:4px;
+  font-size:8px;
+  color:#888e99;
+}
+
+/* MESSAGE */
+
+.message{
+  text-align:center;
+  min-height:19px;
+  margin-top:11px;
   font-size:10px;
-  font-weight:700;
-  border:1px solid #333;
-}
-.history-item.red{background:#511515}
-.history-item.black{background:#151515}
-.history-item.green{background:#10402c}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-top:12px;
-}
-.stat{
-  background:#101010;
-  border:1px solid #222;
-  border-radius:7px;
-  padding:12px 8px;
-  text-align:center;
-}
-.stat small{
-  display:block;
-  color:#666;
-  font-size:8px;
-  letter-spacing:1px;
-}
-.stat strong{
-  display:block;
-  margin-top:5px;
-  font-size:15px;
+  color:#858b96;
 }
 
-.footer{
-  border-top:1px solid #202020;
-  padding:24px 18px 35px;
-  text-align:center;
-  color:#444;
-  font-size:8px;
-  letter-spacing:1.5px;
-  line-height:1.8;
+.message.win{
+  color:var(--green);
 }
+
+.message.lose{
+  color:var(--red);
+}
+
+/* PARTICLES */
 
 .particle{
   position:fixed;
-  width:5px;
-  height:5px;
+  width:7px;
+  height:7px;
   border-radius:50%;
-  background:#fff;
   pointer-events:none;
   z-index:100;
-  animation:particle 850ms ease-out forwards;
-}
-@keyframes particle{
-  from{transform:translate(0,0) scale(1);opacity:1}
-  to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}
+  animation:particleFly .8s ease-out forwards;
 }
 
-.balance-pop{
-  animation:balancePop .45s ease;
-}
-@keyframes balancePop{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-  100%{transform:scale(1)}
-}
-
-@media(min-width:700px){
-  body{padding:20px}
-  .app{
-    border:1px solid #252525;
-    border-radius:14px;
+@keyframes particleFly{
+  from{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
+  to{
+    opacity:0;
+    transform:translate(var(--x),var(--y)) scale(0);
   }
 }
 
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
+/* RESPONSIVE */
+
+@media(max-width:380px){
+  main{
+    padding:14px 10px 30px;
+  }
+
+  .gameCard{
+    padding:10px;
+  }
+
+  .mineGrid{
+    gap:5px;
+  }
+
+  .tile{
+    border-radius:8px;
+    font-size:21px;
+  }
+
+  .demoBadge{
+    display:none;
+  }
+
+  .brand{
+    font-size:27px;
+  }
+}
+
+@media(min-width:700px){
+  main{
+    padding-top:30px;
+  }
+
+  .tile{
+    font-size:32px;
   }
 }
 </style>
@@ -501,473 +709,841 @@ button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 <body>
 
-<div class="app">
+<!-- LOGIN -->
 
-<header class="header">
-  <div class="logo">NOIRVA</div>
-  <div class="demo">DEMO • VIRTUAL COINS</div>
-  <div class="balance" id="balanceBox">
-    <small>BALANCE</small>
-    <strong id="balance">10,000</strong>
+<section id="loginScreen">
+  <div class="login">
+
+    <div class="logoMark">N</div>
+
+    <div class="brand">NOIRVA</div>
+    <div class="tag">PRIVATE VIRTUAL GAMING</div>
+
+    <div class="loginBox">
+
+      <label class="label">USERNAME</label>
+      <input
+        class="input"
+        id="username"
+        type="text"
+        placeholder="Enter username"
+        autocomplete="off"
+      >
+
+      <label class="label">PASSWORD</label>
+      <input
+        class="input"
+        id="password"
+        type="password"
+        placeholder="Enter password"
+      >
+
+      <button class="loginBtn" id="loginBtn">
+        ENTER NOIRVA
+      </button>
+
+      <div class="demo" id="loginError"></div>
+
+      <div class="demo">
+        DEMO ACCESS • VIRTUAL COINS ONLY<br>
+        No real-money wagering or withdrawals.
+      </div>
+
+    </div>
   </div>
-</header>
-
-<section class="hero">
-  <div class="kicker">NOIRVA CASINO</div>
-  <h1>ROULETTE</h1>
-  <p>Virtual currency simulation</p>
 </section>
 
-<main class="game">
 
-  <div class="wheel-area">
-    <div class="pointer"></div>
+<!-- GAME -->
 
-    <div class="wheel" id="wheel">
-      <div class="number-ring" id="numberRing"></div>
+<section id="gameScreen" class="app hidden">
+
+<header>
+
+  <div class="headerLogo">NOIRVA</div>
+
+  <div class="headerRight">
+    <div class="demoBadge">DEMO • VIRTUAL</div>
+    <button class="exit" id="exitBtn">EXIT</button>
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="topbar">
+
+    <div>
+      <div class="gameTitle">MINES</div>
+      <div class="gameSubtitle">FIND THE DIAMONDS</div>
     </div>
-  </div>
 
-  <div class="result">
-    <div class="result-number" id="resultNumber">—</div>
-    <div class="result-color" id="resultColor">PLACE YOUR BET</div>
-  </div>
-
-  <div class="bet-summary">
-    <span>CURRENT BET</span>
-    <strong id="currentBet">RED • 250</strong>
-  </div>
-
-  <div class="section-title">Colour</div>
-
-  <div class="color-bets">
-    <button class="color-btn red active" data-color="red">RED ×2</button>
-    <button class="color-btn black" data-color="black">BLACK ×2</button>
-    <button class="color-btn green" data-color="green">GREEN ×14</button>
-  </div>
-
-  <div class="section-title">Number</div>
-
-  <div class="number-grid" id="numberGrid"></div>
-
-  <div class="section-title">Chip</div>
-
-  <div class="chips">
-    <button class="chip" data-chip="100">100</button>
-    <button class="chip active" data-chip="250">250</button>
-    <button class="chip" data-chip="500">500</button>
-    <button class="chip" data-chip="1000">1K</button>
-    <button class="chip" data-chip="2500">2.5K</button>
-  </div>
-
-  <button class="spin" id="spin">SPIN</button>
-
-  <div class="message" id="message"></div>
-
-  <section class="panel">
-    <div class="panel-title">RECENT RESULTS</div>
-    <div class="history" id="history"></div>
-
-    <div class="stats">
-      <div class="stat">
-        <small>RED</small>
-        <strong id="redCount">0</strong>
-      </div>
-      <div class="stat">
-        <small>BLACK</small>
-        <strong id="blackCount">0</strong>
-      </div>
-      <div class="stat">
-        <small>GREEN</small>
-        <strong id="greenCount">0</strong>
-      </div>
+    <div class="balance">
+      <div class="balanceLabel">BALANCE</div>
+      <div class="balanceValue" id="balance">10,000</div>
     </div>
-  </section>
+
+  </div>
+
+
+  <div class="gameCard">
+
+    <div class="statusRow">
+
+      <div class="stat">
+        <span>BET</span>
+        <strong id="currentBet">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>MULTIPLIER</span>
+        <strong id="multiplier">1.00x</strong>
+      </div>
+
+      <div class="stat">
+        <span>SAFE</span>
+        <strong id="safeCount">25</strong>
+      </div>
+
+    </div>
+
+
+    <div class="mineGrid" id="mineGrid"></div>
+
+
+    <div class="message" id="message">
+      Choose your bet and start a round.
+    </div>
+
+
+    <div class="controls">
+
+      <div class="betLine">
+
+        <input
+          class="betInput"
+          id="betInput"
+          type="number"
+          min="10"
+          value="100"
+          inputmode="numeric"
+        >
+
+        <button class="quick" data-bet="100">100</button>
+        <button class="quick" data-bet="500">500</button>
+        <button class="quick" data-bet="1000">1K</button>
+
+      </div>
+
+
+      <div class="mineCount">
+
+        <button class="mineBtn active" data-mines="3">3 BOMBS</button>
+        <button class="mineBtn" data-mines="5">5 BOMBS</button>
+        <button class="mineBtn" data-mines="8">8 BOMBS</button>
+        <button class="mineBtn" data-mines="12">12 BOMBS</button>
+
+      </div>
+
+
+      <div class="actionRow">
+
+        <button class="startBtn" id="startBtn">
+          START ROUND
+        </button>
+
+        <button class="cashBtn" id="cashBtn" disabled>
+          CASH OUT
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info">
+
+    <div class="infoBox">
+      <div class="infoTitle">ROUND WIN</div>
+      <div class="infoValue green" id="roundWin">0</div>
+    </div>
+
+    <div class="infoBox">
+      <div class="infoTitle">LAST RESULT</div>
+      <div class="infoValue" id="lastResult">—</div>
+    </div>
+
+  </div>
+
+
+  <div class="history">
+
+    <div class="sectionTitle">
+      <strong>RECENT ROUNDS</strong>
+      <span>VIRTUAL HISTORY</span>
+    </div>
+
+    <div class="historyList" id="historyList"></div>
+
+  </div>
 
 </main>
 
-<footer class="footer">
-  NOIRVA • DEMO MODE<br>
-  VIRTUAL COINS ONLY • NO REAL-MONEY WAGERING
-</footer>
+</section>
 
-</div>
 
 <script>
-const wheel=document.getElementById("wheel");
-const numberRing=document.getElementById("numberRing");
-const numberGrid=document.getElementById("numberGrid");
-const balanceEl=document.getElementById("balance");
-const balanceBox=document.getElementById("balanceBox");
-const resultNumber=document.getElementById("resultNumber");
-const resultColor=document.getElementById("resultColor");
-const currentBet=document.getElementById("currentBet");
-const message=document.getElementById("message");
-const spinBtn=document.getElementById("spin");
-const historyEl=document.getElementById("history");
 
-let balance=10000;
-let selectedColor="red";
-let selectedNumber=null;
-let selectedChip=250;
-let rotation=0;
+/* =========================
+   STATE
+========================= */
 
-let history=[];
-let stats={
-  red:0,
-  black:0,
-  green:0
-};
+let balance = 10000;
+let bet = 100;
+let mines = 3;
 
-const reds=[
-  1,3,5,7,9,12,14,16,18,
-  19,21,23,25,27,30,32,34,36
-];
+let board = [];
+let gameActive = false;
+let revealed = 0;
+let multiplier = 1;
 
-function getColor(n){
-  if(n===0)return "green";
-  return reds.includes(n)?"red":"black";
-}
 
-function format(n){
-  return n.toLocaleString("en-IN");
-}
+/* =========================
+   AUDIO
+========================= */
 
-function updateBalance(){
-  balanceEl.textContent=format(balance);
-  balanceBox.classList.remove("balance-pop");
-  void balanceBox.offsetWidth;
-  balanceBox.classList.add("balance-pop");
-}
+let audioCtx;
 
-function updateBet(){
-  if(selectedNumber!==null){
-    currentBet.textContent="NUMBER "+selectedNumber+" • "+format(selectedChip);
-  }else{
-    currentBet.textContent=selectedColor.toUpperCase()+" • "+format(selectedChip);
+function audioReady(){
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if(audioCtx.state === "suspended"){
+    audioCtx.resume();
   }
 }
 
-function buildWheelNumbers(){
-  const total=37;
+function tone(freq,duration,type="sine",volume=.04){
 
-  for(let i=0;i<total;i++){
-    const n=i;
-    const el=document.createElement("div");
-    el.className="number";
-    el.textContent=n;
+  audioReady();
 
-    const angle=(i/total)*360-90;
-    const radius=112;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
 
-    const x=Math.cos(angle*Math.PI/180)*radius;
-    const y=Math.sin(angle*Math.PI/180)*radius;
+  osc.type = type;
+  osc.frequency.value = freq;
 
-    el.style.transform=
-      "translate("+x+"px,"+y+"px)";
+  gain.gain.setValueAtTime(0,audioCtx.currentTime);
+  gain.gain.linearRampToValueAtTime(
+    volume,
+    audioCtx.currentTime+.015
+  );
 
-    el.style.color=
-      getColor(n)==="red"
-      ?" #ffb0b0"
-      :getColor(n)==="green"
-      ?" #9ed8b9"
-      :"#ddd";
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioCtx.currentTime+duration
+  );
 
-    numberRing.appendChild(el);
-  }
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime+duration);
 }
-
-function buildNumberGrid(){
-  numberGrid.innerHTML="";
-
-  const zero=document.createElement("button");
-  zero.className="number-btn green";
-  zero.textContent="0";
-  zero.dataset.number="0";
-  numberGrid.appendChild(zero);
-
-  for(let n=1;n<=36;n++){
-    const btn=document.createElement("button");
-    btn.className="number-btn "+getColor(n);
-    btn.textContent=n;
-    btn.dataset.number=n;
-    numberGrid.appendChild(btn);
-  }
-
-  document.querySelectorAll(".number-btn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      document.querySelectorAll(".number-btn")
-        .forEach(x=>x.classList.remove("active"));
-
-      btn.classList.add("active");
-      selectedNumber=Number(btn.dataset.number);
-      selectedColor=getColor(selectedNumber);
-
-      document.querySelectorAll(".color-btn")
-        .forEach(x=>x.classList.remove("active"));
-
-      document
-        .querySelector('.color-btn[data-color="'+selectedColor+'"]')
-        .classList.add("active");
-
-      updateBet();
-    });
-  });
-}
-
-document.querySelectorAll(".color-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    document.querySelectorAll(".color-btn")
-      .forEach(x=>x.classList.remove("active"));
-
-    btn.classList.add("active");
-
-    selectedColor=btn.dataset.color;
-    selectedNumber=null;
-
-    document.querySelectorAll(".number-btn")
-      .forEach(x=>x.classList.remove("active"));
-
-    updateBet();
-  });
-});
-
-document.querySelectorAll(".chip").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    document.querySelectorAll(".chip")
-      .forEach(x=>x.classList.remove("active"));
-
-    btn.classList.add("active");
-
-    selectedChip=Number(btn.dataset.chip);
-    updateBet();
-  });
-});
 
 function sound(type){
-  try{
-    const AudioContext=
-      window.AudioContext||window.webkitAudioContext;
 
-    if(!AudioContext)return;
+  if(type==="click"){
+    tone(520,.06,"square",.025);
+  }
 
-    const ctx=new AudioContext();
-    const osc=ctx.createOscillator();
-    const gain=ctx.createGain();
+  if(type==="diamond"){
+    tone(700,.08,"sine",.04);
+    setTimeout(()=>tone(1050,.14,"sine",.04),70);
+  }
 
-    osc.connect(gain);
-    gain.connect(ctx.destination);
+  if(type==="cash"){
+    tone(500,.08,"sine",.035);
+    setTimeout(()=>tone(750,.1,"sine",.04),80);
+    setTimeout(()=>tone(1050,.18,"sine",.045),170);
+  }
 
-    let freq=type==="spin"
-      ?180
-      :type==="win"
-      ?620
-      :type==="loss"
-      ?130
-      :type==="tick"
-      ?300
-      :240;
-
-    osc.frequency.value=freq;
-    osc.type=type==="win"?"sine":"triangle";
-
-    gain.gain.setValueAtTime(.0001,ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(
-      type==="win"?.08:.035,
-      ctx.currentTime+.015
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      .0001,
-      ctx.currentTime+(type==="spin"?.16:.11)
-    );
-
-    osc.start();
-    osc.stop(ctx.currentTime+(type==="spin"?.18:.13));
-  }catch(e){}
+  if(type==="bomb"){
+    tone(90,.25,"sawtooth",.07);
+    setTimeout(()=>tone(55,.35,"sawtooth",.04),100);
+  }
 }
 
-function particles(){
-  for(let i=0;i<18;i++){
+
+/* =========================
+   LOGIN
+========================= */
+
+document.getElementById("loginBtn").onclick=()=>{
+
+  audioReady();
+  sound("click");
+
+  const username=
+    document.getElementById("username").value.trim();
+
+  const password=
+    document.getElementById("password").value;
+
+  const error=
+    document.getElementById("loginError");
+
+  if(username.length<2 || password.length<3){
+
+    error.textContent=
+      "Enter a username and a password of at least 3 characters.";
+
+    return;
+  }
+
+  error.textContent="";
+
+  document.getElementById("loginScreen")
+    .classList.add("hidden");
+
+  document.getElementById("gameScreen")
+    .classList.remove("hidden");
+
+  buildBoard();
+
+};
+
+
+document.getElementById("exitBtn").onclick=()=>{
+
+  gameActive=false;
+
+  document.getElementById("gameScreen")
+    .classList.add("hidden");
+
+  document.getElementById("loginScreen")
+    .classList.remove("hidden");
+
+};
+
+
+/* =========================
+   BET
+========================= */
+
+document.querySelectorAll(".quick").forEach(btn=>{
+
+  btn.onclick=()=>{
+
+    sound("click");
+
+    document.getElementById("betInput").value=
+      btn.dataset.bet;
+
+    bet=Number(btn.dataset.bet);
+  };
+
+});
+
+
+document.getElementById("betInput").oninput=e=>{
+  bet=Number(e.target.value)||0;
+};
+
+
+/* =========================
+   MINES
+========================= */
+
+document.querySelectorAll(".mineBtn").forEach(btn=>{
+
+  btn.onclick=()=>{
+
+    if(gameActive) return;
+
+    sound("click");
+
+    document.querySelectorAll(".mineBtn")
+      .forEach(x=>x.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    mines=Number(btn.dataset.mines);
+
+    buildBoard();
+
+  };
+
+});
+
+
+/* =========================
+   BOARD
+========================= */
+
+function buildBoard(){
+
+  const grid=document.getElementById("mineGrid");
+
+  grid.innerHTML="";
+
+  board=[];
+
+  revealed=0;
+  multiplier=1;
+
+  for(let i=0;i<25;i++){
+
+    board.push({
+      mine:false,
+      revealed:false
+    });
+
+    const tile=document.createElement("button");
+
+    tile.className="tile";
+
+    tile.innerHTML=`
+      <div class="hiddenGem"></div>
+      <div class="tileIcon"></div>
+    `;
+
+    tile.onclick=()=>revealTile(i);
+
+    grid.appendChild(tile);
+  }
+
+  updateUI();
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.getElementById("startBtn").onclick=()=>{
+
+  audioReady();
+  sound("click");
+
+  if(gameActive) return;
+
+  bet=Number(document.getElementById("betInput").value)||0;
+
+  if(bet<10){
+
+    showMessage("Minimum virtual bet is 10 coins.");
+
+    return;
+  }
+
+  if(bet>balance){
+
+    showMessage("Not enough virtual coins.");
+
+    return;
+  }
+
+  balance-=bet;
+
+  gameActive=true;
+  revealed=0;
+  multiplier=1;
+
+  createMines();
+
+  document.getElementById("cashBtn")
+    .disabled=false;
+
+  document.getElementById("startBtn")
+    .disabled=true;
+
+  document.getElementById("betInput")
+    .disabled=true;
+
+  document.querySelectorAll(".mineBtn")
+    .forEach(x=>x.disabled=true);
+
+  showMessage("Round started. Find the diamonds.");
+
+  updateUI();
+};
+
+
+/* =========================
+   CREATE MINES
+========================= */
+
+function createMines(){
+
+  board.forEach(x=>{
+    x.mine=false;
+    x.revealed=false;
+  });
+
+  let placed=0;
+
+  while(placed<mines){
+
+    const index=
+      Math.floor(Math.random()*25);
+
+    if(!board[index].mine){
+
+      board[index].mine=true;
+      placed++;
+
+    }
+  }
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+function revealTile(index){
+
+  if(!gameActive) return;
+
+  const data=board[index];
+
+  if(data.revealed) return;
+
+  data.revealed=true;
+
+  const tile=
+    document.querySelectorAll(".tile")[index];
+
+  tile.classList.add("revealed");
+
+  if(data.mine){
+
+    tile.classList.add("bomb");
+
+    tile.querySelector(".tileIcon").textContent="💣";
+
+    sound("bomb");
+
+    revealAllMines();
+
+    gameActive=false;
+
+    document.getElementById("cashBtn")
+      .disabled=true;
+
+    document.getElementById("startBtn")
+      .disabled=false;
+
+    document.getElementById("betInput")
+      .disabled=false;
+
+    document.querySelectorAll(".mineBtn")
+      .forEach(x=>x.disabled=false);
+
+    document.getElementById("lastResult").textContent=
+      "BOMB";
+
+    document.getElementById("roundWin").textContent="0";
+
+    showMessage(
+      "💣 Bomb found. Round ended.",
+      "lose"
+    );
+
+    addHistory("💣","Bomb");
+
+    updateUI();
+
+    return;
+  }
+
+
+  revealed++;
+
+  tile.classList.add("diamond");
+
+  tile.querySelector(".tileIcon").textContent="💎";
+
+  sound("diamond");
+
+  createParticles(tile);
+
+  multiplier=
+    calculateMultiplier();
+
+  const potential=
+    Math.floor(bet*multiplier);
+
+  document.getElementById("roundWin").textContent=
+    format(potential);
+
+  showMessage(
+    `💎 Diamond found • ${multiplier.toFixed(2)}x`
+  );
+
+  if(revealed >= 25-mines){
+
+    cashOut();
+
+    return;
+  }
+
+  updateUI();
+}
+
+
+/* =========================
+   MULTIPLIER
+========================= */
+
+function calculateMultiplier(){
+
+  const safeTotal=25-mines;
+
+  let value=1;
+
+  for(let i=0;i<revealed;i++){
+
+    value*=
+      (25-i)/(safeTotal-i);
+  }
+
+  return Math.max(1, value*.96);
+}
+
+
+/* =========================
+   CASH OUT
+========================= */
+
+document.getElementById("cashBtn").onclick=()=>{
+  cashOut();
+};
+
+
+function cashOut(){
+
+  if(!gameActive || revealed<=0) return;
+
+  const win=
+    Math.floor(bet*multiplier);
+
+  balance+=win;
+
+  gameActive=false;
+
+  sound("cash");
+
+  createScreenParticles();
+
+  document.getElementById("cashBtn")
+    .disabled=true;
+
+  document.getElementById("startBtn")
+    .disabled=false;
+
+  document.getElementById("betInput")
+    .disabled=false;
+
+  document.querySelectorAll(".mineBtn")
+    .forEach(x=>x.disabled=false);
+
+  document.getElementById("roundWin").textContent=
+    format(win);
+
+  document.getElementById("lastResult").textContent=
+    "+"+format(win);
+
+  showMessage(
+    `CASHED OUT • ${format(win)} VIRTUAL COINS`,
+    "win"
+  );
+
+  addHistory("💎",`${multiplier.toFixed(2)}x`);
+
+  updateUI();
+}
+
+
+/* =========================
+   REVEAL MINES
+========================= */
+
+function revealAllMines(){
+
+  board.forEach((data,index)=>{
+
+    if(data.mine){
+
+      const tile=
+        document.querySelectorAll(".tile")[index];
+
+      tile.classList.add(
+        "revealed",
+        "bomb"
+      );
+
+      tile.querySelector(".tileIcon")
+        .textContent="💣";
+
+    }
+
+  });
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+function createParticles(tile){
+
+  const rect=tile.getBoundingClientRect();
+
+  for(let i=0;i<10;i++){
+
     const p=document.createElement("div");
+
     p.className="particle";
 
-    p.style.left="50%";
-    p.style.top="45%";
+    p.style.left=
+      rect.left+rect.width/2+"px";
+
+    p.style.top=
+      rect.top+rect.height/2+"px";
+
+    p.style.background=
+      i%2 ? "#20d47a" : "#ffc857";
 
     p.style.setProperty(
       "--x",
-      (Math.random()*260-130)+"px"
+      (Math.random()*120-60)+"px"
     );
 
     p.style.setProperty(
       "--y",
-      (Math.random()*220-160)+"px"
+      (Math.random()*-120-20)+"px"
     );
 
     document.body.appendChild(p);
 
-    setTimeout(()=>p.remove(),900);
+    setTimeout(()=>p.remove(),850);
   }
 }
 
-function animateBalance(from,to,duration=500){
-  const start=performance.now();
 
-  function frame(now){
-    const progress=Math.min(
-      1,
-      (now-start)/duration
+function createScreenParticles(){
+
+  for(let i=0;i<30;i++){
+
+    const p=document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left="50%";
+    p.style.top="50%";
+
+    p.style.background=
+      i%2 ? "#20d47a" : "#ffc857";
+
+    p.style.setProperty(
+      "--x",
+      (Math.random()*360-180)+"px"
     );
 
-    const value=Math.round(
-      from+(to-from)*progress
+    p.style.setProperty(
+      "--y",
+      (Math.random()*360-180)+"px"
     );
 
-    balanceEl.textContent=format(value);
+    document.body.appendChild(p);
 
-    if(progress<1){
-      requestAnimationFrame(frame);
-    }
+    setTimeout(()=>p.remove(),850);
   }
-
-  requestAnimationFrame(frame);
 }
 
-function addHistory(number,color){
-  history.unshift({number,color});
-  history=history.slice(0,12);
 
-  historyEl.innerHTML="";
+/* =========================
+   HISTORY
+========================= */
 
-  history.forEach(item=>{
-    const el=document.createElement("div");
-    el.className="history-item "+item.color;
-    el.textContent=item.number;
-    historyEl.appendChild(el);
-  });
+function addHistory(icon,text){
 
-  stats[color]++;
-  document.getElementById("redCount").textContent=stats.red;
-  document.getElementById("blackCount").textContent=stats.black;
-  document.getElementById("greenCount").textContent=stats.green;
-}
+  const list=
+    document.getElementById("historyList");
 
-function spin(){
+  const item=document.createElement("div");
 
-  if(spinBtn.disabled)return;
+  item.className="historyItem";
 
-  if(selectedChip>balance){
-    message.textContent="Not enough virtual coins.";
-    message.className="message loss";
-    sound("loss");
-    return;
+  item.innerHTML=`
+    <div class="hIcon">${icon}</div>
+    <div class="hText">${text}</div>
+  `;
+
+  list.prepend(item);
+
+  while(list.children.length>8){
+    list.lastChild.remove();
   }
-
-  const previousBalance=balance;
-
-  balance-=selectedChip;
-  updateBalance();
-
-  spinBtn.disabled=true;
-  message.className="message";
-  message.textContent="SPINNING...";
-
-  resultNumber.style.opacity=".3";
-  resultNumber.style.transform="scale(.85)";
-
-  sound("spin");
-
-  const number=Math.floor(Math.random()*37);
-  const color=getColor(number);
-
-  const segment=360/37;
-  const target=(number*segment);
-
-  rotation+=
-    1440+
-    (360-target)+
-    Math.random()*12;
-
-  wheel.style.transform="rotate("+rotation+"deg)";
-
-  let tickCount=0;
-
-  const tickTimer=setInterval(()=>{
-    sound("tick");
-    tickCount++;
-
-    if(tickCount>8){
-      clearInterval(tickTimer);
-    }
-  },350);
-
-  setTimeout(()=>{
-
-    resultNumber.textContent=number;
-    resultColor.textContent=color.toUpperCase();
-
-    resultNumber.style.opacity="1";
-    resultNumber.style.transform="scale(1.08)";
-
-    setTimeout(()=>{
-      resultNumber.style.transform="scale(1)";
-    },180);
-
-    let win=false;
-    let payout=0;
-
-    if(selectedNumber!==null){
-      if(number===selectedNumber){
-        win=true;
-        payout=selectedChip*36;
-      }
-    }else if(selectedColor===color){
-      win=true;
-      payout=color==="green"
-        ?selectedChip*14
-        :selectedChip*2;
-    }
-
-    if(win){
-
-      const newBalance=balance+payout;
-
-      balance=newBalance;
-
-      animateBalance(
-        previousBalance-selectedChip,
-        newBalance,
-        650
-      );
-
-      message.className="message win";
-      message.textContent=
-        "WIN +"+format(payout)+" COINS";
-
-      sound("win");
-      particles();
-
-    }else{
-
-      message.className="message loss";
-      message.textContent="BET LOST";
-
-      sound("loss");
-    }
-
-    addHistory(number,color);
-
-    spinBtn.disabled=false;
-
-  },3800);
 }
 
-spinBtn.addEventListener("click",spin);
 
-buildWheelNumbers();
-buildNumberGrid();
-updateBalance();
-updateBet();
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text,type=""){
+
+  const el=
+    document.getElementById("message");
+
+  el.textContent=text;
+
+  el.className="message "+type;
+}
+
+
+/* =========================
+   UI
+========================= */
+
+function format(number){
+
+  return Number(number).toLocaleString("en-IN");
+}
+
+
+function updateUI(){
+
+  document.getElementById("balance")
+    .textContent=format(balance);
+
+  document.getElementById("currentBet")
+    .textContent=format(bet);
+
+  document.getElementById("multiplier")
+    .textContent=
+      multiplier.toFixed(2)+"x";
+
+  document.getElementById("safeCount")
+    .textContent=
+      Math.max(0,25-mines-revealed);
+
+}
+
+
+/* =========================
+   INITIAL
+========================= */
+
+buildBoard();
+
 </script>
 
 </body>
